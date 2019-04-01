@@ -1,0 +1,14 @@
+@import "login";
+@import "colors";
+@import "main";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+body {
+  background: $ton-xxl;
+  min-height: 100%;
+}

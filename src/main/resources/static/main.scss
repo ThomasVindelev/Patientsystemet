@@ -1,0 +1,45 @@
+@import "colors";
+
+.main-menu {
+  max-width: 300px;
+  height: 100%;
+  background: $ton-m;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  a {
+    text-decoration: none;
+  }
+  .logo {
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+    h1 {
+      color: white;
+      font-size: 25px;
+    }
+    &:hover {
+      background-color: $ton-d;
+    }
+  }
+  nav {
+    ul {
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        li {
+          padding: 15px 30px;
+          &:hover {
+            background: $ton-d;
+          }
+        }
+      }
+    }
+  }
+  .logged-in-as {
+    padding: 100% 0 0 30px;
+    color: white;
+    em {
+      line-height: 30px;
+    }
+  }
+}
