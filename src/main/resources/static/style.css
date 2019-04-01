@@ -1,1 +1,35 @@
-.login{width:350px;margin:20% auto 0 auto}.login .login-form{background-color:#506874;padding:40px 25px;border-radius:15px;-webkit-box-shadow:0px 0px 5px 0px rgba(0, 0, 0, 0.75);box-shadow:0px 0px 5px 0px rgba(0, 0, 0, 0.75)}.login .login-form hr{border:0.5px solid #9fb4bd;margin-bottom:13px}.login .login-form h1{margin-bottom:10px;text-align:center;color:white}.login .login-form form input{border:1px solid white;padding:8px 15px;border-radius:10px;margin-bottom:10px;width:100%}.login .login-form form button{border:0px;padding:10px 20px;border-radius:10px;margin:5px 35% 0 35%;width:30%;background:#009688;color:white}.main-menu{max-width:300px;height:100%;background:#3b4d56;-webkit-box-shadow:0px 0px 5px 0px rgba(0, 0, 0, 0.75);box-shadow:0px 0px 5px 0px rgba(0, 0, 0, 0.75)}.main-menu a{text-decoration:none}.main-menu .logo{padding:30px;width:100%;text-align:center}.main-menu .logo h1{color:white;font-size:25px}.main-menu .logo:hover{background-color:#263238}.main-menu nav ul a{color:white;text-decoration:none;font-weight:bold}.main-menu nav ul a li{padding:15px 30px}.main-menu nav ul a li:hover{background:#263238}.main-menu .logged-in-as{padding:100% 0 0 30px;color:white}.main-menu .logged-in-as em{line-height:30px}*{padding:0;margin:0;-webkit-box-sizing:border-box;box-sizing:border-box;font-family:Arial}body{background:#9fb4bd;min-height:100%}
+.login { width: 350px; margin: 20% auto 0 auto; }
+
+.login .login-form { background-color: #506874; padding: 40px 25px; border-radius: 15px; -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
+
+.login .login-form hr { border: 0.5px solid #9fb4bd; margin-bottom: 13px; }
+
+.login .login-form h1 { margin-bottom: 10px; text-align: center; color: white; }
+
+.login .login-form form input { border: 1px solid white; padding: 8px 15px; border-radius: 10px; margin-bottom: 10px; width: 100%; }
+
+.login .login-form form button { border: 0px; padding: 10px 20px; border-radius: 10px; margin: 5px 35% 0 35%; width: 30%; background: #009688; color: white; }
+
+.main-menu { max-width: 300px; height: 100%; background: #3b4d56; -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
+
+.main-menu a { text-decoration: none; }
+
+.main-menu .logo { padding: 30px; width: 100%; text-align: center; }
+
+.main-menu .logo h1 { color: white; font-size: 25px; }
+
+.main-menu .logo:hover { background-color: #263238; }
+
+.main-menu nav ul a { color: white; text-decoration: none; font-weight: bold; }
+
+.main-menu nav ul a li { padding: 15px 30px; }
+
+.main-menu nav ul a li:hover { background: #263238; }
+
+.main-menu .logged-in-as { padding: 100% 0 0 30px; color: white; }
+
+.main-menu .logged-in-as em { line-height: 30px; }
+
+* { padding: 0; margin: 0; -webkit-box-sizing: border-box; box-sizing: border-box; font-family: Arial; }
+
+body { background: #9fb4bd; min-height: 100%; }
