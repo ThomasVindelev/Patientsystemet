@@ -12,11 +12,12 @@
         <div class="login-form">
             <h1>Login</h1>
             <hr>
-            <form action="main.html">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password"><br>
+            <form th:action="@{/login}" th:object="${User}" method="post">
+                <input type="text" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password"><br>
                 <button type="submit">Login</button>
             </form>
+            <p th:if="${invalid}">Forkert login</p>
         </div>
     </section>
 </body>

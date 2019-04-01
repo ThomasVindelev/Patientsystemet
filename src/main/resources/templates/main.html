@@ -1,31 +1,7 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../../../../../../Desktop/css/style.css">
-    <title>Patient System - Main</title>
-</head>
-<body>
-    <aside class="main-menu">
-        <a href="">
-            <div class="logo">
-                <h1>Patient System</h1>
-            </div>
-        </a>
-        <nav>
-            <ul>
-                <a href=""><li>Home</li></a>
-                <a href=""><li>Patient List</li></a>
-                <a href=""><li>Log out</li></a>
-            </ul>
-        </nav>
-        <div class="logged-in-as">
-            <strong>LOGGED IN AS:</strong><br>
-            <em>Mr. Goodman</em>
-        </div>
-    </aside>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+    <div th:replace="fragments/header :: header"></div>
+
     <section class="content">
         <form action="">
 

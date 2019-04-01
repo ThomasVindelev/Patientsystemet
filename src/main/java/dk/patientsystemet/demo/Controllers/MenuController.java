@@ -10,4 +10,9 @@ public class MenuController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/patients")
+    public String getPatientList() {
+        return "patientlist";
+    }
 }
