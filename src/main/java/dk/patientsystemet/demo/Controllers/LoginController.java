@@ -29,7 +29,6 @@ public class LoginController {
         } else {
             model.addAttribute("invalid", true);
             return "index";
-
         }
     }
 

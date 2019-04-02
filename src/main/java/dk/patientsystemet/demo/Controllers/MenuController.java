@@ -11,8 +11,8 @@ public class MenuController {
         return "index";
     }
 
-    @GetMapping("/patients")
-    public String findPatient() {
-        return "patient";
+    @GetMapping("/patient")
+    public String createPatient() {
+        return "createPatient";
     }
 }
