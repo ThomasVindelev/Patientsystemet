@@ -33,3 +33,15 @@
 * { padding: 0; margin: 0; -webkit-box-sizing: border-box; box-sizing: border-box; font-family: Arial; }
 
 body { background: #9fb4bd; min-height: 100%; }
+
+.form-class {
+    margin-top: 2%;
+}
+
+.form-class input {
+    border: 1px solid white; padding: 8px 15px; border-radius: 10px; margin-bottom: 10px; width: 57%; float: left;
+}
+
+.form-class button {
+    border: 0px; padding: 10px 20px; border-radius: 10px; width: 35%; margin-right: 5%; background: #009688; color: white; float: right;
+}
