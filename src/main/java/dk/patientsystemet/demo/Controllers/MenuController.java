@@ -12,7 +12,7 @@ public class MenuController {
     }
 
     @GetMapping("/patients")
-    public String getPatientList() {
-        return "patientlist";
+    public String findPatient() {
+        return "patient";
     }
 }
