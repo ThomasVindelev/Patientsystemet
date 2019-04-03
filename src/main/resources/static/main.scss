@@ -1,10 +1,95 @@
 @import "colors";
 
+.main {
+  div {
+    height: 30%;
+    width: 30%;
+    padding: 25px;
+    margin: 25px;
+    border: 0 solid black;
+    border-radius: 5px;
+    background-color: $ton-xl;
+    float: left;
+    color: white;
+    hr {
+      margin: 10px 0;
+    }
+    ol {
+      padding-left: 20px;
+      li {
+        height: 30px;
+        &:nth-child(even) {
+          background-color: $ton-l;
+        }
+        span {
+          line-height: 30px;
+        }
+      }
+    }
+    form {
+      button {
+        border: 0;
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin: 20px 35% 0 35%;
+        width: 30%;
+        background: $theme-color;
+        color: white;
+      }
+    }
+  }
+}
+
+.content {
+  width: 85%;
+  float: right;
+  padding: 30px 40px;
+  .createPatient {
+    background-color: $ton-xl;
+    border-radius: 10px;
+    padding: 20px;
+    h2 {
+      margin-bottom: 20px;
+      color: white;
+    }
+    form {
+      label {
+        width: 51%;
+        line-height: 40px;
+        margin-bottom: 5px;
+        color: white;
+      }
+      input {
+        width: 50%;
+        height: 35px;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: 0 solid black;
+      }
+      button {
+        background-color: $theme-color;
+        border-radius: 10px;
+        border: 0 solid black;
+        height: 35px;
+        width: 10%;
+        color: white;
+        &:hover {
+          opacity: 0.8;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
 .main-menu {
-  max-width: 300px;
+  min-width: 200px;
+  max-width: 15%;
   height: 100%;
   background: $ton-m;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  float: left;
   a {
     text-decoration: none;
   }

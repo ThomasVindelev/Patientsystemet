@@ -4,27 +4,29 @@ public class Patient {
 
     private int id;
     private int age;
-    private int cprNumber;
+    private int cpr;
     private int height;
     private int weight;
     private String firstName;
     private String lastName;
     private String birthDate;
-    private String description;
+    private String note;
+    private String date;
 
     public Patient() {
     }
 
-    public Patient(int id, int age, int cprNumber, int height, int weight, String firstName, String lastName, String birthDate, String description) {
+    public Patient(int id, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date) {
         this.id = id;
         this.age = age;
-        this.cprNumber = cprNumber;
+        this.cpr = cpr;
         this.height = height;
         this.weight = weight;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.description = description;
+        this.note = note;
+        this.date = date;
     }
 
     public int getId() {
@@ -43,12 +45,12 @@ public class Patient {
         this.age = age;
     }
 
-    public int getCprNumber() {
-        return cprNumber;
+    public int getCpr() {
+        return cpr;
     }
 
-    public void setCprNumber(int cprNumber) {
-        this.cprNumber = cprNumber;
+    public void setCpr(int cpr) {
+        this.cpr = cpr;
     }
 
     public int getHeight() {
@@ -91,11 +93,19 @@ public class Patient {
         this.birthDate = birthDate;
     }
 
-    public String getDescription() {
-        return description;
+    public String getNote() {
+        return note;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

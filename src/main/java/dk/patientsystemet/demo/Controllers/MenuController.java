@@ -10,4 +10,5 @@ public class MenuController {
     public String index() {
         return "index";
     }
+
 }

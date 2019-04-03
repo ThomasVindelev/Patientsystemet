@@ -1,11 +1,32 @@
 <html xmlns:th="http://www.springframework.org/schema/data/jaxb">
 
-<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/header :: header"></div>
 
-<section class="content">
-    <form action="">
+    <section class="content">
+        <div class="createPatient">
+            <h2>Create Patient</h2>
+            <form th:action="@{/createPatient}" method="POST" th:object="${Patient}">
+                <label>First name</label><br>
+                <input type="text" placeholder="First name" name="firstName"><br>
+                <label>Last name</label><br>
+                <input type="text" placeholder="Last name" name="lastName"><br>
+                <label>Birth date</label><br>
+                <input type="date" placeholder="Birth date" name="birthDate"><br>
+                <label>Height</label><br>
+                <input type="text" placeholder="Height" name="height"><br>
+                <label>Weight</label><br>
+                <input type="text" placeholder="Weight" name="weight"><br>
+                <label>CPR</label><br>
+                <input type="text" placeholder="CPR" name="cpr"><br>
+                <label>Note</label><br>
+                <input type="text" placeholder="Note" name="note">
+                <br>
+                <button type="submit">Submit</button>
+                <p th:text="${error}"></p>
+            </form>
+        </div>
 
-    </form>
-</section>
+    </section>
+
 </body>
 </html>

@@ -3,9 +3,31 @@
     <div th:replace="fragments/header :: header"></div>
 
     <section class="content">
-        <form action="">
+        <div class="main">
+            <div class="consultation-main">
+                <h3>Upcoming consultations</h3>
+                <hr>
+                <ol class="consultation-list">
+                    <li><span>Patient Name</span><span>Date</span></li>
+                    <li><span>Patient Name</span><span>Date</span></li>
+                    <li><span>Patient Name</span><span>Date</span></li>
+                    <li><span>Patient Name</span><span>Date</span></li>
+                    <li><span>Patient Name</span><span>Date</span></li>
+                </ol>
+                <form action="/consultations" method="get">
+                    <button type="submit">More</button>
+                </form>
+            </div>
+            <div class="prescriptions-main">
+                <h3>Recent prescriptions</h3>
+                <hr>
+            </div>
+            <div class="diagnosis-main">
+                <h3>Newest diagnosis</h3>
+                <hr>
+            </div>
+        </div>
 
-        </form>
     </section>
 </body>
 </html>
