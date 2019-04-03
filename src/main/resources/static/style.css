@@ -40,7 +40,7 @@
   color: white;
 }
 
-.main div {
+.main-box {
   height: 30%;
   width: 30%;
   padding: 25px;
@@ -48,31 +48,30 @@
   border: 0 solid black;
   border-radius: 5px;
   background-color: #72909e;
-  float: left;
   color: white;
 }
 
-.main div hr {
+.main-box hr {
   margin: 10px 0;
 }
 
-.main div ol {
+.main-box ol {
   padding-left: 20px;
 }
 
-.main div ol li {
+.main-box ol li {
   height: 30px;
 }
 
-.main div ol li:nth-child(even) {
+.main-box ol li:nth-child(even) {
   background-color: #506874;
 }
 
-.main div ol li span {
+.main-box ol li span {
   line-height: 30px;
 }
 
-.main div form button {
+.main-box form button {
   border: 0;
   padding: 10px 20px;
   border-radius: 10px;
@@ -86,6 +85,40 @@
   width: 85%;
   float: right;
   padding: 30px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.content .findPatientContent {
+  width: 20%;
+  height: 50%;
+  border-radius: 10px;
+  background-color: #72909e;
+  padding: 15px;
+  color: white;
+}
+
+.content .findPatientContent h3 {
+  margin-bottom: 10px;
+}
+
+.content .findPatientContent p {
+  margin-bottom: 5px;
+}
+
+.content .patientNotes {
+  width: 75%;
+  height: 25%;
+  border-radius: 10px;
+  background-color: #72909e;
+  padding: 15px;
+  color: white;
 }
 
 .content .createPatient {

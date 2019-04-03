@@ -4,10 +4,7 @@ import dk.patientsystemet.demo.Model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Repository
 public class PatientRepository {
@@ -29,7 +26,22 @@ public class PatientRepository {
         preparedStatement.setString(7, patient.getNote());
         preparedStatement.execute();
         preparedStatement.close();
+    }
 
+    public ResultSet findPatient(Patient patient) throws SQLException {
+        String sql = "SELECT * FROM patient WHERE cpr=?";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1, patient.getCpr());
+        return preparedStatement.executeQuery();
+    }
+
+    public void editNote(Patient patient) throws SQLException {
+        String sql = "UPDATE patient SET note = ? WHERE cpr = ?";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, patient.getNote());
+        preparedStatement.setInt(2, patient.getCpr());
+        preparedStatement.execute();
+        preparedStatement.close();
     }
 
 }

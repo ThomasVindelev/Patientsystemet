@@ -7,13 +7,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{style.css}" type="text/css">
-    <title>Patient System</title>
+    <title>PatientSystem</title>
 </head>
 <body th:if="${session.email != null}">
 <aside class="main-menu">
     <a href="/">
         <div class="logo">
-            <h1>Patient System</h1>
+            <h1>PatientSystem</h1>
         </div>
     </a>
     <nav>
@@ -26,9 +26,9 @@
     <div class="logged-in-as">
         <strong>LOGGED IN AS:</strong><br>
         <em th:text="${session.name}"></em>
-        <form class="form-class" th:action="@{/findpatient}" th:object="${Patient}">
-            <input type="text" placeholder="CPR Nr." name="cprNumber">
-            <button type="submit">Søg</button>
+        <form class="form-class" th:action="@{/findPatient}" th:object="${Patient}" method="post">
+            <input type="text" placeholder="CPR" name="cpr">
+            <button type="submit">Search</button>
         </form>
     </div>
 </aside>

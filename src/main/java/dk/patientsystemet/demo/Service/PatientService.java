@@ -5,7 +5,10 @@ import dk.patientsystemet.demo.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PatientService {
@@ -24,11 +27,32 @@ public class PatientService {
             return "CPR number not valid";
         }
 
-
-
         else {
             db.createPatient(patient);
             return "Success";
         }
+    }
+
+    public Patient findPatient(Patient patient) throws SQLException {
+        ResultSet rs = db.findPatient(patient);
+        if (rs.next()) {
+            patient.setId(rs.getInt("id"));
+            patient.setFirstName(rs.getString("firstname"));
+            patient.setLastName(rs.getString("lastname"));
+            patient.setBirthDate(rs.getString("birthdate"));
+            patient.setHeight(rs.getInt("height"));
+            patient.setWeight(rs.getInt("weight"));
+            patient.setCpr(rs.getInt("cpr"));
+            patient.setNote(rs.getString("note"));
+            patient.setDate(rs.getString("date"));
+            return patient;
+        } else {
+            return null;
+        }
+    }
+
+    public String editNote(Patient patient) throws SQLException {
+        db.editNote(patient);
+        return "Success!";
     }
 }

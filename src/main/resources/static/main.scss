@@ -1,49 +1,75 @@
 @import "colors";
 
-.main {
-  div {
-    height: 30%;
-    width: 30%;
-    padding: 25px;
-    margin: 25px;
-    border: 0 solid black;
-    border-radius: 5px;
-    background-color: $ton-xl;
-    float: left;
-    color: white;
-    hr {
-      margin: 10px 0;
-    }
-    ol {
-      padding-left: 20px;
-      li {
-        height: 30px;
-        &:nth-child(even) {
-          background-color: $ton-l;
-        }
-        span {
-          line-height: 30px;
-        }
+
+.main-box {
+  height: 30%;
+  width: 30%;
+  padding: 25px;
+  margin: 25px;
+  border: 0 solid black;
+  border-radius: 5px;
+  background-color: $ton-xl;
+  color: white;
+  hr {
+    margin: 10px 0;
+  }
+  ol {
+    padding-left: 20px;
+    li {
+      height: 30px;
+      &:nth-child(even) {
+        background-color: $ton-l;
       }
-    }
-    form {
-      button {
-        border: 0;
-        padding: 10px 20px;
-        border-radius: 10px;
-        margin: 20px 35% 0 35%;
-        width: 30%;
-        background: $theme-color;
-        color: white;
+      span {
+        line-height: 30px;
       }
     }
   }
+  form {
+    button {
+      border: 0;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 20px 35% 0 35%;
+      width: 30%;
+      background: $theme-color;
+      color: white;
+    }
+  }
 }
+
 
 .content {
   width: 85%;
   float: right;
   padding: 30px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .findPatientContent {
+    width: 20%;
+    height: 50%;
+    border-radius: 10px;
+    background-color: $ton-xl;
+    padding: 15px;
+    color: white;
+    h3 {
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 5px;
+      span {
+      }
+    }
+  }
+  .patientNotes {
+    width: 75%;
+    height: 25%;
+    border-radius: 10px;
+    background-color: $ton-xl;
+    padding: 15px;
+    color: white;
+  }
   .createPatient {
     background-color: $ton-xl;
     border-radius: 10px;

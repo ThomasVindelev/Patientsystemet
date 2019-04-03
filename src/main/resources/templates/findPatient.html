@@ -3,9 +3,34 @@
 <div th:replace="fragments/header :: header"></div>
 
 <section class="content">
-    <form action="">
+    <div class="findPatientContent" th:each="info : ${patient}">
+        <h3>Patient Information</h3>
 
-    </form>
+        <p>First name: <span th:text="${info.firstName}"></span></p>
+        <p>Last name:<span th:text="${info.lastName}"></span></p>
+        <p>Height: <span th:text="${info.height}"></span></p>
+        <p>Weight: <span th:text="${info.weight}"></span></p>
+        <p>CPR: <span th:text="${info.cpr}"></span></p>
+        <p>Birth date: <span th:text="${info.birthDate}"></span></p>
+    </div>
+    <div class="findPatientContent">
+
+    </div>
+    <div class="findPatientContent">
+
+    </div>
+    <div class="findPatientContent">
+
+    </div>
+    <div class="patientNotes" th:each="infos : ${patient}">
+        <h3>Patient Notes</h3>
+        <form th:action="@{/editNote}" th:object="${Patient}" method="post">
+            <input type="hidden" th:value="${infos.cpr}" name="cpr">
+            <textarea name="note" cols="30" rows="10" th:text="${infos.note}"></textarea>
+            <button type="submit">Click</button>
+            <p th:text="${message}"></p>
+        </form>
+    </div>
 </section>
 </body>
 </html>
