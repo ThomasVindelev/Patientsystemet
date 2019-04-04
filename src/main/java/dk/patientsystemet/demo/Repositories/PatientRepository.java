@@ -11,7 +11,7 @@ public class PatientRepository {
 
     @Autowired
     DBConnect dbConnect;
-
+    
     private PreparedStatement preparedStatement;
 
     public void createPatient(Patient patient) throws SQLException {
