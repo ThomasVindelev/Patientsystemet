@@ -29,10 +29,17 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
-    public ResultSet findPatient(Patient patient) throws SQLException {
-        String sql = "SELECT * FROM patient LEFT JOIN patient_note ON patient.id = patient_note.fk_patient WHERE cpr=?";
+    public ResultSet searchPatient(Patient patient) throws SQLException {
+        String sql = "SELECT id FROM patient WHERE cpr=?";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setInt(1, patient.getCpr());
+        return preparedStatement.executeQuery();
+    }
+
+    public ResultSet findPatient(int id) throws SQLException {
+        String sql = "SELECT * FROM patient LEFT JOIN patient_note ON patient.id = patient_note.fk_patient WHERE patient.id=?";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
 
@@ -49,11 +56,11 @@ public class PatientRepository {
         return preparedStatement.executeQuery();
     }
 
-    public void createNote(Patient patient) throws SQLException {
+    public void createNote(Patient patient, int id) throws SQLException {
         String sql = "INSERT INTO patient_note (note, fk_patient) VALUES (?,?)";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setString(1, patient.getNote());
-        preparedStatement.setInt(2, patient.getId());
+        preparedStatement.setInt(2, id);
         preparedStatement.execute();
         preparedStatement.close();
     }

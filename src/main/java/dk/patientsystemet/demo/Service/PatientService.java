@@ -51,9 +51,19 @@ public class PatientService {
         return patientList;
     }
 
-    public Patient findPatient(Patient patient) throws SQLException {
-        ResultSet rs = db.findPatient(patient);
+    public int searchPatient(Patient patient) throws SQLException {
+        ResultSet rs = db.searchPatient(patient);
         if (rs.next()) {
+            return rs.getInt("patient.id");
+        } else {
+            return 0;
+        }
+    }
+
+    public Patient findPatient(int id) throws SQLException {
+        ResultSet rs = db.findPatient(id);
+        if (rs.next()) {
+            Patient patient = new Patient();
             patient.setId(rs.getInt("patient.id"));
             patient.setFirstName(rs.getString("firstname"));
             patient.setLastName(rs.getString("lastname"));
@@ -81,8 +91,8 @@ public class PatientService {
         return noteList;
     }
 
-    public String createNote(Patient patient) throws SQLException {
-        db.createNote(patient);
+    public String createNote(Patient patient, int id) throws SQLException {
+        db.createNote(patient, id);
         return "Success!";
     }
 

@@ -14,7 +14,7 @@
         <p>Birth date: <span th:text="${info.birthDate}"></span></p>
     </div>
     <div class="findPatientContent">
-        <h3>Consultations <img th:src="@{img/greenplus.png}" class="add-icon" width="20" height="20"></h3>
+        <h3>Consultations <img th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20"></h3>
         <table>
             <tr>
                 <th>Date</th>
@@ -24,8 +24,8 @@
             <tr th:each="consultation : ${consultations}">
                 <td th:text="${consultation.date}"></td>
                 <td th:text="${consultation.description}"></td>
-                <td><img th:src="@{img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                    <img th:src="@{img/redcross.png}" width="15" height="15"></td>
+                <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
+                    <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
             </tr>
         </table>
     </div>
@@ -47,9 +47,7 @@
     </div>
     <div class="patientNotes" th:each="infos : ${patient}">
         <h3>Patient Notes</h3>
-        <form class="note-form" th:action="@{/createNote}" th:object="${Patient}" method="post">
-            <input type="hidden" th:value="${infos.id}" name="id">
-            <input type="hidden" th:value="${infos.cpr}" name="cpr">
+        <form class="note-form" th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post">
             <textarea name="note" rows="10" cols="30"></textarea>
             <button type="submit">Click</button>
             <p th:text="${message}"></p>
@@ -61,8 +59,8 @@
             </tr>
         <tr th:each="note: ${notes}">
             <td th:text="${note.note}"><br></td>
-            <td><img th:src="@{img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                <img th:src="@{img/redcross.png}" width="15" height="15"></td>
+            <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
+                <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
         </tr>
         </table>
     </div>

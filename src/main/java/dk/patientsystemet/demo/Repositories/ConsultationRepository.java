@@ -16,11 +16,11 @@ public class ConsultationRepository {
 
     private PreparedStatement preparedStatement;
 
-    public ResultSet findConsultations(Patient patient) throws SQLException {
+    public ResultSet findConsultations(int id) throws SQLException {
         String sql = "SELECT * FROM consultation LEFT JOIN patient ON consultation.fk_patient = patient.id " +
                 "LEFT JOIN users ON consultation.fk_users = users.id WHERE consultation.fk_patient=?";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
-        preparedStatement.setInt(1, patient.getId());
+        preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
 

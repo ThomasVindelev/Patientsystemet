@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.SQLException;
@@ -42,23 +43,29 @@ public class PatientController {
         return "createPatient";
     }
 
-    @GetMapping("/findPatient")
-    public String findPatient(@ModelAttribute Patient patient, Model model) throws SQLException {
-        model.addAttribute("patient", service.findPatient(patient));
-        model.addAttribute("consultations", consultationService.getConsultations(patient));
-        model.addAttribute("diagnosis", service.getDiagnosis(patient.getId()));
-        model.addAttribute("notes", service.findPatientNote(patient.getId()));
-        model.addAttribute("title", patient.getFirstName());
+    @PostMapping("/findPatient")
+    public String findPatient(@ModelAttribute Patient patient) throws SQLException {
+        int id = service.searchPatient(patient);
+        return "redirect:/findPatient/" + id;
+    }
+
+    @GetMapping("/findPatient/{id}")
+    public String getPatient(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("patient", service.findPatient(id));
+        model.addAttribute("consultations", consultationService.getConsultations(id));
+        model.addAttribute("diagnosis", service.getDiagnosis(id));
+        model.addAttribute("notes", service.findPatientNote(id));
+        model.addAttribute("title", service.findPatient(id).getFirstName());
         return "findPatient";
     }
 
-    @PostMapping("/createNote")
-    public String createNote(@ModelAttribute Patient patient, Model model) throws SQLException {
-        model.addAttribute("message", service.createNote(patient));
-        model.addAttribute("patient", service.findPatient(patient));
-        model.addAttribute("notes", service.findPatientNote(patient.getId()));
-        model.addAttribute("title", patient.getFirstName());
-        return findPatient(patient, model);
+    @PostMapping("/createNote/{id}")
+    public String createNote(@PathVariable("id") int id, @ModelAttribute Patient patient, Model model) throws SQLException {
+        model.addAttribute("message", service.createNote(patient, id));
+        model.addAttribute("patient", service.findPatient(id));
+        model.addAttribute("notes", service.findPatientNote(id));
+        model.addAttribute("title", service.findPatient(id).getFirstName());
+        return "redirect:/findPatient/{id}";
     }
 
     /*@PostMapping("/addDiagnosis")

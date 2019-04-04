@@ -17,8 +17,8 @@ public class ConsultationService {
     @Autowired
     ConsultationRepository db;
 
-    public List<Consultation> getConsultations(Patient patient) throws SQLException {
-        ResultSet rs = db.findConsultations(patient);
+    public List<Consultation> getConsultations(int id) throws SQLException {
+        ResultSet rs = db.findConsultations(id);
         List<Consultation> consultationList = new ArrayList<>();
         while (rs.next()) {
             Consultation consultation = new Consultation();
