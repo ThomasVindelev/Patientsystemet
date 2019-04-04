@@ -15,7 +15,7 @@ public class PatientRepository {
     private PreparedStatement preparedStatement;
 
     public void createPatient(Patient patient) throws SQLException {
-        String sql = "INSERT INTO patient (firstname, lastname, height, weight, birthdate, cpr, note) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO patient (firstname, lastname, height, weight, birthdate, cpr) VALUES (?, ?, ?, ?, ?, ?)";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setString(1, patient.getFirstName());
         preparedStatement.setString(2, patient.getLastName());
@@ -23,29 +23,28 @@ public class PatientRepository {
         preparedStatement.setInt(4, patient.getWeight());
         preparedStatement.setString(5, patient.getBirthDate());
         preparedStatement.setInt(6, patient.getCpr());
-        preparedStatement.setString(7, patient.getNote());
         preparedStatement.execute();
         preparedStatement.close();
     }
 
     public ResultSet findPatient(Patient patient) throws SQLException {
-        String sql = "SELECT * FROM patient WHERE cpr=?";
+        String sql = "SELECT * FROM patient INNER JOIN patient_note ON patient.id = patient_note.fk_patient WHERE cpr=?";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setInt(1, patient.getCpr());
         return preparedStatement.executeQuery();
     }
 
     public ResultSet allPatients() throws SQLException {
-        String sql = "SELECT * FROM patient";
+        String sql = "SELECT * FROM patient INNER JOIN patient_note ON patient.id = patient_note.fk_patient";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         return preparedStatement.executeQuery();
     }
 
-    public void editNote(Patient patient) throws SQLException {
-        String sql = "UPDATE patient SET note = ? WHERE cpr = ?";
+    public void createNote(Patient patient) throws SQLException {
+        String sql = "INSERT INTO patient_note (note, fk_patients) VALUES (?,?)";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setString(1, patient.getNote());
-        preparedStatement.setInt(2, patient.getCpr());
+        preparedStatement.setInt(2, patient.getId());
         preparedStatement.execute();
         preparedStatement.close();
     }

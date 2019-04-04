@@ -52,14 +52,14 @@ public class PatientService {
     public Patient findPatient(Patient patient) throws SQLException {
         ResultSet rs = db.findPatient(patient);
         if (rs.next()) {
-            patient.setId(rs.getInt("id"));
+            patient.setId(rs.getInt("patient.id"));
             patient.setFirstName(rs.getString("firstname"));
             patient.setLastName(rs.getString("lastname"));
             patient.setBirthDate(rs.getString("birthdate"));
             patient.setHeight(rs.getInt("height"));
             patient.setWeight(rs.getInt("weight"));
             patient.setCpr(rs.getInt("cpr"));
-            patient.setNote(rs.getString("note"));
+            patient.setNote(rs.getString("patient_note.note"));
             patient.setDate(rs.getString("date"));
             return patient;
         } else {
@@ -67,8 +67,8 @@ public class PatientService {
         }
     }
 
-    public String editNote(Patient patient) throws SQLException {
-        db.editNote(patient);
+    public String createNote(Patient patient) throws SQLException {
+        db.createNote(patient);
         return "Success!";
     }
 }

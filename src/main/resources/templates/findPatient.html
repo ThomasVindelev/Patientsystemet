@@ -25,7 +25,7 @@
     <div class="patientNotes" th:each="infos : ${patient}">
         <h3>Patient Notes</h3>
         <form th:action="@{/editNote}" th:object="${Patient}" method="post">
-            <input type="hidden" th:value="${infos.cpr}" name="cpr">
+            <input type="hidden" th:value="${infos.id}" name="cpr">
             <textarea name="note" cols="30" rows="10" th:text="${infos.note}"></textarea>
             <button type="submit">Click</button>
             <p th:text="${message}"></p>
