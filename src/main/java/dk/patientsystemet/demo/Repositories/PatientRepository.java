@@ -43,7 +43,7 @@ public class PatientRepository {
     }
 
     public ResultSet allPatients() throws SQLException {
-        String sql = "SELECT * FROM patient LEFT JOIN patient_note ON patient.id = patient_note.fk_patient";
+        String sql = "SELECT * FROM patient";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         return preparedStatement.executeQuery();
     }

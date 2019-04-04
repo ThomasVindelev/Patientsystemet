@@ -1,5 +1,6 @@
 package dk.patientsystemet.demo.Service;
 
+import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
 import dk.patientsystemet.demo.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,6 @@ public class PatientService {
             patient.setId(rs.getInt("id"));
             patient.setFirstName(rs.getString("firstname"));
             patient.setLastName(rs.getString("lastname"));
-            patient.setNote(rs.getString("note"));
             patientList.add(patient);
         }
         return patientList;
@@ -67,19 +67,17 @@ public class PatientService {
         }
     }
 
-    public List<Patient> findPatientNote(int id) throws SQLException {
+    public List<Note> findPatientNote(int id) throws SQLException {
         ResultSet rs = db.findPatientNote(id);
-        List<Patient> noteList = new ArrayList<>();
+        List<Note> noteList = new ArrayList<>();
         while (rs.next()) {
-            Patient patient = new Patient();
-            patient.setNote(rs.getString("note"));
-            patient.setNoteId(rs.getInt("id"));
-            noteList.add(patient);
+            Note note = new Note();
+            note.setId(rs.getInt("id"));
+            note.setNote(rs.getString("note"));
+            noteList.add(note);
         }
         return noteList;
     }
-
-
 
     public String createNote(Patient patient) throws SQLException {
         db.createNote(patient);

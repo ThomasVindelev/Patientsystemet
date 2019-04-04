@@ -15,6 +15,16 @@
     </div>
     <div class="findPatientContent">
         <h3>Consultations</h3>
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+            <tr th:each="consultation : ${consultations}">
+                <td th:text="${consultation.description}"></td>
+                <td th:text="${consultation.date}"></td>
+            </tr>
+        </table>
     </div>
     <div class="findPatientContent">
         <h3>Diagnosis</h3>
@@ -24,15 +34,15 @@
     </div>
     <div class="patientNotes" th:each="infos : ${patient}">
         <h3>Patient Notes</h3>
-        <form th:action="@{/createNote}" th:object="${Patient}" method="post">
+        <form class="note-form" th:action="@{/createNote}" th:object="${Patient}" method="post">
             <input type="hidden" th:value="${infos.id}" name="id">
             <input type="hidden" th:value="${infos.cpr}" name="cpr">
-            <textarea name="note" cols="30" rows="10"></textarea>
+            <textarea name="note" rows="10" cols="30"></textarea>
             <button type="submit">Click</button>
             <p th:text="${message}"></p>
         </form>
-        <div th:each="note: ${notes}">
-            <p th:text="${note.note}"></p>
+        <div class="notes" th:each="note: ${notes}">
+            <p th:text="${note.note}"><br></p>
         </div>
     </div>
 </section>
