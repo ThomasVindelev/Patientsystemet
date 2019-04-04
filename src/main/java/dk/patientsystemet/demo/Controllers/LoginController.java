@@ -33,7 +33,8 @@ public class LoginController {
     }
 
     @GetMapping("/main")
-    public String getMainPage() {
+    public String getMainPage(Model model) {
+        model.addAttribute("title", "Main");
         return "main";
     }
 

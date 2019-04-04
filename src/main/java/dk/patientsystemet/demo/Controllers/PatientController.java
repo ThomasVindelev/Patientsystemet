@@ -18,7 +18,8 @@ public class PatientController {
     PatientService service;
 
     @GetMapping("/createPatient")
-    public String createPatient() {
+    public String createPatient(Model model) {
+        model.addAttribute("title", "Create patient");
         return "createPatient";
     }
 
@@ -31,6 +32,7 @@ public class PatientController {
     @PostMapping("/findPatient")
     public String findPatient(@ModelAttribute Patient patient, Model model) throws SQLException {
         model.addAttribute("patient", service.findPatient(patient));
+        model.addAttribute("title", patient.getFirstName());
         return "findPatient";
     }
 
@@ -38,6 +40,7 @@ public class PatientController {
     public String editNote(@ModelAttribute Patient patient, Model model) throws SQLException {
         model.addAttribute("message", service.editNote(patient));
         model.addAttribute("patient", service.findPatient(patient));
+        model.addAttribute("title", patient.getFirstName());
         return findPatient(patient, model);
     }
 }
