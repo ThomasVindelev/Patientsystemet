@@ -65,6 +65,14 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    public void deleteNote(int id) throws SQLException {
+        String sql = "DELETE FROM patient_note where id=?";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.execute();
+        preparedStatement.close();
+    }
+
     public ResultSet getDiagnosis(int id) throws SQLException {
         String sql = "SELECT * FROM diagnosis LEFT JOIN diagnosis_names ON diagnosis.fk_diagnosis_names = diagnosis_names.id " +
                 "LEFT JOIN patient ON diagnosis.fk_patient = patient.id LEFT JOIN users ON diagnosis.fk_users = users.id WHERE fk_patient = " + id;

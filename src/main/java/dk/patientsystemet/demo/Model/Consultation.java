@@ -3,6 +3,7 @@ package dk.patientsystemet.demo.Model;
 public class Consultation {
 
     private int id;
+    private int patientId;
     private String patientName;
     private int cprNumber;
     private String description;
@@ -67,5 +68,13 @@ public class Consultation {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 }

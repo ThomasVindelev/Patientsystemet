@@ -25,7 +25,10 @@
                 <td th:text="${consultation.date}"></td>
                 <td th:text="${consultation.description}"></td>
                 <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                    <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
+                    <form th:action="@{/deleteConsultation/{id}(id=${consultation.id})}" th:object="${Consultation}">
+                    <input type="hidden" name="patientId" th:value="${consultation.patientId}">
+                    <button type="submit">Slet</button></form></td>
+
             </tr>
         </table>
     </div>
@@ -60,7 +63,9 @@
         <tr th:each="note: ${notes}">
             <td th:text="${note.note}"><br></td>
             <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
+                <form th:action="@{/deleteNote/{id}(id=${note.id})}" th:object="${Note}">
+                    <input type="hidden" name="patientId" th:value="${note.patientId}">
+                <button type="submit">Slet</button></form></td>
         </tr>
         </table>
     </div>

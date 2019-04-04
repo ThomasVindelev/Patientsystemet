@@ -3,6 +3,7 @@ package dk.patientsystemet.demo.Model;
 public class Note {
 
     private int id;
+    private int patientId;
     private String note;
 
     public Note() {
@@ -28,5 +29,13 @@ public class Note {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 }

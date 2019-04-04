@@ -22,12 +22,18 @@ public class ConsultationService {
         List<Consultation> consultationList = new ArrayList<>();
         while (rs.next()) {
             Consultation consultation = new Consultation();
+            consultation.setPatientId(rs.getInt("patient.id"));
             consultation.setId(rs.getInt("consultation.id"));
             consultation.setDescription(rs.getString("consultation.description"));
             consultation.setDate(rs.getString("consultation.date"));
             consultationList.add(consultation);
         }
         return consultationList;
+    }
+
+    public String deleteConsultation(int id) throws SQLException {
+        db.deleteConsultation(id);
+        return "success";
     }
 
 }

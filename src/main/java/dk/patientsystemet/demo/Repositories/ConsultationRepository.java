@@ -24,4 +24,14 @@ public class ConsultationRepository {
         return preparedStatement.executeQuery();
     }
 
+    public void deleteConsultation(int id) throws SQLException {
+        String sql = "DELETE FROM consultation WHERE id=?";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.execute();
+        preparedStatement.close();
+    }
+
+
+
 }

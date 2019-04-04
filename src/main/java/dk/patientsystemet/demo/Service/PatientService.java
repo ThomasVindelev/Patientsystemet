@@ -84,6 +84,7 @@ public class PatientService {
         List<Note> noteList = new ArrayList<>();
         while (rs.next()) {
             Note note = new Note();
+            note.setPatientId(rs.getInt("fk_patient"));
             note.setId(rs.getInt("id"));
             note.setNote(rs.getString("note"));
             noteList.add(note);
@@ -93,6 +94,11 @@ public class PatientService {
 
     public String createNote(Patient patient, int id) throws SQLException {
         db.createNote(patient, id);
+        return "Success!";
+    }
+
+    public String deleteNote(int id) throws SQLException {
+        db.deleteNote(id);
         return "Success!";
     }
 

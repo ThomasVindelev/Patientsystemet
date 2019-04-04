@@ -1,5 +1,6 @@
 package dk.patientsystemet.demo.Controllers;
 
+import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
 import dk.patientsystemet.demo.Model.User;
 import dk.patientsystemet.demo.Service.ConsultationService;
@@ -66,6 +67,12 @@ public class PatientController {
         model.addAttribute("notes", service.findPatientNote(id));
         model.addAttribute("title", service.findPatient(id).getFirstName());
         return "redirect:/findPatient/{id}";
+    }
+
+    @GetMapping("/deleteNote/{id}")
+    public String deleteNote(@PathVariable("id") int id, @ModelAttribute Note note) throws SQLException {
+        service.deleteNote(id);
+        return "redirect:/findPatient/" + note.getPatientId();
     }
 
     /*@PostMapping("/addDiagnosis")
