@@ -27,7 +27,7 @@
     <div class="logged-in-as">
         <strong>LOGGED IN AS:</strong><br>
         <em th:text="${session.name}"></em>
-        <form class="form-class" th:action="@{/findPatient}" th:object="${Patient}" method="post">
+        <form class="form-class" th:action="@{/findPatient}" th:object="${Patient}" method="get">
             <input type="text" placeholder="CPR" name="cpr">
             <button type="submit">Search</button>
         </form>

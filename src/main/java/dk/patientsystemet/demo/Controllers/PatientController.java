@@ -41,7 +41,7 @@ public class PatientController {
         return "createPatient";
     }
 
-    @PostMapping("/findPatient")
+    @GetMapping("/findPatient")
     public String findPatient(@ModelAttribute Patient patient, Model model) throws SQLException {
         model.addAttribute("patient", service.findPatient(patient));
         model.addAttribute("consultations", consultationService.getConsultations(patient));

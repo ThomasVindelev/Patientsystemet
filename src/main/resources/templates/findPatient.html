@@ -14,15 +14,18 @@
         <p>Birth date: <span th:text="${info.birthDate}"></span></p>
     </div>
     <div class="findPatientContent">
-        <h3>Consultations</h3>
+        <h3>Consultations <img th:src="@{img/greenplus.png}" class="add-icon" width="20" height="20"></h3>
         <table>
             <tr>
-                <th>Description</th>
                 <th>Date</th>
+                <th>Description</th>
+                <th></th>
             </tr>
             <tr th:each="consultation : ${consultations}">
-                <td th:text="${consultation.description}"></td>
                 <td th:text="${consultation.date}"></td>
+                <td th:text="${consultation.description}"></td>
+                <td><img th:src="@{img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
+                    <img th:src="@{img/redcross.png}" width="15" height="15"></td>
             </tr>
         </table>
     </div>
@@ -41,9 +44,17 @@
             <button type="submit">Click</button>
             <p th:text="${message}"></p>
         </form>
-        <div class="notes" th:each="note: ${notes}">
-            <p th:text="${note.note}"><br></p>
-        </div>
+        <table class="notes">
+            <tr>
+                <th>Note</th>
+                <th></th>
+            </tr>
+        <tr th:each="note: ${notes}">
+            <td th:text="${note.note}"><br></td>
+            <td><img th:src="@{img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
+                <img th:src="@{img/redcross.png}" width="15" height="15"></td>
+        </tr>
+        </table>
     </div>
 </section>
 </body>

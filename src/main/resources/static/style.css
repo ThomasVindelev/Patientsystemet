@@ -240,3 +240,9 @@ textarea {
 .notes {
   float:right;
 }
+
+.add-icon {
+  float: right;
+  margin-top: 2px;
+  margin-left: 10px;
+}
