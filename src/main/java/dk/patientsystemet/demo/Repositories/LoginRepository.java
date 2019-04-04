@@ -12,8 +12,10 @@ import java.sql.SQLException;
 @Repository
 public class LoginRepository {
 
+    @Autowired
+    DBConnect dbConnect;
+
     private PreparedStatement preparedStatement;
-    @Autowired DBConnect dbConnect;
 
     public ResultSet userLogin(User user) throws SQLException {
         Connection connection = dbConnect.getConnection();
