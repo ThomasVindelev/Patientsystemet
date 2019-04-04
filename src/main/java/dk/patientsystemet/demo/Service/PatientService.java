@@ -67,14 +67,16 @@ public class PatientService {
         }
     }
 
-    public Patient findPatientNote(Patient patient) throws SQLException {
-        ResultSet rs = db.findPatientNote(patient);
-        if (rs.next()) {
+    public List<Patient> findPatientNote(int id) throws SQLException {
+        ResultSet rs = db.findPatientNote(id);
+        List<Patient> noteList = new ArrayList<>();
+        while (rs.next()) {
+            Patient patient = new Patient();
             patient.setNote(rs.getString("note"));
             patient.setNoteId(rs.getInt("id"));
-            return patient;
+            noteList.add(patient);
         }
-        return null;
+        return noteList;
     }
 
 

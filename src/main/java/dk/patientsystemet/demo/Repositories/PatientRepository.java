@@ -35,10 +35,10 @@ public class PatientRepository {
         return preparedStatement.executeQuery();
     }
 
-    public ResultSet findPatientNote(Patient patient) throws SQLException {
+    public ResultSet findPatientNote(int id) throws SQLException {
         String sql = "SELECT * FROM patient_note WHERE patient_note.fk_patient=?";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
-        preparedStatement.setInt(1, patient.getId());
+        preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
 
