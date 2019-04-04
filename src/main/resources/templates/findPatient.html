@@ -31,7 +31,16 @@
     </div>
     <div class="findPatientContent">
         <h3>Diagnosis</h3>
-
+        <table>
+            <tr>
+                <th>Diagnosis</th>
+                <th>Doctor</th>
+            </tr>
+            <tr th:each="diagnosis : ${diagnosis}">
+                <td th:text="${diagnosis.diagnosisName}"></td>
+                <td th:text="${diagnosis.doctorName}"></td>
+            </tr>
+        </table>
     </div>
     <div class="findPatientContent">
         <h3>Prescriptions</h3>

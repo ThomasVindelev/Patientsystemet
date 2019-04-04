@@ -61,11 +61,11 @@ public class PatientController {
         return findPatient(patient, model);
     }
 
-    @PostMapping("/addDiagnosis")
+    /*@PostMapping("/addDiagnosis")
     public String addDiagnosis(@ModelAttribute Patient patient, @ModelAttribute User user, Model model) throws SQLException {
         model.addAttribute("diagnosis", service.newDiagnosis(patient.getId(), ));
         model.addAttribute("patient", service.findPatient(patient));
-        model.addAttribute()
-    }
+        return "";
+    }*/
 
 }

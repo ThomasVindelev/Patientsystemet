@@ -92,11 +92,12 @@ public class PatientService {
         while (rs.next()) {
             Diagnosis diagnosis = new Diagnosis();
             diagnosis.setNote(rs.getString("note"));
-            diagnosis.setDate(rs.getDate("date"));
-            diagnosis.setDiagnosisName("diagnosis_names.name");
+            diagnosis.setDate(rs.getString("date"));
+            diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
             diagnosis.setPatientName(rs.getString("patient.firstname"));
             diagnosis.setDoctorName(rs.getString("users.name"));
             diagnosisList.add(diagnosis);
+            System.out.println(diagnosis.getDiagnosisName());
         }
         return diagnosisList;
     }

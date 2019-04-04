@@ -9,9 +9,9 @@ public class Diagnosis {
     private String patientName;
     private String doctorName;
     private String note;
-    private Date date;
+    private String date;
 
-    public Diagnosis(int id, String diagnosisName, String patientName, String doctorName, String note, Date date) {
+    public Diagnosis(int id, String diagnosisName, String patientName, String doctorName, String note, String date) {
         this.id = id;
         this.diagnosisName = diagnosisName;
         this.patientName = patientName;
@@ -64,11 +64,11 @@ public class Diagnosis {
         this.note = note;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
