@@ -33,6 +33,22 @@ public class PatientService {
         }
     }
 
+    public List<Patient> fetchAll() throws SQLException {
+        ResultSet rs = db.allPatients();
+        List<Patient> patientList = new ArrayList<>();
+        while (rs.next()) {
+            Patient patient = new Patient(
+
+            );
+            patient.setId(rs.getInt("id"));
+            patient.setFirstName(rs.getString("firstname"));
+            patient.setLastName(rs.getString("lastname"));
+            patient.setNote(rs.getString("note"));
+            patientList.add(patient);
+        }
+        return patientList;
+    }
+
     public Patient findPatient(Patient patient) throws SQLException {
         ResultSet rs = db.findPatient(patient);
         if (rs.next()) {

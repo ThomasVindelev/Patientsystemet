@@ -23,6 +23,13 @@ public class PatientController {
         return "createPatient";
     }
 
+    @GetMapping("/allPatients")
+    public String allPatients(Model model) throws SQLException {
+        model.addAttribute("title", "All patients");
+        model.addAttribute("patients", service.fetchAll());
+        return "patientList";
+    }
+
     @PostMapping("/createPatient")
     public String createPatientForm(@ModelAttribute Patient patient, Model model) throws SQLException {
         model.addAttribute("error", service.createPatient(patient));

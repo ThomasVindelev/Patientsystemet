@@ -35,6 +35,12 @@ public class PatientRepository {
         return preparedStatement.executeQuery();
     }
 
+    public ResultSet allPatients() throws SQLException {
+        String sql = "SELECT * FROM patient";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        return preparedStatement.executeQuery();
+    }
+
     public void editNote(Patient patient) throws SQLException {
         String sql = "UPDATE patient SET note = ? WHERE cpr = ?";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);

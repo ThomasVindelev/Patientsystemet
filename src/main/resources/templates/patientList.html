@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+<div th:replace="fragments/header :: header"></div>
+
+<section class="content">
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Note</th>
+            <th>Options</th>
+        </tr>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.firstName}"></td>
+            <td th:text="${patient.lastName}"></td>
+            <td th:text="${patient.note}"></td>
+            <td>optionsxD</td>
+        </tr>
+    </table>
+
+
+</section>
+</body>
+</html>
