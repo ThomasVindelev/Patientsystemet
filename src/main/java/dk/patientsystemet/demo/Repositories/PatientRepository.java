@@ -1,5 +1,6 @@
 package dk.patientsystemet.demo.Repositories;
 
+import dk.patientsystemet.demo.Model.Diagnosis;
 import dk.patientsystemet.demo.Model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -55,6 +56,17 @@ public class PatientRepository {
         preparedStatement.setInt(2, patient.getId());
         preparedStatement.execute();
         preparedStatement.close();
+    }
+
+    public ResultSet getDiagnosis(int id) throws SQLException {
+        String sql = "SELECT * FROM diagnosis LEFT JOIN diagnosis_names ON diagnosis.fk_diagnosis_names = diagnosis_names.id " +
+                "LEFT JOIN patient ON diagnosis.fk_patient = patient.id LEFT JOIN users ON diagnosis.fk_users = users.id WHERE fk_patient = " + id;
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        return preparedStatement.executeQuery();
+    }
+
+    public void createDiagnosis(int id, Diagnosis diagnosis) {
+        String sql = "INSERT INTO diagnosis (note, date, fk_diagnosis_names, fk_patient, fk_users)";
     }
 
 }

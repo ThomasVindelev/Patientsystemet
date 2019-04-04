@@ -1,6 +1,7 @@
 package dk.patientsystemet.demo.Controllers;
 
 import dk.patientsystemet.demo.Model.Patient;
+import dk.patientsystemet.demo.Model.User;
 import dk.patientsystemet.demo.Service.ConsultationService;
 import dk.patientsystemet.demo.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class PatientController {
     public String findPatient(@ModelAttribute Patient patient, Model model) throws SQLException {
         model.addAttribute("patient", service.findPatient(patient));
         model.addAttribute("consultations", consultationService.getConsultations(patient));
+        model.addAttribute("diagnosis", service.getDiagnosis(patient.getId()));
         model.addAttribute("notes", service.findPatientNote(patient.getId()));
         model.addAttribute("title", patient.getFirstName());
         return "findPatient";
@@ -58,4 +60,12 @@ public class PatientController {
         model.addAttribute("title", patient.getFirstName());
         return findPatient(patient, model);
     }
+
+    @PostMapping("/addDiagnosis")
+    public String addDiagnosis(@ModelAttribute Patient patient, @ModelAttribute User user, Model model) throws SQLException {
+        model.addAttribute("diagnosis", service.newDiagnosis(patient.getId(), ));
+        model.addAttribute("patient", service.findPatient(patient));
+        model.addAttribute()
+    }
+
 }

@@ -20,6 +20,10 @@ public class Diagnosis {
         this.date = date;
     }
 
+    public Diagnosis() {
+
+    }
+
     public int getId() {
         return id;
     }

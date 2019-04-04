@@ -1,7 +1,9 @@
 package dk.patientsystemet.demo.Service;
 
+import dk.patientsystemet.demo.Model.Diagnosis;
 import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
+import dk.patientsystemet.demo.Model.User;
 import dk.patientsystemet.demo.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,5 +84,25 @@ public class PatientService {
     public String createNote(Patient patient) throws SQLException {
         db.createNote(patient);
         return "Success!";
+    }
+
+    public List<Diagnosis> getDiagnosis(int id) throws SQLException {
+        ResultSet rs = db.getDiagnosis(id);
+        List<Diagnosis> diagnosisList = new ArrayList<>();
+        while (rs.next()) {
+            Diagnosis diagnosis = new Diagnosis();
+            diagnosis.setNote(rs.getString("note"));
+            diagnosis.setDate(rs.getDate("date"));
+            diagnosis.setDiagnosisName("diagnosis_names.name");
+            diagnosis.setPatientName(rs.getString("patient.firstname"));
+            diagnosis.setDoctorName(rs.getString("users.name"));
+            diagnosisList.add(diagnosis);
+        }
+        return diagnosisList;
+    }
+
+    public String newDiagnosis(int id, Diagnosis diagnosis, User user) {
+        db.createDiagnosis(id, diagnosis);
+        return null;
     }
 }
