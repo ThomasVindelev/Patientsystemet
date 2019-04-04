@@ -4,6 +4,7 @@ public class Consultation {
 
     private int id;
     private int patientId;
+    private int userId;
     private String patientName;
     private int cprNumber;
     private String description;
@@ -76,5 +77,13 @@ public class Consultation {
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

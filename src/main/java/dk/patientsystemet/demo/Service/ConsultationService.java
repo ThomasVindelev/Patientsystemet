@@ -36,4 +36,9 @@ public class ConsultationService {
         return "success";
     }
 
+    public String createConsultation(Consultation consultation) throws SQLException {
+        db.createConsultation(consultation);
+        return "success";
+    }
+
 }
