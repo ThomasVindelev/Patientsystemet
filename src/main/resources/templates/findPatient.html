@@ -25,15 +25,14 @@
                 <td th:text="${consultation.date}"></td>
                 <td th:text="${consultation.description}"></td>
                 <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                    <form th:action="@{/deleteConsultation/{id}(id=${consultation.id})}" th:object="${Consultation}">
-                    <input type="hidden" name="patientId" th:value="${consultation.patientId}">
-                    <button type="submit">Slet</button></form></td>
+                    <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/redcross.png}" width="15" height="15"></a>
+                    </td>
 
             </tr>
         </table>
     </div>
     <div class="findPatientContent">
-        <h3>Diagnosis</h3>
+        <h3>Diagnosis</h3><img id="diagnosisPrompt" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20">
         <table>
             <tr>
                 <th>Diagnosis</th>
@@ -42,6 +41,8 @@
             <tr th:each="diagnosis : ${diagnosis}">
                 <td th:text="${diagnosis.diagnosisName}"></td>
                 <td th:text="${diagnosis.doctorName}"></td>
+                <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
+                    <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
             </tr>
         </table>
     </div>
@@ -63,12 +64,29 @@
         <tr th:each="note: ${notes}">
             <td th:text="${note.note}"><br></td>
             <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                <form th:action="@{/deleteNote/{id}(id=${note.id})}" th:object="${Note}">
-                    <input type="hidden" name="patientId" th:value="${note.patientId}">
-                <button type="submit">Slet</button></form></td>
+                <a th:href="@{/deleteNote/{id}(id=${note.id})}"><img th:src="@{/img/redcross.png}" width="15" height="15"></a>
+                </td>
         </tr>
         </table>
     </div>
+    <div class="diagnosis-prompt">
+        <div class="diagnosis-prompt-content">
+            <form action="">
+                <select name="" id="diagnosis-name">
+                    <option value="1">Smallpox</option>
+                    <option value="2">Fever</option>
+                    <option value="3">Pneumonia</option>
+                </select>
+                <input type="text" placeholder="Note">
+                <button type="submit"></button>
+            </form>
+        </div>
+    </div>
 </section>
 </body>
+<script>
+    document.getElementById('diagnosisPrompt').addEventListener('click', function () {
+        document.querySelector('.diagnosis-prompt').style.display = 'flex';
+    });
+</script>
 </html>

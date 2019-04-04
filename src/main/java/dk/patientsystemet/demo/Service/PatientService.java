@@ -113,7 +113,6 @@ public class PatientService {
             diagnosis.setPatientName(rs.getString("patient.firstname"));
             diagnosis.setDoctorName(rs.getString("users.name"));
             diagnosisList.add(diagnosis);
-            System.out.println(diagnosis.getDiagnosisName());
         }
         return diagnosisList;
     }

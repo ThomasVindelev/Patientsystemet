@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
@@ -45,8 +46,9 @@ public class PatientController {
     }
 
     @PostMapping("/findPatient")
-    public String findPatient(@ModelAttribute Patient patient) throws SQLException {
+    public String findPatient(@ModelAttribute Patient patient, HttpSession session) throws SQLException {
         int id = service.searchPatient(patient);
+        session.setAttribute("patient_id", id);
         return "redirect:/findPatient/" + id;
     }
 
@@ -56,7 +58,7 @@ public class PatientController {
         model.addAttribute("consultations", consultationService.getConsultations(id));
         model.addAttribute("diagnosis", service.getDiagnosis(id));
         model.addAttribute("notes", service.findPatientNote(id));
-        model.addAttribute("title", service.findPatient(id).getFirstName());
+        model.addAttribute("title", "Patient Page");
         return "findPatient";
     }
 
@@ -65,14 +67,14 @@ public class PatientController {
         model.addAttribute("message", service.createNote(patient, id));
         model.addAttribute("patient", service.findPatient(id));
         model.addAttribute("notes", service.findPatientNote(id));
-        model.addAttribute("title", service.findPatient(id).getFirstName());
+        model.addAttribute("title", "Patient Page");
         return "redirect:/findPatient/{id}";
     }
 
     @GetMapping("/deleteNote/{id}")
-    public String deleteNote(@PathVariable("id") int id, @ModelAttribute Note note) throws SQLException {
+    public String deleteNote(@PathVariable("id") int id, @ModelAttribute Note note, HttpSession session) throws SQLException {
         service.deleteNote(id);
-        return "redirect:/findPatient/" + note.getPatientId();
+        return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
     /*@PostMapping("/addDiagnosis")

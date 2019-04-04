@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
 @Controller
@@ -17,8 +18,8 @@ public class ConsultationController {
     ConsultationService service;
 
     @GetMapping("/deleteConsultation/{id}")
-    public String deleteConsultation(@PathVariable("id") int id, @ModelAttribute Consultation consultation) throws SQLException {
+    public String deleteConsultation(@PathVariable("id") int id, @ModelAttribute Consultation consultation, HttpSession session) throws SQLException {
         service.deleteConsultation(id);
-        return "redirect:/findPatient/" + consultation.getPatientId();
+        return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 }

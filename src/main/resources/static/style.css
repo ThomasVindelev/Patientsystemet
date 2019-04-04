@@ -246,3 +246,24 @@ textarea {
   margin-top: 2px;
   margin-left: 10px;
 }
+
+.diagnosis-prompt {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.diagnosis-prompt-content {
+  height: 300px;
+  width: 500px;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  border-radius: 4px;
+}
