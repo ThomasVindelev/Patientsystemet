@@ -3,6 +3,7 @@ package dk.patientsystemet.demo.Model;
 public class Patient {
 
     private int id;
+    private int noteId;
     private int age;
     private int cpr;
     private int height;
@@ -16,7 +17,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int id, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date) {
+    public Patient(int id, int noteId, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date) {
         this.id = id;
         this.age = age;
         this.cpr = cpr;
@@ -27,6 +28,7 @@ public class Patient {
         this.birthDate = birthDate;
         this.note = note;
         this.date = date;
+        this.noteId = noteId;
     }
 
 
@@ -109,5 +111,13 @@ public class Patient {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setNoteId(int noteId) {
+        this.noteId = noteId;
+    }
+
+    public int getNoteId() {
+        return noteId;
     }
 }

@@ -4,6 +4,7 @@ import dk.patientsystemet.demo.Model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 
 @Repository
@@ -28,20 +29,27 @@ public class PatientRepository {
     }
 
     public ResultSet findPatient(Patient patient) throws SQLException {
-        String sql = "SELECT * FROM patient INNER JOIN patient_note ON patient.id = patient_note.fk_patient WHERE cpr=?";
+        String sql = "SELECT * FROM patient LEFT JOIN patient_note ON patient.id = patient_note.fk_patient WHERE cpr=?";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setInt(1, patient.getCpr());
         return preparedStatement.executeQuery();
     }
 
+    public ResultSet findPatientNote(Patient patient) throws SQLException {
+        String sql = "SELECT * FROM patient_note WHERE patient_note.fk_patient=?";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1, patient.getId());
+        return preparedStatement.executeQuery();
+    }
+
     public ResultSet allPatients() throws SQLException {
-        String sql = "SELECT * FROM patient INNER JOIN patient_note ON patient.id = patient_note.fk_patient";
+        String sql = "SELECT * FROM patient LEFT JOIN patient_note ON patient.id = patient_note.fk_patient";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         return preparedStatement.executeQuery();
     }
 
     public void createNote(Patient patient) throws SQLException {
-        String sql = "INSERT INTO patient_note (note, fk_patients) VALUES (?,?)";
+        String sql = "INSERT INTO patient_note (note, fk_patient) VALUES (?,?)";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setString(1, patient.getNote());
         preparedStatement.setInt(2, patient.getId());

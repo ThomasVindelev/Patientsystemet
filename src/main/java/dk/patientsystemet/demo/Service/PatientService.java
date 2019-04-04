@@ -67,6 +67,18 @@ public class PatientService {
         }
     }
 
+    public Patient findPatientNote(Patient patient) throws SQLException {
+        ResultSet rs = db.findPatientNote(patient);
+        if (rs.next()) {
+            patient.setNote(rs.getString("note"));
+            patient.setNoteId(rs.getInt("id"));
+            return patient;
+        }
+        return null;
+    }
+
+
+
     public String createNote(Patient patient) throws SQLException {
         db.createNote(patient);
         return "Success!";
