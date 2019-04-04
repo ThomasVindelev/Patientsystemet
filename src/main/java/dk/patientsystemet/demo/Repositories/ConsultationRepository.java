@@ -22,7 +22,7 @@ public class ConsultationRepository {
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setString(1, consultation.getDescription());
         preparedStatement.setString(2, consultation.getConclusion());
-        preparedStatement.setString(3, "2019-04-04");
+        preparedStatement.setString(3, consultation.getDate());
         preparedStatement.setInt(4, consultation.getPatientId());
         preparedStatement.setInt(5, consultation.getUserId());
         preparedStatement.execute();
@@ -32,9 +32,16 @@ public class ConsultationRepository {
 
     public ResultSet findConsultations(int id) throws SQLException {
         String sql = "SELECT * FROM consultation LEFT JOIN patient ON consultation.fk_patient = patient.id " +
-                "LEFT JOIN users ON consultation.fk_users = users.id WHERE consultation.fk_patient=?";
+                "LEFT JOIN users ON consultation.fk_users = users.id WHERE consultation.fk_patient=? ORDER BY consultation.date ASC";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
+    }
+
+    public ResultSet upcomingConsultations(int userId) throws SQLException {
+        String sql = "SELECT * FROM consultation INNER JOIN patient ON consultation.fk_patient = patient.id WHERE fk_users=? LIMIT 5";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1, userId);
         return preparedStatement.executeQuery();
     }
 

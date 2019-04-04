@@ -1,6 +1,7 @@
 package dk.patientsystemet.demo.Controllers;
 
 import dk.patientsystemet.demo.Model.User;
+import dk.patientsystemet.demo.Service.ConsultationService;
 import dk.patientsystemet.demo.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class LoginController {
     @Autowired
     LoginService service;
 
+    @Autowired
+    ConsultationService consultationService;
+
     @PostMapping("/login")
     public String login(@ModelAttribute User user, HttpSession session, Model model) throws SQLException {
         if (service.verifyUser(user)) {
@@ -33,8 +37,10 @@ public class LoginController {
     }
 
     @GetMapping("/main")
-    public String getMainPage(Model model) {
+    public String getMainPage(Model model, HttpSession session) throws SQLException {
+        Integer userId = (Integer) session.getAttribute("id");
         model.addAttribute("title", "Main");
+        model.addAttribute("consultations", consultationService.upcomingConsultations(userId));
         return "main";
     }
 

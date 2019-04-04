@@ -6,12 +6,8 @@
         <div class="main-box">
             <h3>Upcoming consultations</h3>
             <hr>
-            <ol class="consultation-list">
-                <li><span>Patient Name</span><span>Date</span></li>
-                <li><span>Patient Name</span><span>Date</span></li>
-                <li><span>Patient Name</span><span>Date</span></li>
-                <li><span>Patient Name</span><span>Date</span></li>
-                <li><span>Patient Name</span><span>Date</span></li>
+            <ol class="consultation-list" th:each="consultation: ${consultations}">
+                <li><span th:text="${consultation.patientName}"></span><span th:text="${consultation.date}"></span></li>
             </ol>
             <form action="/consultations" method="get">
                 <button type="submit">More</button>

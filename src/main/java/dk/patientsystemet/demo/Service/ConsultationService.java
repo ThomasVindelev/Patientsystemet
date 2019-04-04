@@ -41,4 +41,16 @@ public class ConsultationService {
         return "success";
     }
 
+    public List<Consultation> upcomingConsultations(int userId) throws SQLException {
+        ResultSet rs = db.upcomingConsultations(userId);
+        List<Consultation> ucList = new ArrayList<>();
+        while (rs.next()) {
+            Consultation consultation = new Consultation();
+            consultation.setPatientName(rs.getString("patient.firstname"));
+            consultation.setDate(rs.getString("consultation.date"));
+            ucList.add(consultation);
+        }
+        return ucList;
+    }
+
 }
