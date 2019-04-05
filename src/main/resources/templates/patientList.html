@@ -7,12 +7,12 @@
         <tr>
             <th>First name</th>
             <th>Last name</th>
-            <th>Options</th>
+            <th></th>
         </tr>
         <tr th:each="patient : ${patients}">
             <td th:text="${patient.firstName}"></td>
             <td th:text="${patient.lastName}"></td>
-            <td>optionsxD</td>
+            <td><a th:href="@{/findPatient/{id}(id=${patient.id})}">Details</a></td>
         </tr>
     </table>
 

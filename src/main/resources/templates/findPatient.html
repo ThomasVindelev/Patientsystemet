@@ -62,7 +62,7 @@
                 <th></th>
             </tr>
         <tr th:each="note: ${notes}">
-            <td th:text="${note.note}"><br></td>
+            <td><p th:text="${note.timestamp}"></p> - <p th:text="${note.note}"></p><br></td>
         </tr>
         </table>
     </div>

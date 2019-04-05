@@ -87,6 +87,7 @@ public class PatientService {
             note.setPatientId(rs.getInt("fk_patient"));
             note.setId(rs.getInt("id"));
             note.setNote(rs.getString("note"));
+            note.setTimestamp(rs.getString("date"));
             noteList.add(note);
         }
         return noteList;
