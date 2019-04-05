@@ -65,9 +65,6 @@ public class PatientController {
     @PostMapping("/createNote/{id}")
     public String createNote(@PathVariable("id") int id, @ModelAttribute Patient patient, Model model) throws SQLException {
         model.addAttribute("message", service.createNote(patient, id));
-        model.addAttribute("patient", service.findPatient(id));
-        model.addAttribute("notes", service.findPatientNote(id));
-        model.addAttribute("title", "Patient Page");
         return "redirect:/findPatient/{id}";
     }
 
