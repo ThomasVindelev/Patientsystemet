@@ -130,13 +130,11 @@ public class PatientService {
         return  diagnosisList;
     }
 
-    public String newDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
-        System.out.println(diagnosis.getId());
-        System.out.println(patientID);
-        System.out.println(userID);
-        System.out.println(diagnosis.getNote());
+    public void newDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
         db.createDiagnosis(diagnosis, patientID, userID);
-        return null;
     }
 
+    public void newUnknownDiagnosis(String diagnosisName) throws SQLException {
+        db.createUnknownDiagnosis(diagnosisName);
+    }
 }

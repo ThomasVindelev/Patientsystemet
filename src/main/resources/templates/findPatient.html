@@ -32,7 +32,9 @@
         </table>
     </div>
     <div class="findPatientContent">
-        <h3>Diagnosis</h3><img id="diagnosis-btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20">
+        <h3>Diagnosis</h3>
+        <button type="button" id="diagnosis-new-btn">Add New Diagnosis</button>
+        <img id="diagnosis-btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20">
         <table>
             <tr>
                 <th>Diagnosis</th>
@@ -99,7 +101,7 @@
 
     </div>
 
-    <!-- Diagnosis -->
+    <!-- Diagnosis and add diagnosis-->
 
     <div id="box-diagnosis" class="modal">
 
@@ -124,6 +126,24 @@
             </form>
         </div>
     </div>
+
+    </div>
+
+    <div id="box-diagnosis-new" class="modal">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-diagnosis-new">&times;</span>
+                <h2>New Diagnosis</h2>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/addUnknownDiagnosis}" th:object="${Diagnosis}" method="post">
+                    <label>Diagnosis:</label>
+                    <input type="text" name="diagnosisName">
+                    <button type="submit">Add Diagnosis</button>
+                </form>
+            </div>
+        </div>
 
     </div>
 
@@ -167,6 +187,27 @@
         window.onclick = function(event) {
             if (event.target == modal) {
                 box2.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+
+        var box3 = document.getElementById('box-diagnosis-new');
+        var btn3 = document.getElementById("diagnosis-new-btn");
+        var span3 = document.getElementsByClassName("close-diagnosis-new")[0];
+
+        btn3.onclick = function() {
+            box3.style.display = "block";
+        }
+
+        span3.onclick = function() {
+            box3.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                box3.style.display = "none";
             }
         }
     </script>

@@ -71,8 +71,14 @@ public class PatientController {
     }
 
     @PostMapping("/addDiagnosis")
-    public String addDiagnosis(@ModelAttribute Diagnosis diagnosis, Model model, HttpSession session) throws SQLException {
-        model.addAttribute("diagnosis", service.newDiagnosis(diagnosis, diagnosis.getPatientId(), diagnosis.getDoctorId()));
+    public String addDiagnosis(@ModelAttribute Diagnosis diagnosis, HttpSession session) throws SQLException {
+        service.newDiagnosis(diagnosis, diagnosis.getPatientId(), diagnosis.getDoctorId());
+        return "redirect:/findPatient/" + session.getAttribute("patient_id");
+    }
+
+    @PostMapping("/addUnknownDiagnosis")
+    public String addUnknownDiagnosis(@ModelAttribute Diagnosis diagnosis, String diagnosisName, HttpSession session) throws SQLException {
+        service.newUnknownDiagnosis(diagnosisName);
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 

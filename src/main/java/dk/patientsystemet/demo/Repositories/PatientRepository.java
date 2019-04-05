@@ -97,4 +97,12 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    public void createUnknownDiagnosis(String diagnosisName) throws SQLException {
+        String sql = "INSERT INTO diagnosis_names (name) VALUE (?)";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, diagnosisName);
+        preparedStatement.execute();
+        preparedStatement.close();
+    }
+
 }
