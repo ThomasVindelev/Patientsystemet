@@ -1,5 +1,6 @@
 package dk.patientsystemet.demo.Controllers;
 
+import dk.patientsystemet.demo.Model.Diagnosis;
 import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
 import dk.patientsystemet.demo.Model.User;
@@ -57,6 +58,7 @@ public class PatientController {
         model.addAttribute("patient", service.findPatient(id));
         model.addAttribute("consultations", consultationService.getConsultations(id));
         model.addAttribute("diagnosis", service.getDiagnosisByPatient(id));
+        model.addAttribute("diagnosisList", service.getDiagnosis());
         model.addAttribute("notes", service.findPatientNote(id));
         model.addAttribute("title", "Patient Page");
         return "findPatient";
@@ -68,11 +70,10 @@ public class PatientController {
         return "redirect:/findPatient/{id}";
     }
 
-    /*@PostMapping("/addDiagnosis")
-    public String addDiagnosis(@ModelAttribute Patient patient, @ModelAttribute User user, Model model) throws SQLException {
-        model.addAttribute("diagnosis", service.newDiagnosis(patient.getId(), ));
-        model.addAttribute("patient", service.findPatient(patient));
-        return "";
-    }*/
+    @PostMapping("/addDiagnosis")
+    public String addDiagnosis(@ModelAttribute Diagnosis diagnosis, Model model, HttpSession session) throws SQLException {
+        model.addAttribute("diagnosis", service.newDiagnosis(diagnosis, diagnosis.getPatientId(), diagnosis.getDoctorId()));
+        return "redirect:/findPatient/" + session.getAttribute("patient_id");
+    }
 
 }

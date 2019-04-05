@@ -111,9 +111,12 @@
         <div class="modal-body">
             <form th:action="@{/addDiagnosis}" th:object="${Diagnosis}" method="post">
                 <input type="hidden" name="userId" th:value="${session.id}">
-                <input type="hidden" name="patientId" th:value="${session.patient_id}">
+                <input type="hidden" name="doctorId" th:value="${session.patient_id}">
                 <label>Diagnosis:</label>
-                <select name="diagnosisName" id="" th:each="diagnosis : ${diagnosis}">
+                <select name="diagnosisName" id="">
+                    <div th:each="diagnosis : ${diagnosisList}" >
+                        <option value="${diagnosis.id}"><p th:text="${diagnosis.diagnosisName}"></p></option>
+                    </div>
                 </select>
                 <label>Note:</label>
                 <input type="text" name="note">

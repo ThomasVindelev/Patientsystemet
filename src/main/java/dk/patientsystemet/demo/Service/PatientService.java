@@ -118,8 +118,20 @@ public class PatientService {
         return diagnosisList;
     }
 
-    public String newDiagnosis(int id, Diagnosis diagnosis, User user) {
-        db.createDiagnosis(id, diagnosis);
+    public List<Diagnosis> getDiagnosis() throws SQLException {
+        List<Diagnosis> diagnosisList = new ArrayList<>();
+        ResultSet rs = db.getDiagnosis();
+        while (rs.next()) {
+            Diagnosis diagnosis = new Diagnosis();
+            diagnosis.setId(rs.getInt("id"));
+            diagnosis.setDiagnosisName(rs.getString("name"));
+            diagnosisList.add(diagnosis);
+        }
+        return  diagnosisList;
+    }
+
+    public String newDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
+        db.createDiagnosis(diagnosis, patientID, userID);
         return null;
     }
 }

@@ -80,8 +80,21 @@ public class PatientRepository {
         return preparedStatement.executeQuery();
     }
 
-    public void createDiagnosis(int id, Diagnosis diagnosis) {
-        String sql = "INSERT INTO diagnosis (note, date, fk_diagnosis_names, fk_patient, fk_users)";
+    public ResultSet getDiagnosis() throws SQLException {
+        String sql = "SELECT * FROM diagnosis_names";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        return preparedStatement.executeQuery();
+    }
+
+    public void createDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
+        String sql = "INSERT INTO diagnosis (note, fk_patient, fk_users, fk_diagnosis_names) VALUES (?, ?, ?, ?)";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, diagnosis.getNote());
+        preparedStatement.setInt(2, patientID);
+        preparedStatement.setInt(3, userID);
+        preparedStatement.setInt(4, diagnosis.getId());
+        preparedStatement.execute();
+        preparedStatement.close();
     }
 
 }
