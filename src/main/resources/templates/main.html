@@ -7,9 +7,10 @@
             <h3>Upcoming consultations</h3>
             <hr>
             <ol class="consultation-list" th:each="consultation: ${consultations}">
-                <li><span th:text="${consultation.patientName}"></span><span th:text="${consultation.date}"></span></li>
+                <li><span th:text="${consultation.patientName}"></span><span th:text="${consultation.date}"></span>
+                <a th:href="@{/watchConsultation/{id}(id=${consultation.id})}">Details</a></li>
             </ol>
-            <form action="/consultations" method="get">
+            <form th:action="@{/consultations/{id}(id=${session.id})}" method="get">
                 <button type="submit">More</button>
             </form>
         </div>

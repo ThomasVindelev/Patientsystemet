@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+<div th:replace="fragments/header :: header"></div>
+
+<section class="content">
+    <div class="main-box">
+        <h3>Watch consultation</h3>
+        <hr>
+        <p th:text="${consultation.patientName}"></p>
+        <p th:text="${consultation.description}"></p>
+        <p th:text="${consultation.conclusion}"></p>
+        <p th:text="${consultation.date}"></p>
+    </div>
+
+
+</section>
+</body>
+</html>

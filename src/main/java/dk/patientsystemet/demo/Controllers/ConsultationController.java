@@ -4,6 +4,7 @@ import dk.patientsystemet.demo.Model.Consultation;
 import dk.patientsystemet.demo.Service.ConsultationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,4 +30,31 @@ public class ConsultationController {
         service.createConsultation(consultation);
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
+
+    @GetMapping("/watchConsultation/{id}")
+    public String watchConsultation(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("consultation", service.findConsultationById(id));
+        return "watchConsultation";
+    }
+
+    @GetMapping("/editConsultation/{id}")
+    public String GetEditConsultation(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("consultation", service.findConsultationById(id));
+        return "editConsultation";
+    }
+
+    @PostMapping("/editConsultation/{id}")
+    public String editConsultation(@ModelAttribute Consultation consultation, HttpSession session) throws SQLException {
+        service.editConsultation(consultation);
+        return "redirect:/findPatient/" + session.getAttribute("patient_id");
+    }
+
+    @GetMapping("/consultations/{id}")
+    public String consultations(@PathVariable("id") int id, Model model) throws SQLException {
+        model.addAttribute("consultations", service.findDoctorsConsultationsById(id));
+        return "consultations";
+    }
+
+
+
 }

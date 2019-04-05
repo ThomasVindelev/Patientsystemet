@@ -68,12 +68,6 @@ public class PatientController {
         return "redirect:/findPatient/{id}";
     }
 
-    @GetMapping("/deleteNote/{id}")
-    public String deleteNote(@PathVariable("id") int id, @ModelAttribute Note note, HttpSession session) throws SQLException {
-        service.deleteNote(id);
-        return "redirect:/findPatient/" + session.getAttribute("patient_id");
-    }
-
     /*@PostMapping("/addDiagnosis")
     public String addDiagnosis(@ModelAttribute Patient patient, @ModelAttribute User user, Model model) throws SQLException {
         model.addAttribute("diagnosis", service.newDiagnosis(patient.getId(), ));

@@ -5,6 +5,7 @@ public class Note {
     private int id;
     private int patientId;
     private String note;
+    private String timestamp;
 
     public Note() {
 
@@ -37,5 +38,13 @@ public class Note {
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

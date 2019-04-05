@@ -24,7 +24,7 @@
             <tr th:each="consultation : ${consultations}">
                 <td th:text="${consultation.date}"></td>
                 <td th:text="${consultation.description}"></td>
-                <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
+                <td><a th:href="@{/editConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15"></a>
                     <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/redcross.png}" width="15" height="15"></a>
                     </td>
 
@@ -50,7 +50,7 @@
         <h3>Prescriptions</h3>
     </div>
     <div class="patientNotes" th:each="infos : ${patient}">
-        <h3>Patient Notes</h3>
+        <h3>Patient Journal</h3>
         <form class="note-form" th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post">
             <textarea name="note" rows="10" cols="30"></textarea>
             <button type="submit">Click</button>
@@ -63,9 +63,6 @@
             </tr>
         <tr th:each="note: ${notes}">
             <td th:text="${note.note}"><br></td>
-            <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                <a th:href="@{/deleteNote/{id}(id=${note.id})}"><img th:src="@{/img/redcross.png}" width="15" height="15"></a>
-                </td>
         </tr>
         </table>
     </div>
