@@ -131,7 +131,12 @@ public class PatientService {
     }
 
     public String newDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
+        System.out.println(diagnosis.getId());
+        System.out.println(patientID);
+        System.out.println(userID);
+        System.out.println(diagnosis.getNote());
         db.createDiagnosis(diagnosis, patientID, userID);
         return null;
     }
+
 }
