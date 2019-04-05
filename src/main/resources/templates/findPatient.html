@@ -32,7 +32,7 @@
         </table>
     </div>
     <div class="findPatientContent">
-        <h3>Diagnosis</h3><img id="diagnosisPrompt" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20">
+        <h3>Diagnosis</h3><img id="diagnosis-btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20">
         <table>
             <tr>
                 <th>Diagnosis</th>
@@ -66,33 +66,17 @@
         </tr>
         </table>
     </div>
-    <div class="diagnosis-prompt">
-        <div class="diagnosis-prompt-content">
-            <form action="">
-                <select name="" id="diagnosis-name">
-                    <option value="1">Smallpox</option>
-                    <option value="2">Fever</option>
-                    <option value="3">Pneumonia</option>
-                </select>
-                <input type="text" placeholder="Note">
-                <button type="submit"></button>
-            </form>
-        </div>
-    </div>
 </section>
 </body>
-<script>
-    document.getElementById('diagnosisPrompt').addEventListener('click', function () {
-        document.querySelector('.diagnosis-prompt').style.display = 'flex';
-    });
-</script>
-</head>
 <body>
 
 <!-- The Modal -->
 <div id="box" class="modal">
 
     <!-- Modal content -->
+
+    <!-- Consultation -->
+
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
@@ -112,27 +96,77 @@
             </form>
         </div>
     </div>
-<script>
 
-    var box = document.getElementById('box');
-    var btn = document.getElementById("btn");
-    var span = document.getElementsByClassName("close")[0];
+    </div>
 
-    btn.onclick = function() {
-        box.style.display = "block";
-    }
+    <!-- Diagnosis -->
 
-    span.onclick = function() {
-        box.style.display = "none";
-    }
+    <div id="box-diagnosis" class="modal">
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close-diagnosis">&times;</span>
+            <h2>Add Diagnosis</h2>
+        </div>
+        <div class="modal-body">
+            <form th:action="@{/addDiagnosis}" th:object="${Diagnosis}" method="post">
+                <input type="hidden" name="userId" th:value="${session.id}">
+                <input type="hidden" name="patientId" th:value="${session.patient_id}">
+                <label>Diagnosis:</label>
+                <select name="diagnosisName" id="" th:each="diagnosis : ${diagnosis}">
+                </select>
+                <label>Note:</label>
+                <input type="text" name="note">
+                <button type="submit">Add Diagnosis</button>
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Prescription -->
+
+    <script>
+
+        var box = document.getElementById('box');
+        var btn = document.getElementById("btn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            box.style.display = "block";
+        }
+
+        span.onclick = function() {
             box.style.display = "none";
         }
-    }
-</script>
-</div>
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                box.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+
+        var box2 = document.getElementById('box-diagnosis');
+        var btn2 = document.getElementById("diagnosis-btn");
+        var span2 = document.getElementsByClassName("close-diagnosis")[0];
+
+        btn2.onclick = function() {
+            box2.style.display = "block";
+        }
+
+        span2.onclick = function() {
+            box2.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                box2.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>

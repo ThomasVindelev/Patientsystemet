@@ -103,8 +103,8 @@ public class PatientService {
         return "Success!";
     }
 
-    public List<Diagnosis> getDiagnosis(int id) throws SQLException {
-        ResultSet rs = db.getDiagnosis(id);
+    public List<Diagnosis> getDiagnosisByPatient(int id) throws SQLException {
+        ResultSet rs = db.getDiagnosisByPatient(id);
         List<Diagnosis> diagnosisList = new ArrayList<>();
         while (rs.next()) {
             Diagnosis diagnosis = new Diagnosis();

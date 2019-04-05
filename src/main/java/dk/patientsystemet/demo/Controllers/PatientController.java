@@ -56,7 +56,7 @@ public class PatientController {
     public String getPatient(@PathVariable("id") int id, Model model) throws SQLException {
         model.addAttribute("patient", service.findPatient(id));
         model.addAttribute("consultations", consultationService.getConsultations(id));
-        model.addAttribute("diagnosis", service.getDiagnosis(id));
+        model.addAttribute("diagnosis", service.getDiagnosisByPatient(id));
         model.addAttribute("notes", service.findPatientNote(id));
         model.addAttribute("title", "Patient Page");
         return "findPatient";
