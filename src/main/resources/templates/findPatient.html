@@ -48,9 +48,55 @@
             </tr>
         </table>
     </div>
+
+    <!-- ---- START OF PRESCRIPTION ---- -->
+
     <div class="findPatientContent">
         <h3>Prescriptions</h3>
+        <button type="button" id="prescription-btn">Create</button>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Link</th>
+            </tr>
+            <tr th:each="prescription : ${prescription}">
+                <td th:text="${prescription.date}"></td>
+                <td th:text="${prescription.description}"></td>
+                <td><a th:href="@{/prescription/{id} (id=${prescription.id})}">Open</a></td>
+                <td>
+                    <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">Edit</a>
+                    <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
     </div>
+
+    <div id="prescription-box" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="prescription-close">&times;</span>
+                <h2>New Prescription</h2>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/createPrescription}" th:object="${Prescription}" method="POST">
+                    <input type="text" placeholder="Description" name="description"><br>
+                    <input type="hidden" name="doctorId" th:value="${session.id}">
+                    <input type="hidden" name="patientId" th:value="${session.patient_id}">
+                    <select name="medicines" multiple>
+                        <div th:each="medicine : ${medicine}">
+                            <option th:value="${medicine.id}"><span  th:text="${medicine.name}"></span></option>
+                        </div>
+                    </select>
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ---- END OF PRESCRIPTION ---- -->
+
     <div class="patientNotes" th:each="infos : ${patient}">
         <h3>Patient Journal</h3>
         <form class="note-form" th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post">
@@ -208,6 +254,27 @@
         window.onclick = function(event) {
             if (event.target == modal) {
                 box3.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+
+        var prebox = document.getElementById('prescription-box');
+        var prebtn = document.getElementById("prescription-btn");
+        var prespan = document.getElementsByClassName("prescription-close")[0];
+
+        prebtn.onclick = function() {
+            prebox.style.display = "block";
+        }
+
+        prespan.onclick = function() {
+            prebox.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                prebox.style.display = "none";
             }
         }
     </script>

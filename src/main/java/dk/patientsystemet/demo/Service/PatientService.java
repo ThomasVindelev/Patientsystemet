@@ -40,9 +40,7 @@ public class PatientService {
         ResultSet rs = db.allPatients();
         List<Patient> patientList = new ArrayList<>();
         while (rs.next()) {
-            Patient patient = new Patient(
-
-            );
+            Patient patient = new Patient();
             patient.setId(rs.getInt("id"));
             patient.setFirstName(rs.getString("firstname"));
             patient.setLastName(rs.getString("lastname"));

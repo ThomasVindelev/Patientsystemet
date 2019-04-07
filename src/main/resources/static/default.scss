@@ -1,0 +1,29 @@
+@import "colors";
+
+.content {
+  width: 85%;
+  float: right;
+  padding: 30px 40px;
+}
+
+.container {
+  background-color: $ton-l;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+form {
+  input {
+    border: 1px solid white;
+    padding: 8px 15px;
+    border-radius: 10px;
+  }
+  button {
+    border: 0px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: $theme-color;
+    color: white;
+    cursor: pointer;
+  }
+}

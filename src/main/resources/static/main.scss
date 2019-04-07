@@ -13,15 +13,25 @@
   hr {
     margin: 10px 0;
   }
-  ol {
-    padding-left: 20px;
-    li {
-      height: 30px;
-      &:nth-child(even) {
-        background-color: $ton-l;
-      }
-      span {
-        line-height: 30px;
+  ul {
+    a {
+      color: white;
+      text-decoration: none;
+      li {
+        height: 40px;
+        border-bottom: 1px solid white;
+        list-style: none;
+        &:hover {
+          background-color: $ton-xxl;
+        }
+        &:nth-child(even) {
+           background-color: $ton-l;
+        }
+        td {
+          line-height: 40px;
+          padding-right: 10px;
+          color: white;
+        }
       }
     }
   }
@@ -37,77 +47,68 @@
     }
   }
 }
-
-
-.content {
-  width: 85%;
-  float: right;
-  padding: 30px 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  .findPatientContent {
-    width: 20%;
-    height: 50%;
-    border-radius: 10px;
-    background-color: $ton-xl;
-    padding: 15px;
-    color: white;
-    h3 {
-      margin-bottom: 10px;
+.findPatientContent {
+  width: 20%;
+  height: 50%;
+  border-radius: 10px;
+  background-color: $ton-xl;
+  padding: 15px;
+  color: white;
+  h3 {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 5px;
+    span {
     }
-    p {
+  }
+}
+.patientNotes {
+  width: 75%;
+  height: 25%;
+  border-radius: 10px;
+  background-color: $ton-xl;
+  padding: 15px;
+  color: white;
+}
+.createPatient {
+  background-color: $ton-xl;
+  border-radius: 10px;
+  padding: 20px;
+  h2 {
+    margin-bottom: 20px;
+    color: white;
+  }
+  form {
+    label {
+      width: 51%;
+      line-height: 40px;
       margin-bottom: 5px;
-      span {
-      }
-    }
-  }
-  .patientNotes {
-    width: 75%;
-    height: 25%;
-    border-radius: 10px;
-    background-color: $ton-xl;
-    padding: 15px;
-    color: white;
-  }
-  .createPatient {
-    background-color: $ton-xl;
-    border-radius: 10px;
-    padding: 20px;
-    h2 {
-      margin-bottom: 20px;
       color: white;
     }
-    form {
-      label {
-        width: 51%;
-        line-height: 40px;
-        margin-bottom: 5px;
-        color: white;
-      }
-      input {
-        width: 50%;
-        height: 35px;
-        padding: 15px;
-        margin-bottom: 10px;
-        border-radius: 10px;
-        border: 0 solid black;
-      }
-      button {
-        background-color: $theme-color;
-        border-radius: 10px;
-        border: 0 solid black;
-        height: 35px;
-        width: 10%;
-        color: white;
-        &:hover {
-          opacity: 0.8;
-          transform: scale(1.1);
-        }
+    input {
+      width: 50%;
+      height: 35px;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: 0 solid black;
+    }
+    button {
+      background-color: $theme-color;
+      border-radius: 10px;
+      border: 0 solid black;
+      height: 35px;
+      width: 10%;
+      color: white;
+      &:hover {
+        opacity: 0.8;
+        transform: scale(1.1);
       }
     }
   }
 }
+
 
 .main-menu {
   min-width: 200px;

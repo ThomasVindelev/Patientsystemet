@@ -1,6 +1,8 @@
+@import "default";
 @import "login";
 @import "colors";
 @import "main";
+@import "patient-list";
 
 * {
   padding: 0;
@@ -8,7 +10,9 @@
   box-sizing: border-box;
   font-family: Arial;
 }
+
 body {
   background: $ton-xxl;
   min-height: 100%;
 }
+

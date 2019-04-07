@@ -1,44 +1,56 @@
-.login {
-  width: 350px;
-  margin: 20% auto 0 auto;
-}
+.content {
+  width: 85%;
+  float: right;
+  padding: 30px 40px; }
 
-.login .login-form {
+.container {
   background-color: #506874;
-  padding: 40px 25px;
-  border-radius: 15px;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-}
+  border-radius: 10px;
+  padding: 30px; }
 
-.login .login-form hr {
-  border: 0.5px solid #9fb4bd;
-  margin-bottom: 13px;
-}
-
-.login .login-form h1 {
-  margin-bottom: 10px;
-  text-align: center;
-  color: white;
-}
-
-.login .login-form form input {
+form input {
   border: 1px solid white;
   padding: 8px 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-}
+  border-radius: 10px; }
 
-.login .login-form form button {
+form button {
   border: 0px;
   padding: 10px 20px;
   border-radius: 10px;
-  margin: 5px 35% 0 35%;
-  width: 30%;
   background: #009688;
   color: white;
-}
+  cursor: pointer; }
+
+.login {
+  width: 350px;
+  margin: 20% auto 0 auto; }
+  .login .login-form {
+    background-color: #506874;
+    padding: 40px 25px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); }
+    .login .login-form hr {
+      border: 0.5px solid #9fb4bd;
+      margin-bottom: 13px; }
+    .login .login-form h1 {
+      margin-bottom: 10px;
+      text-align: center;
+      color: white; }
+    .login .login-form form input {
+      border: 1px solid white;
+      padding: 8px 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      width: 100%; }
+    .login .login-form form button {
+      border: 0px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 5px 35% 0 35%;
+      width: 30%;
+      background: #009688;
+      color: white; }
 
 .main-box {
   height: 30%;
@@ -48,121 +60,84 @@
   border: 0 solid black;
   border-radius: 5px;
   background-color: #72909e;
-  color: white;
-}
+  color: white; }
+  .main-box hr {
+    margin: 10px 0; }
+  .main-box ul a {
+    color: white;
+    text-decoration: none; }
+    .main-box ul a li {
+      height: 40px;
+      border-bottom: 1px solid white;
+      list-style: none; }
+      .main-box ul a li:hover {
+        background-color: #9fb4bd; }
+      .main-box ul a li:nth-child(even) {
+        background-color: #506874; }
+      .main-box ul a li td {
+        line-height: 40px;
+        padding-right: 10px;
+        color: white; }
+  .main-box form button {
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 20px 35% 0 35%;
+    width: 30%;
+    background: #009688;
+    color: white; }
 
-.main-box hr {
-  margin: 10px 0;
-}
-
-.main-box ol {
-  padding-left: 20px;
-}
-
-.main-box ol li {
-  height: 30px;
-}
-
-.main-box ol li:nth-child(even) {
-  background-color: #506874;
-}
-
-.main-box ol li span {
-  line-height: 30px;
-}
-
-.main-box form button {
-  border: 0;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin: 20px 35% 0 35%;
-  width: 30%;
-  background: #009688;
-  color: white;
-}
-
-.content {
-  width: 85%;
-  float: right;
-  padding: 30px 40px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.content .findPatientContent {
+.findPatientContent {
   width: 20%;
   height: 50%;
   border-radius: 10px;
   background-color: #72909e;
   padding: 15px;
-  color: white;
-}
+  color: white; }
+  .findPatientContent h3 {
+    margin-bottom: 10px; }
+  .findPatientContent p {
+    margin-bottom: 5px; }
 
-.content .findPatientContent h3 {
-  margin-bottom: 10px;
-}
-
-.content .findPatientContent p {
-  margin-bottom: 5px;
-}
-
-.content .patientNotes {
+.patientNotes {
   width: 75%;
   height: 25%;
   border-radius: 10px;
   background-color: #72909e;
   padding: 15px;
-  color: white;
-}
+  color: white; }
 
-.content .createPatient {
+.createPatient {
   background-color: #72909e;
   border-radius: 10px;
-  padding: 20px;
-}
-
-.content .createPatient h2 {
-  margin-bottom: 20px;
-  color: white;
-}
-
-.content .createPatient form label {
-  width: 51%;
-  line-height: 40px;
-  margin-bottom: 5px;
-  color: white;
-}
-
-.content .createPatient form input {
-  width: 50%;
-  height: 35px;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 0 solid black;
-}
-
-.content .createPatient form button {
-  background-color: #009688;
-  border-radius: 10px;
-  border: 0 solid black;
-  height: 35px;
-  width: 10%;
-  color: white;
-}
-
-.content .createPatient form button:hover {
-  opacity: 0.8;
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
+  padding: 20px; }
+  .createPatient h2 {
+    margin-bottom: 20px;
+    color: white; }
+  .createPatient form label {
+    width: 51%;
+    line-height: 40px;
+    margin-bottom: 5px;
+    color: white; }
+  .createPatient form input {
+    width: 50%;
+    height: 35px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 0 solid black; }
+  .createPatient form button {
+    background-color: #009688;
+    border-radius: 10px;
+    border: 0 solid black;
+    height: 35px;
+    width: 10%;
+    color: white; }
+    .createPatient form button:hover {
+      opacity: 0.8;
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1); }
 
 .main-menu {
   min-width: 200px;
@@ -171,99 +146,52 @@
   background: #3b4d56;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  float: left;
-}
+  float: left; }
+  .main-menu a {
+    text-decoration: none; }
+  .main-menu .logo {
+    padding: 30px;
+    width: 100%;
+    text-align: center; }
+    .main-menu .logo h1 {
+      color: white;
+      font-size: 25px; }
+    .main-menu .logo:hover {
+      background-color: #263238; }
+  .main-menu nav ul a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold; }
+    .main-menu nav ul a li {
+      padding: 15px 30px; }
+      .main-menu nav ul a li:hover {
+        background: #263238; }
+  .main-menu .logged-in-as {
+    padding: 100% 0 0 30px;
+    color: white; }
+    .main-menu .logged-in-as em {
+      line-height: 30px; }
 
-.main-menu a {
-  text-decoration: none;
-}
-
-.main-menu .logo {
-  padding: 30px;
-  width: 100%;
-  text-align: center;
-}
-
-.main-menu .logo h1 {
+.patient-list a {
   color: white;
-  font-size: 25px;
-}
+  text-decoration: none; }
 
-.main-menu .logo:hover {
-  background-color: #263238;
-}
-
-.main-menu nav ul a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.main-menu nav ul a li {
-  padding: 15px 30px;
-}
-
-.main-menu nav ul a li:hover {
-  background: #263238;
-}
-
-.main-menu .logged-in-as {
-  padding: 100% 0 0 30px;
-  color: white;
-}
-
-.main-menu .logged-in-as em {
-  line-height: 30px;
-}
+.patient-list table {
+  color: white; }
+  .patient-list table tr:hover {
+    background-color: #9fb4bd; }
+  .patient-list table tr:nth-child(even) {
+    background-color: #506874; }
+  .patient-list table tr th, .patient-list table tr td {
+    padding: 6px; }
 
 * {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: Arial;
-}
+  font-family: Arial; }
 
 body {
   background: #9fb4bd;
-  min-height: 100%;
-}
-
-textarea {
-  resize: none;
-}
-
-.note-form {
-  float: left;
-}
-
-.notes {
-  float:right;
-}
-
-.add-icon {
-  float: right;
-  margin-top: 2px;
-  margin-left: 10px;
-}
-
-.diagnosis-prompt {
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.diagnosis-prompt-content {
-  height: 300px;
-  width: 500px;
-  background-color: white;
-  text-align: center;
-  padding: 20px;
-  position: relative;
-  border-radius: 4px;
-}
+  min-height: 100%; }

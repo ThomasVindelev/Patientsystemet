@@ -6,10 +6,20 @@
         <div class="main-box">
             <h3>Upcoming consultations</h3>
             <hr>
-            <ol class="consultation-list" th:each="consultation: ${consultations}">
-                <li><span th:text="${consultation.patientName}"></span><span th:text="${consultation.date}"></span>
-                <a th:href="@{/watchConsultation/{id}(id=${consultation.id})}">Details</a></li>
-            </ol>
+            <ul class="consultation-list">
+                <div th:each="consultation: ${consultations}">
+                    <a th:href="@{/watchConsultation/{id}(id=${consultation.id})}">
+                        <li>
+                            <table>
+                                <tr>
+                                    <td th:text="${consultation.patientName}"></td>
+                                    <td th:text="${consultation.date}"></td>
+                                </tr>
+                            </table>
+                        </li>
+                    </a>
+                </div>
+            </ul>
             <form th:action="@{/consultations/{id}(id=${session.id})}" method="get">
                 <button type="submit">More</button>
             </form>
@@ -22,8 +32,6 @@
             <h3>Newest diagnosis</h3>
             <hr>
         </div>
-
-
     </section>
 </body>
 </html>

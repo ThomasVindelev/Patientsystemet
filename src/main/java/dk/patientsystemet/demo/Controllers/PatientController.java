@@ -6,6 +6,7 @@ import dk.patientsystemet.demo.Model.Patient;
 import dk.patientsystemet.demo.Model.User;
 import dk.patientsystemet.demo.Service.ConsultationService;
 import dk.patientsystemet.demo.Service.PatientService;
+import dk.patientsystemet.demo.Service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ public class PatientController {
 
     @Autowired
     ConsultationService consultationService;
+
+    @Autowired
+    PrescriptionService prescriptionService;
 
     @GetMapping("/createPatient")
     public String createPatient(Model model) {
@@ -48,9 +52,9 @@ public class PatientController {
 
     @PostMapping("/findPatient")
     public String findPatient(@ModelAttribute Patient patient, HttpSession session) throws SQLException {
-        int id = service.searchPatient(patient);
-        session.setAttribute("patient_id", id);
-        return "redirect:/findPatient/" + id;
+        int patient_id = service.searchPatient(patient);
+        session.setAttribute("patient_id", patient_id);
+        return "redirect:/findPatient/" + patient_id;
     }
 
     @GetMapping("/findPatient/{id}")
@@ -60,6 +64,9 @@ public class PatientController {
         model.addAttribute("diagnosis", service.getDiagnosisByPatient(id));
         model.addAttribute("diagnosisList", service.getDiagnosis());
         model.addAttribute("notes", service.findPatientNote(id));
+        model.addAttribute("prescription", prescriptionService.findPrescriptionByPatient(id));
+        model.addAttribute("medicine", prescriptionService.getAllMedicine());
+
         model.addAttribute("title", "Patient Page");
         return "findPatient";
     }
