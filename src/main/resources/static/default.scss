@@ -1,18 +1,35 @@
 @import "colors";
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+a {
+  text-decoration: none;
+  color: $ton-xd;
+}
+
+body {
+  background: $ton-xxl;
+  height: 100%;
+}
+
 .content {
-  width: 80%;
-  float: right;
-  padding: 30px 40px;
+  width: 100%;
+  min-height: 100%;
+  background: $ton-l;
+  padding: 20px 20px 20px 300px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .container {
-  background-color: $ton-l;
-  border-radius: 10px;
+  background: $ton-xxl;
   padding: 30px;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
 }
 
 form {

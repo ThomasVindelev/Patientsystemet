@@ -3,73 +3,119 @@
 <div th:replace="fragments/header :: header"></div>
 <link rel="stylesheet" th:href="@{/popup.css}" type="text/css">
 <section class="content">
-    <div class="findPatientContent" th:each="info : ${patient}">
-        <h3>Patient Information</h3>
 
-        <p>First name: <span th:text="${info.firstName}"></span></p>
-        <p>Last name:<span th:text="${info.lastName}"></span></p>
-        <p>Height: <span th:text="${info.height}"></span></p>
-        <p>Weight: <span th:text="${info.weight}"></span></p>
-        <p>CPR: <span th:text="${info.cpr}"></span></p>
-        <p>Birth date: <span th:text="${info.birthDate}"></span></p>
+    <!-- ----- PATIENT INFORMATION ----- -->
+
+    <div class="patient-box-information" th:each="info : ${patient}">
+        <div class="box-header">
+            <h3>Patient Information</h3>
+            <button class="special-button" type="button">Edit Patient Information</button>
+        </div>
+        <div class="box-content">
+            <table>
+                <tr>
+                    <td>First name: <span th:text="${info.firstName}"></span></td>
+                </tr>
+                <tr>
+                    <td>Last name:<span th:text="${info.lastName}"></span></td>
+                </tr>
+                <tr>
+                    <td>Height: <span th:text="${info.height}"></span></td>
+                </tr>
+                <tr>
+                    <td>Weight: <span th:text="${info.weight}"></span></td>
+                </tr>
+                <tr>
+                    <td>CPR: <span th:text="${info.cpr}"></span></td>
+                </tr>
+                <tr>
+                    <td>Birth date: <span th:text="${info.birthDate}"></span></td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <div class="findPatientContent">
-        <h3>Consultations</h3> <img id="btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20">
-        <table>
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
-            <tr th:each="consultation : ${consultations}">
-                <td th:text="${consultation.date}"></td>
-                <td th:text="${consultation.description}"></td>
-                <td><a th:href="@{/editConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15"></a>
-                    <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/redcross.png}" width="15" height="15"></a>
+
+    <!-- ----- CONSULTATION ----- -->
+
+    <div class="patient-box-information">
+        <div class="box-header">
+            <h3>Consultations</h3>
+            <button class="special-button" id="btn">Create New Consultations</button>
+            <!--img id="btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20"-->
+        </div>
+        <div class="box-content">
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+                <tr th:each="consultation : ${consultations}">
+                    <td th:text="${consultation.date}"></td>
+                    <td th:text="${consultation.description}"></td>
+                    <td><a th:href="@{/editConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15"></a>
+                        <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/redcross.png}" width="15" height="15"></a>
                     </td>
 
-            </tr>
-        </table>
-    </div>
-    <div class="findPatientContent">
-        <h3>Diagnosis</h3>
-        <button type="button" id="diagnosis-new-btn">Add New Diagnosis</button>
-        <img id="diagnosis-btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20">
-        <table>
-            <tr>
-                <th>Diagnosis</th>
-                <th>Doctor</th>
-            </tr>
-            <tr th:each="diagnosis : ${diagnosis}">
-                <td th:text="${diagnosis.diagnosisName}"></td>
-                <td th:text="${diagnosis.doctorName}"></td>
-                <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                    <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
-            </tr>
-        </table>
+                </tr>
+            </table>
+        </div>
     </div>
 
-    <!-- ---- START OF PRESCRIPTION ---- -->
+    <!-- ----- DIAGNOSIS ----- -->
 
-    <div class="findPatientContent">
-        <h3>Prescriptions</h3>
-        <button type="button" id="prescription-btn">Create</button>
-        <table>
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Link</th>
-            </tr>
-            <tr th:each="prescription : ${prescription}">
-                <td th:text="${prescription.date}"></td>
-                <td th:text="${prescription.description}"></td>
-                <td><a th:href="@{/prescription/{id} (id=${prescription.id})}">Open</a></td>
-                <td>
-                    <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">Edit</a>
-                    <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">Delete</a>
-                </td>
-            </tr>
-        </table>
+    <div class="patient-box-information">
+        <div class="box-header">
+            <h3>Diagnosis</h3>
+            <button class="special-button" id="diagnosis-btn">Create New Diagnosis</button>
+            <!--img id="diagnosis-btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20"-->
+        </div>
+        <div class="box-content">
+            <table>
+                <tr>
+                    <th>Diagnosis</th>
+                    <th>Doctor</th>
+                </tr>
+                <tr th:each="diagnosis : ${diagnosis}">
+                    <td th:text="${diagnosis.diagnosisName}"></td>
+                    <td th:text="${diagnosis.doctorName}"></td>
+                    <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
+                        <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
+                </tr>
+            </table>
+            <button type="button" id="diagnosis-new-btn" class="special-button">Add New Diagnosis</button>
+        </div>
+
+    </div>
+
+    <!-- ---- PRESCRIPTION ---- -->
+
+    <div class="patient-box-information">
+        <div class="box-header">
+            <h3>Prescriptions</h3>
+            <button class="special-button" type="button" id="prescription-btn">Create New Prescriptions</button>
+        </div>
+        <div class="box-content">
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Link</th>
+                    <th>Link</th>
+                </tr>
+                <tr th:each="prescription : ${prescription}">
+                    <td th:text="${prescription.date}"></td>
+                    <td th:text="${prescription.description}"></td>
+                    <td>
+                        <a th:href="@{/prescription/{id} (id=${prescription.id})}">Open</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">Edit</a>
+                        <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <div id="prescription-box" class="modal">
@@ -79,11 +125,11 @@
                 <h2>New Prescription</h2>
             </div>
             <div class="modal-body">
-                <form th:action="@{/createPrescription}" th:object="${Prescription}" method="POST">
+                <form th:action="@{/createPrescription}" th:object="${Prescription}" method="GET">
                     <input type="text" placeholder="Description" name="description"><br>
                     <input type="hidden" name="doctorId" th:value="${session.id}">
                     <input type="hidden" name="patientId" th:value="${session.patient_id}">
-                    <select name="medicines" multiple>
+                    <select name="medicineId" multiple>
                         <div th:each="medicine : ${medicine}">
                             <option th:value="${medicine.id}"><span  th:text="${medicine.name}"></span></option>
                         </div>
@@ -92,28 +138,37 @@
                 </form>
             </div>
         </div>
-
     </div>
 
-    <!-- ---- END OF PRESCRIPTION ---- -->
+    <!-- ---- NOTES ---- -->
 
-    <div class="patientNotes" th:each="infos : ${patient}">
-        <h3>Patient Journal</h3>
-        <form class="note-form" th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post">
-            <textarea name="note" rows="10" cols="30"></textarea>
-            <button type="submit">Click</button>
-            <p th:text="${message}"></p>
-        </form>
-        <table class="notes">
-            <tr>
-                <th>Note</th>
-                <th></th>
-            </tr>
-        <tr th:each="note: ${notes}">
-            <td><p th:text="${note.timestamp}"></p> - <p th:text="${note.note}"></p><br></td>
-        </tr>
-        </table>
+    <div class="patient-box-notes" th:each="infos : ${patient}">
+        <div class="box-header">
+            <h3>Patient Journal</h3>
+        </div>
+        <div class="box-content">
+            <div class="one-third">
+                <form class="note-form" th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post">
+                    <textarea name="note" rows="10" cols="30"></textarea>
+                    <button type="submit">Click</button>
+                    <p th:text="${message}"></p>
+                </form>
+            </div>
+            <div class="two-third">
+                <table class="notes">
+                    <tr>
+                        <th>Note creation date</th>
+                        <th>Note message</th>
+                    </tr>
+                    <tr th:each="note: ${notes}">
+                        <td><span th:text="${note.timestamp}"></span></td>
+                        <td><span th:text="${note.note}"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
+
 </section>
 </body>
 <body>
@@ -176,7 +231,6 @@
     </div>
 
     <div id="box-diagnosis-new" class="modal">
-
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close-diagnosis-new">&times;</span>

@@ -88,8 +88,15 @@ public class PrescriptionService {
         return null;
     }
 
-    public void createPrescription(Prescription prescription) {
+    public void createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
+
         db.createPrescription(prescription);
+        ResultSet rs = db.findPrescriptionByLastUser(userID);
+        int preId = 0;
+        while (rs.next()) {
+            preId = rs.getInt("id");
+        }
+        db.createMedicine(medId, preId);
         //return "success";
     }
 }

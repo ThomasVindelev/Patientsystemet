@@ -2,11 +2,9 @@
 
 .patient-list {
   a {
-    color: white;
     text-decoration: none;
   }
   table {
-    color: white;
     tr {
       &:hover {
         background-color: $ton-xxl;

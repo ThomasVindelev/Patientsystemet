@@ -1,5 +1,7 @@
 package dk.patientsystemet.demo.Repositories;
 
+import com.mysql.cj.protocol.Resultset;
+import dk.patientsystemet.demo.Model.Medicine;
 import dk.patientsystemet.demo.Model.Prescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -80,6 +82,7 @@ public class PrescriptionRepository {
             preparedStatement.setInt(3, prescription.getDoctorId());
             preparedStatement.execute();
             preparedStatement.close();
+
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -96,6 +99,29 @@ public class PrescriptionRepository {
         try {
             String sql = "SELECT * FROM medicine";
             preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    public void createMedicine(int medId, int preInt) {
+        try {
+            String sql = "INSERT INTO patientsystem.junction_prescription_and_medicine (fk_medicine, fk_prescription) VALUES (?, ?)";
+            preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, medId);
+            preparedStatement.setInt(2, preInt);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    public ResultSet findPrescriptionByLastUser(int id) {
+        try {
+            String sql = "SELECT id FROM prescription WHERE fk_users = ? ORDER BY date DESC LIMIT 1";
+            preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, id);
             return preparedStatement.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);

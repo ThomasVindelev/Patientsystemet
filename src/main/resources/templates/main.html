@@ -3,34 +3,45 @@
     <div th:replace="fragments/header :: header"></div>
 
     <section class="content">
-        <div class="main-box">
-            <h3>Upcoming consultations</h3>
-            <hr>
-            <ul class="consultation-list">
-                <div th:each="consultation: ${consultations}">
-                    <a th:href="@{/watchConsultation/{id}(id=${consultation.id})}">
-                        <li>
-                            <table>
-                                <tr>
-                                    <td th:text="${consultation.patientName}"></td>
-                                    <td th:text="${consultation.date}"></td>
-                                </tr>
-                            </table>
-                        </li>
-                    </a>
-                </div>
-            </ul>
-            <form th:action="@{/consultations/{id}(id=${session.id})}" method="get">
-                <button type="submit">More</button>
-            </form>
+        <div class="box-30p">
+            <div class="box-header">
+                <h3>Upcoming consultations</h3>
+            </div>
+            <div class="box-content">
+                <ul class="consultation-list">
+                    <div th:each="consultation: ${consultations}">
+                        <a th:href="@{/watchConsultation/{id}(id=${consultation.id})}">
+                            <li>
+                                <table>
+                                    <tr>
+                                        <td th:text="${consultation.patientName}"></td>
+                                        <td th:text="${consultation.date}"></td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </a>
+                    </div>
+                </ul>
+                <form th:action="@{/consultations/{id}(id=${session.id})}" method="get">
+                    <button type="submit">More</button>
+                </form>
+            </div>
         </div>
-        <div class="main-box">
-            <h3>Recent prescriptions</h3>
-            <hr>
+        <div class="box-30p">
+            <div class="box-header">
+                <h3>Recent prescriptions</h3>
+            </div>
+            <div class="box-content">
+
+            </div>
         </div>
-        <div class="main-box">
-            <h3>Newest diagnosis</h3>
-            <hr>
+        <div class="box-30p">
+            <div class="box-header">
+                <h3>Newest diagnosis</h3>
+            </div>
+            <div class="box-content">
+
+            </div>
         </div>
     </section>
 </body>

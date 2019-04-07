@@ -1,21 +1,24 @@
 @import "colors";
+.login-padding {
+  padding-top: 300px;
+}
 
 .login {
   width: 350px;
-  margin: 20% auto 0 auto;
+  margin: 0 auto 0 auto;
   .login-form {
-    background-color: $ton-l;
+    background-color: $ton-d;
+    border-radius: 2px;
     padding: 40px 25px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
     hr {
-      border: 0.5px solid $ton-xxl;
+      border: 0.5px solid $ton-xl;
       margin-bottom: 13px;
     }
     h1 {
       margin-bottom: 10px;
       text-align: center;
-      color: white;
+      color: $ton-xl;
     }
     form {
       input {

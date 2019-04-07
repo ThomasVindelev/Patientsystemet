@@ -1,5 +1,6 @@
 package dk.patientsystemet.demo.Controllers;
 
+import dk.patientsystemet.demo.Model.Medicine;
 import dk.patientsystemet.demo.Model.Prescription;
 import dk.patientsystemet.demo.Service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 @Controller
 public class PrescriptionController {
@@ -25,10 +27,9 @@ public class PrescriptionController {
         return "prescription";
     }
     @PostMapping("/createPrescription")
-    public String createPrescription(@ModelAttribute Prescription prescription, HttpSession session) {
-        prescriptionService.createPrescription(prescription);
+    public String createPrescription(@ModelAttribute Prescription prescription, Medicine medicine, HttpSession session) throws SQLException {
+        prescriptionService.createPrescription(prescription, medicine.getMedicineId(), prescription.getDoctorId());
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
-
 
 }
