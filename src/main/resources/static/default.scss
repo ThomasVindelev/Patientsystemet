@@ -1,9 +1,12 @@
 @import "colors";
 
 .content {
-  width: 85%;
+  width: 80%;
   float: right;
   padding: 30px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .container {

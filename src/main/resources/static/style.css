@@ -1,7 +1,15 @@
 .content {
-  width: 85%;
+  width: 80%;
   float: right;
-  padding: 30px 40px; }
+  padding: 30px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
 
 .container {
   background-color: #506874;
