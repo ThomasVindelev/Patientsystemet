@@ -13,12 +13,14 @@ public class Patient {
     private String birthDate;
     private String note;
     private String date;
+    private String searchword;
 
     public Patient() {
     }
 
-    public Patient(int id, int noteId, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date) {
+    public Patient(int id, int noteId, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date, String searchword) {
         this.id = id;
+        this.noteId = noteId;
         this.age = age;
         this.cpr = cpr;
         this.height = height;
@@ -28,10 +30,8 @@ public class Patient {
         this.birthDate = birthDate;
         this.note = note;
         this.date = date;
-        this.noteId = noteId;
+        this.searchword = searchword;
     }
-
-
 
     public int getId() {
         return id;
@@ -39,6 +39,14 @@ public class Patient {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getNoteId() {
+        return noteId;
+    }
+
+    public void setNoteId(int noteId) {
+        this.noteId = noteId;
     }
 
     public int getAge() {
@@ -113,11 +121,11 @@ public class Patient {
         this.date = date;
     }
 
-    public void setNoteId(int noteId) {
-        this.noteId = noteId;
+    public String getSearchword() {
+        return searchword;
     }
 
-    public int getNoteId() {
-        return noteId;
+    public void setSearchword(String searchword) {
+        this.searchword = searchword;
     }
 }

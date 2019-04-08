@@ -42,6 +42,17 @@ public class PatientController {
         model.addAttribute("patients", service.fetchAll());
         return "patientList";
     }
+    @PostMapping("/allPatientSearch")
+    public String allPatientSearchPost(@ModelAttribute Patient patient, Model model) throws SQLException {
+        String word = patient.getSearchword();
+        return "redirect:/patientListSearch/" + word;
+    }
+
+    @GetMapping("/patientListSearch/{word}")
+    public String allPatientSearch(@PathVariable("word") String word, @ModelAttribute Patient patient, Model model) throws SQLException {
+        model.addAttribute("patients", service.searchPatientList(word));
+        return "patientListSearch";
+    }
 
     @PostMapping("/createPatient")
     public String createPatientForm(@ModelAttribute Patient patient, Model model) throws SQLException {
