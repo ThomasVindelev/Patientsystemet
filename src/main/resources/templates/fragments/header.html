@@ -6,6 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/style.css}" type="text/css">
     <title th:text="'PatientSystem - ' + ${title}"></title>
 </head>
@@ -18,19 +19,25 @@
     </a>
     <nav>
         <ul>
-            <a href="/main"><li>Home</li></a>
-            <a href="/createPatient"><li>Create Patient</li></a>
-            <a href="/allPatients"><li>All Patients</li></a>
-            <a href="/logout"><li>Log out</li></a>
+            <a href="/main"><li><i class="fas fa-home"></i>Home</li></a>
+            <a href="/createPatient"><li><i class="fas fa-user"></i>Create Patient</li></a>
+            <a href="/allPatients"><li><i class="fas fa-users"></i>All Patients</li></a>
+            <a href="/logout"><li><i class="fas fa-sign-out-alt"></i>Log out</li></a>
         </ul>
     </nav>
     <div class="logged-in-as">
-        <strong>LOGGED IN AS:</strong><br>
-        <em th:text="${session.name}"></em>
         <form class="form-class" th:action="@{/findPatient}" th:object="${Patient}" method="post">
+            <label> Search for Patient</label>
             <input type="text" placeholder="CPR" name="cpr">
             <button type="submit">Search</button>
         </form>
+    </div>
+    <div class="login-as">
+        <strong>
+            <i class="fas fa-user-circle"></i>
+            <em th:text="${session.name}"></em>
+            <em> (<span  th:text="${session.role}"></span>)</em>
+        </strong>
     </div>
 </aside>
 </div>
