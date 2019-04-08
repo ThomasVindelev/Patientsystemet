@@ -53,12 +53,11 @@ public class PatientController {
     @PostMapping("/findPatient")
     public String findPatient(@ModelAttribute Patient patient, HttpSession session) throws SQLException {
         int patient_id = service.searchPatient(patient);
-        session.setAttribute("patient_id", patient_id);
         return "redirect:/findPatient/" + patient_id;
     }
 
     @GetMapping("/findPatient/{id}")
-    public String getPatient(@PathVariable("id") int id, Model model) throws SQLException {
+    public String getPatient(@PathVariable("id") int id, Model model, HttpSession session) throws SQLException {
         model.addAttribute("patient", service.findPatient(id));
         model.addAttribute("consultations", consultationService.getConsultations(id));
         model.addAttribute("diagnosis", service.getDiagnosisByPatient(id));
@@ -66,7 +65,7 @@ public class PatientController {
         model.addAttribute("notes", service.findPatientNote(id));
         model.addAttribute("prescription", prescriptionService.findPrescriptionByPatient(id));
         model.addAttribute("medicine", prescriptionService.getAllMedicine());
-
+        session.setAttribute("patient_id", id);
         model.addAttribute("title", "Patient Page");
         return "findPatient";
     }
