@@ -20,7 +20,7 @@ public class ConsultationController {
     ConsultationService service;
 
     @GetMapping("/deleteConsultation/{id}")
-    public String deleteConsultation(@PathVariable("id") int id, @ModelAttribute Consultation consultation, HttpSession session) throws SQLException {
+    public String deleteConsultation(@PathVariable("id") int id, HttpSession session) throws SQLException {
         service.deleteConsultation(id);
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }

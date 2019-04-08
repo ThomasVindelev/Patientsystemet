@@ -1,7 +1,6 @@
 package dk.patientsystemet.demo.Service;
 
 import dk.patientsystemet.demo.Model.Consultation;
-import dk.patientsystemet.demo.Model.Patient;
 import dk.patientsystemet.demo.Repositories.ConsultationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

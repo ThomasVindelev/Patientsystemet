@@ -51,7 +51,7 @@ public class PatientController {
     }
 
     @PostMapping("/findPatient")
-    public String findPatient(@ModelAttribute Patient patient, HttpSession session) throws SQLException {
+    public String findPatient(@ModelAttribute Patient patient) throws SQLException {
         int patient_id = service.searchPatient(patient);
         return "redirect:/findPatient/" + patient_id;
     }
