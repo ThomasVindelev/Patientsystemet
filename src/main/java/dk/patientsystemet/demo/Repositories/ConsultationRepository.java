@@ -54,7 +54,7 @@ public class ConsultationRepository {
     }
 
     public ResultSet upcomingConsultations(int userId) throws SQLException {
-        String sql = "SELECT * FROM consultation INNER JOIN patient ON consultation.fk_patient = patient.id WHERE fk_users=? LIMIT 5";
+        String sql = "SELECT * FROM consultation INNER JOIN patient ON consultation.fk_patient = patient.id WHERE fk_users=? ORDER BY consultation.date ASC LIMIT 5";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
         preparedStatement.setInt(1, userId);
         return preparedStatement.executeQuery();
