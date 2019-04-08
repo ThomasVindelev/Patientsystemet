@@ -42,6 +42,24 @@ public class PrescriptionRepository {
         }
     }
 
+    public ResultSet recentPrescriptions(int id) {
+        try {
+            String sql = "SELECT * FROM prescription " +
+                    "INNER JOIN patient ON prescription.fk_patient = patient.id " +
+                    "INNER JOIN users ON prescription.fk_users = users.id " +
+                    "WHERE prescription.fk_users = ? " +
+                    "ORDER BY prescription.date DESC " +
+                    "LIMIT 5 ";
+            preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeQuery();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
     public ResultSet findPrescriptionById(int id) {
         try {
             String sql = "SELECT * FROM prescription " +

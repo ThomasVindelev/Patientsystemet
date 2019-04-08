@@ -35,6 +35,23 @@ public class PrescriptionService {
         }
         return null;
     }
+    public List<Prescription> recentPrescriptions(int id) {
+        ResultSet rs = db.recentPrescriptions(id);
+        List<Prescription> prescriptionsList = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                Prescription pre = new Prescription();
+                pre.setId(rs.getInt("prescription.id"));
+                pre.setDescription(rs.getString("prescription.description"));
+                pre.setDate(rs.getString("prescription.date"));
+                prescriptionsList.add(pre);
+            }
+            return prescriptionsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public List<Prescription> findPrescriptionById(int id) {
         ResultSet rs = db.findPrescriptionByPatient(id);

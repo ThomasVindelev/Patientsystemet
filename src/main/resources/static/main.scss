@@ -64,6 +64,7 @@
   height: 60px;
   background: $ton-xl;
   padding: 20px;
+  line-height: 20px;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   button{
@@ -98,7 +99,6 @@
 }
 .patient-box-information {
   width: 49%;
-  height: 500px;
   background-color: $ton-xxl;
   margin-bottom: 20px;
   border-radius: 2px;

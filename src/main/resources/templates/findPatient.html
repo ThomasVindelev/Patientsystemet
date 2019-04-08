@@ -9,8 +9,7 @@
     <div class="patient-box-information" th:each="info : ${patient}">
         <div class="box-header">
             <h3>Patient Information</h3>
-            <button class="special-button" id="editPatientButton">Edit Patient</button>
-            <button class="special-button-delete" id="deletePatientButton">Delete Patient</button>
+            <button class="special-button" id="edit-patient-btn" type="button">Edit Patient Information</button>
         </div>
         <div class="box-content">
             <table>
@@ -21,10 +20,10 @@
                     <td>Last name: <span th:text="${info.lastName}"></span></td>
                 </tr>
                 <tr>
-                    <td>Height: <span th:text="${info.height}"></span></td>
+                    <td>Height: <span th:text="${info.height}"></span> cm.</td>
                 </tr>
                 <tr>
-                    <td>Weight: <span th:text="${info.weight}"></span></td>
+                    <td>Weight: <span th:text="${info.weight}"></span> kg.</td>
                 </tr>
                 <tr>
                     <td>CPR: <span th:text="${info.cpr}"></span></td>
@@ -33,6 +32,7 @@
                     <td>Birth date: <span th:text="${info.birthDate}"></span></td>
                 </tr>
             </table>
+            <button class="special-button red-bg" id="delete-patient-btn">Delete Patient</button>
         </div>
     </div>
 
@@ -41,8 +41,7 @@
     <div class="patient-box-information">
         <div class="box-header">
             <h3>Consultations</h3>
-            <button class="special-button" id="btn">Create New Consultations</button>
-            <!--img id="btn" th:src="@{/img/greenplus.png}" class="add-icon" width="20" height="20"-->
+            <button class="special-button" id="consultation-btn">Create New Consultations</button>
         </div>
         <div class="box-content">
             <table>
@@ -54,10 +53,14 @@
                 <tr th:each="consultation : ${consultations}">
                     <td th:text="${consultation.date}"></td>
                     <td th:text="${consultation.description}"></td>
-                    <td><a th:href="@{/editConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15"></a>
-                        <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}"><img th:src="@{/img/redcross.png}" width="15" height="15"></a>
+                    <td>
+                        <a class="blue" th:href="@{/editConsultation/{id}(id=${consultation.id})}">
+                            <i class="blue fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}">
+                            <i class="red fas fa-times"></i>
+                        </a>
                     </td>
-
                 </tr>
             </table>
         </div>
@@ -84,7 +87,7 @@
                         <img th:src="@{/img/redcross.png}" width="15" height="15"></a></td>
                 </tr>
             </table>
-            <button type="button" id="diagnosis-new-btn" class="special-button">Add Unknown Diagnosis</button>
+            <button type="button" id="new-diagnosis-btn" class="special-button">Add Unknown Diagnosis</button>
         </div>
 
     </div>
@@ -119,28 +122,6 @@
         </div>
     </div>
 
-    <div id="prescription-box" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="prescription-close">&times;</span>
-                <h2>New Prescription</h2>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/createPrescription}" th:object="${Prescription}" method="GET">
-                    <input type="text" placeholder="Description" name="description"><br>
-                    <input type="hidden" name="doctorId" th:value="${session.id}">
-                    <input type="hidden" name="patientId" th:value="${session.patient_id}">
-                    <select name="medicineId" multiple>
-                        <div th:each="medicine : ${medicine}">
-                            <option th:value="${medicine.id}"><span  th:text="${medicine.name}"></span></option>
-                        </div>
-                    </select>
-                    <button type="submit">Create</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- ---- NOTES ---- -->
 
     <div class="patient-box-notes" th:each="infos : ${patient}">
@@ -149,7 +130,7 @@
         </div>
         <div class="box-content">
             <div class="one-third">
-                <form class="note-form" th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post">
+                <form th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post" class="popup-form">
                     <textarea name="note" rows="10" cols="30"></textarea>
                     <button type="submit">Click</button>
                     <p th:text="${message}"></p>
@@ -174,20 +155,68 @@
 </body>
 <body>
 
-<!-- The Modal -->
-<div id="box" class="modal">
 
-    <!-- Modal content -->
+<!-- ---- ------ ----  ---- ------ ----  ---- ------ ---- -->
+<!-- ---- ------ ----  ---- POPUPS ----  ---- ------ ---- -->
+<!-- ---- ------ ----  ---- ------ ----  ---- ------ ---- -->
 
-    <!-- Consultation -->
 
+<!-- ---- PRESCRIPTION ---- -->
+
+<div id="prescription-box" class="modal">
     <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">&times;</span>
+        <div class="box-header">
+            <span class="prescription-close close">&times;</span>
+            <h2>New Prescription</h2>
+        </div>
+        <div class="box-content">
+            <form th:action="@{/createPrescription}" th:object="${Prescription}" method="POST" class="popup-form">
+                <label for="">Description: </label>
+                <input type="text" placeholder="Description" name="description">
+                <input type="hidden" name="doctorId" th:value="${session.id}">
+                <input type="hidden" name="patientId" th:value="${session.patient_id}">
+                <label for="">Medicine: </label>
+                <select name="medicineId" multiple>
+                    <div th:each="medicine : ${medicine}">
+                        <option th:value="${medicine.id}"><span  th:text="${medicine.name}"></span></option>
+                    </div>
+                </select>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+    var prescriptionbox = document.getElementById('prescription-box');
+    var prescriptionbtn = document.getElementById("prescription-btn");
+    var prescriptionspan = document.getElementsByClassName("prescription-close")[0];
+
+    prescriptionbtn.onclick = function() {
+        prescriptionbox.style.display = "block";
+    }
+
+    prescriptionspan.onclick = function() {
+        prescriptionbox.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            prescriptionbox.style.display = "none";
+        }
+    }
+</script>
+
+<!-- ---- CONSULTATION ---- -->
+
+<div id="consultation-box" class="modal">
+    <div class="modal-content">
+        <div class="box-header">
+            <span class="consultation-close close">&times;</span>
             <h2>Create Consultation</h2>
         </div>
-        <div class="modal-body">
-            <form th:action="@{/createConsultation}" th:object="${Consultation}" method="post">
+        <div class="box-content">
+            <form th:action="@{/createConsultation}" th:object="${Consultation}" method="post" class="popup-form">
                 <input type="hidden" name="userId" th:value="${session.id}">
                 <input type="hidden" name="patientId" th:value="${session.patient_id}">
                 <label>Description:</label>
@@ -200,220 +229,187 @@
             </form>
         </div>
     </div>
+</div>
 
-    </div>
+<script>
+    var consultationbox = document.getElementById('consultation-box');
+    var consultationbtn = document.getElementById("consultation-btn");
+    var consultationspan = document.getElementsByClassName("consultation-close")[0];
 
-    <!-- Diagnosis and add diagnosis-->
+    consultationbtn.onclick = function() {
+        consultationbox.style.display = "block";
+    }
 
-    <div id="box-diagnosis" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close-diagnosis">&times;</span>
-                <h2>Add Diagnosis</h2>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/addDiagnosis}" th:object="${Diagnosis}" method="post">
-                    <input type="hidden" name="doctorId" th:value="${session.id}">
-                    <input type="hidden" name="patientId" th:value="${session.patient_id}">
-                    <label>Diagnosis:</label>
-                    <select name="id" id="">
-                        <div th:each="diagnosis : ${diagnosisList}" >
-                            <option th:value="${diagnosis.id}"><p th:text="${diagnosis.diagnosisName}"></p></option>
-                        </div>
-                    </select>
-                    <label>Note:</label>
-                    <input type="text" name="note">
-                    <button type="submit">Add Diagnosis</button>
-                </form>
-            </div>
+    consultationspan.onclick = function() {
+        consultationbox.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            consultationbox.style.display = "none";
+        }
+    }
+</script>
+
+<!-- ---- DIAGNOSIS ---- -->
+
+<div id="diagnosis-box" class="modal">
+    <div class="modal-content">
+        <div class="box-header">
+            <span class="diagnosis-close close">&times;</span>
+            <h2>Add Diagnosis</h2>
+        </div>
+        <div class="box-content">
+            <form th:action="@{/addDiagnosis}" th:object="${Diagnosis}" method="post" class="popup-form">
+                <input type="hidden" name="doctorId" th:value="${session.id}">
+                <input type="hidden" name="patientId" th:value="${session.patient_id}">
+                <label>Diagnosis:</label>
+                <select name="id" id="">
+                    <div th:each="diagnosis : ${diagnosisList}" >
+                        <option th:value="${diagnosis.id}"><p th:text="${diagnosis.diagnosisName}"></p></option>
+                    </div>
+                </select>
+                <label>Note:</label>
+                <input type="text" name="note">
+                <button type="submit">Add Diagnosis</button>
+            </form>
         </div>
     </div>
+</div>
+<script>
+    var diagnosisbox = document.getElementById('diagnosis-box');
+    var diagnosisbtn = document.getElementById("diagnosis-btn");
+    var diagnosisspan = document.getElementsByClassName("diagnosis-close")[0];
 
-    <div id="box-diagnosis-new" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close-diagnosis-new">&times;</span>
-                <h2>New Diagnosis</h2>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/addUnknownDiagnosis}" th:object="${Diagnosis}" method="post">
-                    <label>Diagnosis:</label>
-                    <input type="text" name="diagnosisName">
-                    <button type="submit">Add Diagnosis</button>
-                </form>
-            </div>
+    diagnosisbtn.onclick = function() {
+        diagnosisbox.style.display = "block";
+    }
+
+    diagnosisspan.onclick = function() {
+        diagnosisbox.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            diagnosisbox.style.display = "none";
+        }
+    }
+</script>
+
+<!-- ---- NEW DIAGNOSIS ---- -->
+
+<div id="new-diagnosis-box" class="modal">
+    <div class="modal-content">
+        <div class="box-header">
+            <span class="new-diagnosis-close close">&times;</span>
+            <h2>New Diagnosis</h2>
         </div>
-
-    </div>
-
-    <!-- Edit and delete patient -->
-
-    <div id="box-patient-edit" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close-patient-edit">&times;</span>
-                <h2>Edit Patient</h2>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/editPatient}" th:object="${Patient}" method="post">
-                    <input type="hidden" th:value="${session.patient_id}" name="id">
-                    <input type="text" th:value="${patient.firstName}" name="firstName">
-                    <input type="text" th:value="${patient.lastName}" name="lastName">
-                    <input type="text" th:value="${patient.height}" name="height">
-                    <input type="text" th:value="${patient.weight}" name="weight">
-                    <input type="text" th:value="${patient.cpr}" name="cpr">
-                    <button type="submit">Edit patient</button>
-                </form>
-            </div>
+        <div class="box-content">
+            <form th:action="@{/addUnknownDiagnosis}" th:object="${Diagnosis}" method="post" class="popup-form">
+                <label>Diagnosis:</label>
+                <input type="text" name="diagnosisName">
+                <button type="submit">Add Diagnosis</button>
+            </form>
         </div>
     </div>
+</div>
+<script>
+    var newdiagnosisbox = document.getElementById('new-diagnosis-box');
+    var newdiagnosisbtn = document.getElementById("new-diagnosis-btn");
+    var newdiagnosisspan = document.getElementsByClassName("new-diagnosis-close")[0];
 
+    newdiagnosisbtn.onclick = function() {
+        newdiagnosisbox.style.display = "block";
+    }
 
-    <div id="box-patient-delete" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close-patient-delete">&times;</span>
-                <h2>Delete Patient</h2>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/deletePatient/{id}(id=${session.patient_id})}">
-                    <h3>Are you sure you want to delete this patient?</h3>
-                    <button type="submit">Delete patient</button>
-                </form>
-            </div>
+    newdiagnosisspan.onclick = function() {
+        newdiagnosisbox.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            newdiagnosisbox.style.display = "none";
+        }
+    }
+</script>
+
+<!-- ---- EDIT PATIENT ---- -->
+
+<div id="edit-patient-box" class="modal">
+    <div class="modal-content">
+        <div class="box-header">
+            <span class="edit-patient-close close">&times;</span>
+            <h2>Edit Patient</h2>
+        </div>
+        <div class="box-content">
+            <form th:action="@{/editPatient}" th:object="${Patient}" method="post"  class="popup-form">
+                <input type="hidden" th:value="${session.patient_id}" name="id">
+                <input type="text" th:value="${patient.firstName}" name="firstName">
+                <input type="text" th:value="${patient.lastName}" name="lastName">
+                <input type="text" th:value="${patient.height}" name="height">
+                <input type="text" th:value="${patient.weight}" name="weight">
+                <input type="text" th:value="${patient.cpr}" name="cpr">
+                <button type="submit">Edit patient</button>
+            </form>
         </div>
     </div>
+</div>
+<script>
 
-    <!-- Prescription -->
+    var editpatientbox = document.getElementById("edit-patient-box");
+    var editpatientbtn = document.getElementById("edit-patient-btn");
+    var editpatientspan = document.getElementsByClassName("edit-patient-close")[0];
 
-    <script>
+    editpatientbtn.onclick = function() {
+        editpatientbox.style.display = "block";
+    }
 
-        var box = document.getElementById('box');
-        var btn = document.getElementById("btn");
-        var span = document.getElementsByClassName("close")[0];
+    editpatientspan.onclick = function() {
+        editpatientbox.style.display = "none";
+    }
 
-        btn.onclick = function() {
-            box.style.display = "block";
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            editpatientbox.style.display = "none";
         }
+    }
+</script>
 
-        span.onclick = function() {
-            box.style.display = "none";
+<!-- ---- DELETE PATIENT ---- -->
+
+<div id="delete-patient-box" class="modal">
+    <div class="modal-content">
+        <div class="box-header">
+            <span class="delete-patient-close close">&times;</span>
+            <h2>Delete Patient</h2>
+        </div>
+        <div class="box-content">
+            <form th:action="@{/deletePatient/{id}(id=${session.patient_id})}"  class="popup-form">
+                <h3>Are you sure you want to delete this patient?</h3>
+                <button type="submit">Delete patient</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var deletepatientbox = document.getElementById("delete-patient-box");
+    var deletepatientbtn = document.getElementById("delete-patient-btn");
+    var deletepatientspan = document.getElementsByClassName("delete-patient-close")[0];
+
+    deletepatientbtn.onclick = function() {
+        deletepatientbox.style.display = "block";
+    }
+
+    deletepatientspan.onclick = function() {
+        deletepatientbox.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            deletepatientbox.style.display = "none";
         }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                box.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-
-        var box2 = document.getElementById('box-diagnosis');
-        var btn2 = document.getElementById("diagnosis-btn");
-        var span2 = document.getElementsByClassName("close-diagnosis")[0];
-
-        btn2.onclick = function() {
-            box2.style.display = "block";
-        }
-
-        span2.onclick = function() {
-            box2.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                box2.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-
-        var box3 = document.getElementById('box-diagnosis-new');
-        var btn3 = document.getElementById("diagnosis-new-btn");
-        var span3 = document.getElementsByClassName("close-diagnosis-new")[0];
-
-        btn3.onclick = function() {
-            box3.style.display = "block";
-        }
-
-        span3.onclick = function() {
-            box3.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                box3.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-
-        var prebox = document.getElementById('prescription-box');
-        var prebtn = document.getElementById("prescription-btn");
-        var prespan = document.getElementsByClassName("prescription-close")[0];
-
-        prebtn.onclick = function() {
-            prebox.style.display = "block";
-        }
-
-        prespan.onclick = function() {
-            prebox.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                prebox.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-
-        var deletePatientBox = document.getElementById("box-patient-delete");
-        var deletePatientBtn = document.getElementById("deletePatientButton");
-        var deletePatientSpan = document.getElementsByClassName("close-patient-delete")[0];
-
-        deletePatientBtn.onclick = function() {
-            deletePatientBox.style.display = "block";
-        }
-
-        deletePatientSpan.onclick = function() {
-            deletePatientBox.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                deletePatientBox.style.display = "none";
-            }
-        }
-    </script>
-
-    <script>
-
-        var editPatientBox = document.getElementById("box-patient-edit");
-        var editPatientBtn = document.getElementById("editPatientButton");
-        var editPatientSpan = document.getElementsByClassName("close-patient-edit")[0];
-
-        editPatientBtn.onclick = function() {
-            editPatientBox.style.display = "block";
-        }
-
-        editPatientSpan.onclick = function() {
-            editPatientBox.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                editPatientBox.style.display = "none";
-            }
-        }
-    </script>
-
-
-
+    }
+</script>
 </body>
 </html>
 </html>

@@ -1,8 +1,10 @@
 package dk.patientsystemet.demo.Controllers;
 
 import dk.patientsystemet.demo.Model.User;
+import dk.patientsystemet.demo.Repositories.PrescriptionRepository;
 import dk.patientsystemet.demo.Service.ConsultationService;
 import dk.patientsystemet.demo.Service.LoginService;
+import dk.patientsystemet.demo.Service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class LoginController {
 
     @Autowired
     ConsultationService consultationService;
+
+    @Autowired
+    PrescriptionService prescriptionService;
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user, HttpSession session, Model model) throws SQLException {
@@ -41,6 +46,7 @@ public class LoginController {
         Integer userId = (Integer) session.getAttribute("id");
         model.addAttribute("title", "Main");
         model.addAttribute("consultations", consultationService.upcomingConsultations(userId));
+        model.addAttribute("prescriptions", prescriptionService.recentPrescriptions(userId));
         return "main";
     }
 
