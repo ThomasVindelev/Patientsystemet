@@ -3,21 +3,47 @@
 <div th:replace="fragments/header :: header"></div>
 
 <section class="content">
-    <h2>Prescription</h2>
-    <div th:each="prescription : ${prescription}">
-        <p>Patient: </p>
-        <p>CPR: </p>
-        <p>Creation Date: <span th:text="${prescription.date}"></span></p>
-        <p>Description:  <span th:text="${prescription.description}"></span></p>
-        <p>Medicine: </p>
-        <ul th:each="medicine : ${medicine}">
-            <li th:text="${medicine.name}"></li>
-        </ul>
-        <p>Created by: !User!</p>
-        <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">Edit</a>
-        <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">Delete</a>
+    <div class="box-30p">
+        <div class="box-header">
+            <h2>Prescription</h2>
+        </div>
+        <div class="box-content">
+            <div th:each="prescription : ${prescription}">
+                <table>
+                    <tr>
+                        <td>Patient: </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>CPR: </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Creation date: </td>
+                        <td th:text="${prescription.date}"></td>
+                    </tr>
+                    <tr>
+                        <td>Description: </td>
+                        <td th:text="${prescription.description}"></td>
+                    </tr>
+                    <tr>
+                        <td>Medicine: </td>
+                        <td>
+                            <ul th:each="medicine : ${medicine}">
+                                <li th:text="${medicine.name}"></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Created by: </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">Edit</a>
+                <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">Delete</a>
+            </div>
+        </div>
     </div>
-
 </section>
 
 </body>
