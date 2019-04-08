@@ -59,6 +59,19 @@ public class PatientService {
         return patientList;
     }
 
+    public List<Patient> searchPatientList(String searchword) throws SQLException {
+        ResultSet rs = db.searchPatientList(searchword);
+        List<Patient> patientList = new ArrayList<>();
+        while (rs.next()) {
+            Patient patient = new Patient();
+            patient.setId(rs.getInt("id"));
+            patient.setFirstName(rs.getString("firstname"));
+            patient.setLastName(rs.getString("lastname"));
+            patientList.add(patient);
+        }
+        return patientList;
+    }
+
     public int searchPatient(Patient patient) throws SQLException {
         ResultSet rs = db.searchPatient(patient);
         if (rs.next()) {

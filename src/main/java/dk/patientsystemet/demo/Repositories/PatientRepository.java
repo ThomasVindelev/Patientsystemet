@@ -29,6 +29,18 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    public ResultSet searchPatientList(String searchword) throws SQLException {
+        String sql = "SELECT * FROM patient " +
+                "WHERE firstname LIKE ? " +
+                "OR lastname LIKE ? " +
+                "OR cpr LIKE ? ";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, "%"+searchword+"%");
+        preparedStatement.setString(2, "%"+searchword+"%");
+        preparedStatement.setString(3, "%"+searchword+"%");
+        return preparedStatement.executeQuery();
+    }
+
     public void editPatient(Patient patient) throws SQLException {
         String sql = "UPDATE patient SET firstname = ?, lastname = ?, height = ?, weight = ?, cpr = ? WHERE id = " + patient.getId();
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
