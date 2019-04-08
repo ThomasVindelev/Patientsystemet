@@ -8,20 +8,23 @@
                 <h3>Upcoming consultations</h3>
             </div>
             <div class="box-content">
-                <ul class="consultation-list">
+
+                <table>
+                    <tr>
+                        <th>First name</th>
+                        <th>Schedule date</th>
+                        <th class="text-center">View</th>
+                    </tr>
                     <div th:each="consultation: ${consultations}">
-                        <a th:href="@{/watchConsultation/{id}(id=${consultation.id})}">
-                            <li>
-                                <table>
-                                    <tr>
-                                        <td th:text="${consultation.patientName}"></td>
-                                        <td th:text="${consultation.date}"></td>
-                                    </tr>
-                                </table>
-                            </li>
-                        </a>
+
+                        <tr>
+                            <td th:text="${consultation.patientName}"></td>
+                            <td th:text="${consultation.date}"></td>
+                            <td class="text-center"><a href="@{/watchConsultation/{id}(id=${consultation.id})}"><i class="fas fa-eye"></i></a></td>
+                        </tr>
                     </div>
-                </ul>
+
+                </table>
                 <form th:action="@{/consultations/{id}(id=${session.id})}" method="get">
                     <button type="submit">More</button>
                 </form>
@@ -32,7 +35,20 @@
                 <h3>Recent prescriptions</h3>
             </div>
             <div class="box-content">
-
+                <table>
+                    <tr>
+                        <th>Delivery date</th>
+                        <th>Description</th>
+                        <th class="text-center">View</th>
+                    </tr>
+                    <div th:each="prescription: ${prescriptions}">
+                        <tr>
+                            <td th:text="${prescription.date}"></td>
+                            <td th:text="${prescription.description}"></td>
+                            <td class="text-center"><a th:href="@{/prescription/{id}(id=${prescription.id})}"><i class="fas fa-eye"></i></a></td>
+                        </tr>
+                    </div>
+                </table>
             </div>
         </div>
         <div class="box-30p">
