@@ -39,8 +39,12 @@
                         <td></td>
                     </tr>
                 </table>
-                <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">Edit</a>
-                <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">Delete</a>
+                <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">
+                    <button class="special-button">Edit</button>
+                </a>
+                <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">
+                    <button class="red-bg special-button">Delete</button>
+                </a>
             </div>
         </div>
     </div>

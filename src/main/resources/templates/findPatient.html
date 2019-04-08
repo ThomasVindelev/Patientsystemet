@@ -48,13 +48,16 @@
                 <tr>
                     <th>Date</th>
                     <th>Description</th>
-                    <th></th>
+                    <th class="text-center">Links</th>
                 </tr>
                 <tr th:each="consultation : ${consultations}">
                     <td th:text="${consultation.date}"></td>
                     <td th:text="${consultation.description}"></td>
-                    <td>
-                        <a class="blue" th:href="@{/editConsultation/{id}(id=${consultation.id})}">
+                    <td class="text-center">
+                        <a th:href="@{/consultation/{id}(id=${consultation.id})}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a th:href="@{/editConsultation/{id}(id=${consultation.id})}">
                             <i class="blue fas fa-edit"></i>
                         </a>
                         <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}">
@@ -79,12 +82,16 @@
                 <tr>
                     <th>Diagnosis</th>
                     <th>Doctor</th>
+                    <th>Links</th>
                 </tr>
                 <tr th:each="diagnosis : ${diagnosis}">
                     <td th:text="${diagnosis.diagnosisName}"></td>
                     <td th:text="${diagnosis.doctorName}"></td>
-                    <td><a th:href="@{/deleteDiagnosis/{id}(id=${diagnosis.id})}">
-                        <img th:src="@{/img/redcross.png}" width="15" height="15"></a></td>
+                    <td class="text-center">
+                        <a th:href="@{/deleteDiagnosis/{id}(id=${diagnosis.id})}">
+                            <i class="red fas fa-times"></i>
+                        </a>
+                    </td>
                 </tr>
             </table>
             <button type="button" id="new-diagnosis-btn" class="special-button">Add Unknown Diagnosis</button>
@@ -104,18 +111,21 @@
                 <tr>
                     <th>Date</th>
                     <th>Description</th>
-                    <th>Link</th>
-                    <th>Link</th>
+                    <th class="text-center">Links</th>
                 </tr>
                 <tr th:each="prescription : ${prescription}">
                     <td th:text="${prescription.date}"></td>
                     <td th:text="${prescription.description}"></td>
-                    <td>
-                        <a th:href="@{/prescription/{id} (id=${prescription.id})}">Open</a>
-                    </td>
-                    <td>
-                        <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">Edit</a>
-                        <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">Delete</a>
+                    <td class="text-center">
+                        <a th:href="@{/prescription/{id} (id=${prescription.id})}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">
+                            <i class="blue fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">
+                            <i class="red fas fa-times"></i>
+                        </a>
                     </td>
                 </tr>
             </table>
@@ -344,10 +354,15 @@
         <div class="box-content">
             <form th:action="@{/editPatient}" th:object="${Patient}" method="post"  class="popup-form">
                 <input type="hidden" th:value="${session.patient_id}" name="id">
+                <label for="">First name: </label>
                 <input type="text" th:value="${patient.firstName}" name="firstName">
+                <label for="">Last name: </label>
                 <input type="text" th:value="${patient.lastName}" name="lastName">
+                <label for="">Height:</label>
                 <input type="text" th:value="${patient.height}" name="height">
+                <label for="">Weight:</label>
                 <input type="text" th:value="${patient.weight}" name="weight">
+                <label for="">CPR:</label>
                 <input type="text" th:value="${patient.cpr}" name="cpr">
                 <button type="submit">Edit patient</button>
             </form>

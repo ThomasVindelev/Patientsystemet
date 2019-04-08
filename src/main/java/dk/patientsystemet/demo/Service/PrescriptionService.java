@@ -54,7 +54,7 @@ public class PrescriptionService {
     }
 
     public List<Prescription> findPrescriptionById(int id) {
-        ResultSet rs = db.findPrescriptionByPatient(id);
+        ResultSet rs = db.findPrescriptionById(id);
         List<Prescription> prescriptionsList = new ArrayList<>();
         try {
             while (rs.next()) {

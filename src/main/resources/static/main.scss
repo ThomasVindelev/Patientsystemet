@@ -1,14 +1,15 @@
 @import "colors";
 
+.text-center {
+  text-align: center;
+}
+
 .box-30p {
-  width: 30%;
+  width: 32%;
   min-height: 360px;
   border-radius: 2px;
   background-color: $ton-xxl;
   box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
-  .text-center {
-    text-align: center;
-  }
   hr {
     margin: 10px 0;
   }
