@@ -83,8 +83,9 @@ public class ConsultationService {
         return null;
     }
 
-    public void editConsultation(Consultation consultation) throws SQLException {
+    public String editConsultation(Consultation consultation) throws SQLException {
         db.editConsultation(consultation);
+        return "succes";
     }
 
 }

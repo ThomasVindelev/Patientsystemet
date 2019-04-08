@@ -50,6 +50,17 @@ public class PatientController {
         return "createPatient";
     }
 
+    @GetMapping("/editPatient/{id}")
+    public String editPatient(@PathVariable("id") int id) {
+        return null;
+    }
+
+    @GetMapping("/deletePatient/{id}")
+    public String deletePatient(@PathVariable("id") int id) throws SQLException {
+        service.deletePatient(id);
+        return "redirect:/main";
+    }
+
     @PostMapping("/findPatient")
     public String findPatient(@ModelAttribute Patient patient) throws SQLException {
         int patient_id = service.searchPatient(patient);

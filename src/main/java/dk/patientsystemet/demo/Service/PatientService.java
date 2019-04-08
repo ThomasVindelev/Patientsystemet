@@ -36,6 +36,11 @@ public class PatientService {
         }
     }
 
+    public String deletePatient(int id) throws SQLException {
+        db.deletePatient(id);
+        return "succes";
+    }
+
     public List<Patient> fetchAll() throws SQLException {
         ResultSet rs = db.allPatients();
         List<Patient> patientList = new ArrayList<>();
