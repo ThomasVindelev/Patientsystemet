@@ -2,10 +2,13 @@
 
 .box-30p {
   width: 30%;
-  max-height: 50%;
+  min-height: 360px;
   border-radius: 2px;
   background-color: $ton-xxl;
   box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+  .text-center {
+    text-align: center;
+  }
   hr {
     margin: 10px 0;
   }
@@ -47,9 +50,15 @@
   color: #f9f9f9;
   border-radius: 10px;
   padding: 10px 15px;
+  cursor: pointer;
 }
 
-
+.box-search-bar {
+  width: 100%;
+  padding: 20px;
+  background: $ton-xl;
+  height: 75px;
+}
 .box-header {
   width: 100%;
   height: 60px;
@@ -60,6 +69,7 @@
   button{
     float: right;
     margin-top: -10px;
+    background-color: $ton-green;
   }
   h3 {
     line-height: 20px;
@@ -72,9 +82,17 @@
   table {
     width: 100%;
     margin-bottom: 10px;
+    border-spacing: 0px;
+    border: 2 px solid $ton-xl;
+    tr:nth-child(even) {
+      background: $ton-xl;
+    }
+    th {
+      background: $ton-l;
+    }
     th, td{
       text-align: left;
-      padding: 5px 0;
+      padding: 8px 5px;
     }
   }
 }
@@ -85,6 +103,9 @@
   margin-bottom: 20px;
   border-radius: 2px;
   box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+  i {
+    font-size: 20px;
+  }
 }
 .patient-box-notes {
   width: 100%;
@@ -113,32 +134,30 @@
   }
 }
 .createPatient {
-  background-color: $ton-xl;
-  border-radius: 10px;
-  padding: 20px;
-  h2 {
-    margin-bottom: 20px;
-  }
+  background-color: $ton-xxl;
+  border-radius: 2px;
+  max-width: 600px;
+  width: 100%;
   form {
     label {
-      width: 51%;
+      width: 100%;
       line-height: 40px;
       margin-bottom: 5px;
     }
     input {
-      width: 50%;
+      width: 100%;
       height: 35px;
       padding: 15px;
       margin-bottom: 10px;
       border-radius: 10px;
-      border: 0 solid black;
+      border: 2px solid #eeeeee;
     }
     button {
       background-color: $theme-color;
       border-radius: 10px;
       border: 0 solid black;
       height: 35px;
-      width: 10%;
+      width: 100%;
       &:hover {
         opacity: 0.8;
         transform: scale(1.1);
@@ -158,21 +177,37 @@
   z-index: 1000;
   left: 0;
   color: $ton-xl;
+  .login-as {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $ton-xd;
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    strong {
+      line-height: 20px;
+    }
+    i {
+      margin-right: 10px;
+    }
+  }
   a {
     text-decoration: none;
     color: $ton-xl;
     font-weight: 600;
-
   }
   .logo {
-    padding: 30px;
+    padding: 25.5px;
     width: 100%;
     text-align: center;
+    transition: all .2s;
+    background-color: $ton-xd;
     h1 {
       font-size: 25px;
     }
     &:hover {
-      background-color: $ton-d;
+      background-color: $ton-xxd;
     }
   }
   nav {
@@ -180,6 +215,10 @@
       li {
         padding: 15px 0 15px 22px;
         transition: all .2s;
+        i {
+          width: 30px;
+          color: #d4d4d4;
+        }
         &:hover {
           background: $ton-xd;
         }
@@ -187,9 +226,18 @@
     }
   }
   .logged-in-as {
-    padding: 100% 0 0 30px;
+    padding: 100% 20px 0 20px;
     em {
       line-height: 30px;
+    }
+    form {
+      input {
+        width: 100%;
+        margin: 10px 0;
+      }
+      button {
+        width: 100%;
+      }
     }
   }
 }

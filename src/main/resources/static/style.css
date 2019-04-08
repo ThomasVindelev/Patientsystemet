@@ -1,252 +1,135 @@
-.login-padding {
-  padding-top: 300px; }
+.login-padding { padding-top: 300px; }
 
-.login {
-  width: 350px;
-  margin: 0 auto 0 auto; }
-  .login .login-form {
-    background-color: #474747;
-    border-radius: 2px;
-    padding: 40px 25px;
-    -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06);
-    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
-    .login .login-form hr {
-      border: 0.5px solid #f9f9f9;
-      margin-bottom: 13px; }
-    .login .login-form h1 {
-      margin-bottom: 10px;
-      text-align: center;
-      color: #f9f9f9; }
-    .login .login-form form input {
-      border: 1px solid white;
-      padding: 8px 15px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      width: 100%; }
-    .login .login-form form button {
-      border: 0px;
-      padding: 10px 20px;
-      border-radius: 10px;
-      margin: 5px 35% 0 35%;
-      width: 30%;
-      background: #2196f3;
-      color: white; }
+.login { width: 350px; margin: 0 auto 0 auto; }
 
-.box-30p {
-  width: 30%;
-  max-height: 50%;
-  border-radius: 2px;
-  background-color: #fff;
-  -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
-  .box-30p hr {
-    margin: 10px 0; }
-  .box-30p ul a {
-    text-decoration: none; }
-    .box-30p ul a li {
-      height: 40px;
-      border-bottom: 1px solid white;
-      list-style: none; }
-      .box-30p ul a li:hover {
-        background-color: #fff; }
-      .box-30p ul a li:nth-child(even) {
-        background-color: #eeeeee; }
-      .box-30p ul a li td {
-        line-height: 40px;
-        padding-right: 10px; }
-  .box-30p form button {
-    border: 0;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin: 20px 35% 0 35%;
-    width: 30%;
-    background: #2196f3; }
+.login .login-form { background-color: #474747; border-radius: 2px; padding: 40px 25px; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
 
-.special-button {
-  background: #2196f3;
-  line-height: 20px;
-  border: 0px;
-  color: #f9f9f9;
-  border-radius: 10px;
-  padding: 10px 15px; }
+.login .login-form hr { border: 0.5px solid #f9f9f9; margin-bottom: 13px; }
 
+.login .login-form h1 { margin-bottom: 10px; text-align: center; color: #f9f9f9; }
 
-.box-header {
-  width: 100%;
-  height: 60px;
-  background: #f9f9f9;
-  padding: 20px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px; }
-  .box-header button {
-    float: right;
-    margin-top: -10px; }
-  .box-header h3 {
-    line-height: 20px;
-    float: left; }
+.login .login-form form input { border: 1px solid white; padding: 8px 15px; border-radius: 10px; margin-bottom: 10px; width: 100%; }
 
-.box-content {
-  padding: 20px;
-  width: 100%; }
-  .box-content table {
-    width: 100%;
-    margin-bottom: 10px; }
-    .box-content table th, .box-content table td {
-      text-align: left;
-      padding: 5px 0; }
+.login .login-form form button { border: 0px; padding: 10px 20px; border-radius: 10px; margin: 5px 35% 0 35%; width: 30%; background: #42a5f5; color: white; }
 
-.patient-box-information {
-  width: 49%;
-  height: 500px;
-  background-color: #fff;
-  margin-bottom: 20px;
-  border-radius: 2px;
-  -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
+.box-30p { width: 30%; min-height: 360px; border-radius: 2px; background-color: #fff; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
 
-.patient-box-notes {
-  width: 100%;
-  height: 400px;
-  border-radius: 2px;
-  background-color: #fff;
-  -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
-  .patient-box-notes .one-third {
-    width: 33%;
-    float: left; }
-    .patient-box-notes .one-third textarea {
-      max-width: 100%;
-      min-width: 100%;
-      padding: 8px 15px;
-      border-radius: 10px;
-      border: 2px solid #eeeeee;
-      margin-bottom: 10px; }
-    .patient-box-notes .one-third button {
-      width: 100%; }
-  .patient-box-notes .two-third {
-    width: 66%;
-    float: right; }
+.box-30p .text-center { text-align: center; }
 
-.createPatient {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px; }
-  .createPatient h2 {
-    margin-bottom: 20px; }
-  .createPatient form label {
-    width: 51%;
-    line-height: 40px;
-    margin-bottom: 5px; }
-  .createPatient form input {
-    width: 50%;
-    height: 35px;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border: 0 solid black; }
-  .createPatient form button {
-    background-color: #2196f3;
-    border-radius: 10px;
-    border: 0 solid black;
-    height: 35px;
-    width: 10%; }
-    .createPatient form button:hover {
-      opacity: 0.8;
-      -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      transform: scale(1.1); }
+.box-30p hr { margin: 10px 0; }
 
-.main-menu {
-  width: 280px;
-  height: 100%;
-  background: #474747;
-  -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06);
-  float: left;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  color: #f9f9f9; }
-  .main-menu a {
-    text-decoration: none;
-    color: #f9f9f9;
-    font-weight: 600; }
-  .main-menu .logo {
-    padding: 30px;
-    width: 100%;
-    text-align: center; }
-    .main-menu .logo h1 {
-      font-size: 25px; }
-    .main-menu .logo:hover {
-      background-color: #474747; }
-  .main-menu nav ul li {
-    padding: 15px 0 15px 22px;
-    -webkit-transition: all .2s;
-    -o-transition: all .2s;
-    transition: all .2s; }
-    .main-menu nav ul li:hover {
-      background: #383838; }
-  .main-menu .logged-in-as {
-    padding: 100% 0 0 30px; }
-    .main-menu .logged-in-as em {
-      line-height: 30px; }
+.box-30p ul a { text-decoration: none; }
 
-.patient-list a {
-  text-decoration: none; }
+.box-30p ul a li { height: 40px; border-bottom: 1px solid white; list-style: none; }
 
-.patient-list table tr:hover {
-  background-color: #fff; }
+.box-30p ul a li:hover { background-color: #fff; }
 
-.patient-list table tr:nth-child(even) {
-  background-color: #eeeeee; }
+.box-30p ul a li:nth-child(even) { background-color: #eeeeee; }
 
-.patient-list table tr th, .patient-list table tr td {
-  padding: 6px; }
+.box-30p ul a li td { line-height: 40px; padding-right: 10px; }
 
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: Arial; }
+.box-30p form button { border: 0; padding: 10px 20px; border-radius: 10px; margin: 20px 35% 0 35%; width: 30%; background: #42a5f5; }
 
-a {
-  text-decoration: none;
-  color: #383838; }
+.special-button { background: #2196f3; line-height: 20px; border: 0px; color: #f9f9f9; border-radius: 10px; padding: 10px 15px; cursor: pointer; }
 
-body {
-  background: #fff;
-  height: 100%; }
+.box-search-bar { width: 100%; padding: 20px; background: #f9f9f9; height: 75px; }
 
-.content {
-  width: 100%;
-  min-height: 100%;
-  background: #eeeeee;
-  padding: 20px 20px 20px 300px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between; }
+.box-header { width: 100%; height: 60px; background: #f9f9f9; padding: 20px; border-top-left-radius: 2px; border-top-right-radius: 2px; }
 
-.container {
-  background: #fff;
-  padding: 30px;
-  -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
+.box-header button { float: right; margin-top: -10px; background-color: #66bb6a; }
 
-form input {
-  border: 1px solid white;
-  padding: 8px 15px;
-  border-radius: 10px; }
+.box-header h3 { line-height: 20px; float: left; }
 
-form button {
-  border: 0px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background: #2196f3;
-  color: white;
-  cursor: pointer; }
+.box-content { padding: 20px; width: 100%; }
+
+.box-content table { width: 100%; margin-bottom: 10px; border-spacing: 0px; border: 2 px solid #f9f9f9; }
+
+.box-content table tr:nth-child(even) { background: #f9f9f9; }
+
+.box-content table th { background: #eeeeee; }
+
+.box-content table th, .box-content table td { text-align: left; padding: 8px 5px; }
+
+.patient-box-information { width: 49%; height: 500px; background-color: #fff; margin-bottom: 20px; border-radius: 2px; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
+
+.patient-box-information i { font-size: 20px; }
+
+.patient-box-notes { width: 100%; height: 400px; border-radius: 2px; background-color: #fff; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
+
+.patient-box-notes .one-third { width: 33%; float: left; }
+
+.patient-box-notes .one-third textarea { max-width: 100%; min-width: 100%; padding: 8px 15px; border-radius: 10px; border: 2px solid #eeeeee; margin-bottom: 10px; }
+
+.patient-box-notes .one-third button { width: 100%; }
+
+.patient-box-notes .two-third { width: 66%; float: right; }
+
+.createPatient { background-color: #fff; border-radius: 2px; max-width: 600px; width: 100%; }
+
+.createPatient form label { width: 100%; line-height: 40px; margin-bottom: 5px; }
+
+.createPatient form input { width: 100%; height: 35px; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #eeeeee; }
+
+.createPatient form button { background-color: #42a5f5; border-radius: 10px; border: 0 solid black; height: 35px; width: 100%; }
+
+.createPatient form button:hover { opacity: 0.8; -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
+
+.main-menu { width: 280px; height: 100%; background: #474747; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); float: left; position: fixed; z-index: 1000; left: 0; color: #f9f9f9; }
+
+.main-menu .login-as { position: absolute; bottom: 0; left: 0; background: #383838; width: 100%; height: 60px; padding: 20px; }
+
+.main-menu .login-as strong { line-height: 20px; }
+
+.main-menu .login-as i { margin-right: 10px; }
+
+.main-menu a { text-decoration: none; color: #f9f9f9; font-weight: 600; }
+
+.main-menu .logo { padding: 25.5px; width: 100%; text-align: center; -webkit-transition: all .2s; -o-transition: all .2s; transition: all .2s; background-color: #383838; }
+
+.main-menu .logo h1 { font-size: 25px; }
+
+.main-menu .logo:hover { background-color: #2f2f2f; }
+
+.main-menu nav ul li { padding: 15px 0 15px 22px; -webkit-transition: all .2s; -o-transition: all .2s; transition: all .2s; }
+
+.main-menu nav ul li i { width: 30px; color: #d4d4d4; }
+
+.main-menu nav ul li:hover { background: #383838; }
+
+.main-menu .logged-in-as { padding: 100% 20px 0 20px; }
+
+.main-menu .logged-in-as em { line-height: 30px; }
+
+.main-menu .logged-in-as form input { width: 100%; margin: 10px 0; }
+
+.main-menu .logged-in-as form button { width: 100%; }
+
+.patient-list a { text-decoration: none; }
+
+.patient-list table tr:hover { background-color: #fff; }
+
+.patient-list table tr:nth-child(even) { background-color: #eeeeee; }
+
+.patient-list table tr th, .patient-list table tr td { padding: 6px; }
+
+* { padding: 0; margin: 0; -webkit-box-sizing: border-box; box-sizing: border-box; font-family: Arial; }
+
+.red { color: #ec407a; }
+
+.blue { color: #42a5f5; }
+
+.greem { color: #66bb6a; }
+
+a { text-decoration: none; color: #383838; }
+
+body { background: #fff; height: 100%; }
+
+.content { width: 100%; min-height: 100%; background: #eeeeee; padding: 20px 20px 20px 300px; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; }
+
+.container { background: #fff; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
+
+form input { border: 1px solid white; padding: 8px 15px; border-radius: 10px; }
+
+form button { border: 0px; padding: 10px 20px; border-radius: 10px; background: #42a5f5; color: white; cursor: pointer; }
+
+.box-shadow { -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }

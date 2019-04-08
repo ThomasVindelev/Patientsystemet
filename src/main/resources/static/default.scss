@@ -6,6 +6,16 @@
   box-sizing: border-box;
   font-family: Arial;
 }
+
+.red {
+  color: $ton-red;
+}
+.blue {
+  color: $ton-blue;
+}
+.greem {
+  color: $ton-green;
+}
 a {
   text-decoration: none;
   color: $ton-xd;
@@ -28,7 +38,6 @@ body {
 
 .container {
   background: $ton-xxl;
-  padding: 30px;
   box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
 }
 
@@ -46,4 +55,8 @@ form {
     color: white;
     cursor: pointer;
   }
+}
+
+.box-shadow {
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
 }
