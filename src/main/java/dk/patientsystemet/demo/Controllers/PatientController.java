@@ -88,4 +88,10 @@ public class PatientController {
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
+    @GetMapping("/deleteDiagnosis/{id}")
+    public String deleteDiagnosis(@PathVariable("id") int id, HttpSession session) throws SQLException {
+        service.deleteDiagnosis(id);
+        return "redirect:/findPatient/" + session.getAttribute("patient_id");
+    }
+
 }

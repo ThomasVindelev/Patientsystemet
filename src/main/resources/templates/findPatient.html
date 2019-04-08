@@ -17,7 +17,7 @@
                     <td>First name: <span th:text="${info.firstName}"></span></td>
                 </tr>
                 <tr>
-                    <td>Last name:<span th:text="${info.lastName}"></span></td>
+                    <td>Last name: <span th:text="${info.lastName}"></span></td>
                 </tr>
                 <tr>
                     <td>Height: <span th:text="${info.height}"></span></td>
@@ -79,11 +79,11 @@
                 <tr th:each="diagnosis : ${diagnosis}">
                     <td th:text="${diagnosis.diagnosisName}"></td>
                     <td th:text="${diagnosis.doctorName}"></td>
-                    <td><img th:src="@{/img/Custom-Icon-Design-Flatastic-1-Edit.ico}" width="15" height="15">
-                        <img th:src="@{/img/redcross.png}" width="15" height="15"></td>
+                    <td><a th:href="@{/deleteDiagnosis/{id}(id=${diagnosis.id})}">
+                        <img th:src="@{/img/redcross.png}" width="15" height="15"></a></td>
                 </tr>
             </table>
-            <button type="button" id="diagnosis-new-btn" class="special-button">Add New Diagnosis</button>
+            <button type="button" id="diagnosis-new-btn" class="special-button">Add Unknown Diagnosis</button>
         </div>
 
     </div>

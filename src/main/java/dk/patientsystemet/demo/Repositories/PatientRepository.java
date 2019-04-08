@@ -105,4 +105,12 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    public void deleteDiagnosis(int id) throws SQLException {
+        String sql = "DELETE FROM diagnosis WHERE id = ?";
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        preparedStatement.execute();
+        preparedStatement.close();
+    }
+
 }
