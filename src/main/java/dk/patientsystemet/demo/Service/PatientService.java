@@ -106,6 +106,7 @@ public class PatientService {
         List<Diagnosis> diagnosisList = new ArrayList<>();
         while (rs.next()) {
             Diagnosis diagnosis = new Diagnosis();
+            diagnosis.setId(rs.getInt("id"));
             diagnosis.setNote(rs.getString("note"));
             diagnosis.setDate(rs.getString("date"));
             diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
@@ -134,5 +135,9 @@ public class PatientService {
 
     public void newUnknownDiagnosis(String diagnosisName) throws SQLException {
         db.createUnknownDiagnosis(diagnosisName);
+    }
+
+    public void deleteDiagnosis(int id) throws SQLException {
+        db.deleteDiagnosis(id);
     }
 }
