@@ -10,7 +10,7 @@
         <div class="box-header">
             <h3>Patient Information</h3>
             <button class="special-button" id="editPatientButton">Edit Patient</button>
-            <button class="special-button" id="deletePatientButton">Delete Patient</button>
+            <button class="special-button-delete" id="deletePatientButton">Delete Patient</button>
         </div>
         <div class="box-content">
             <table>
@@ -248,6 +248,27 @@
 
     <!-- Edit and delete patient -->
 
+    <div id="box-patient-edit" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-patient-edit">&times;</span>
+                <h2>Edit Patient</h2>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/editPatient}" th:object="${Patient}" method="post">
+                    <input type="hidden" th:value="${session.patient_id}" name="id">
+                    <input type="text" th:value="${patient.firstName}" name="firstName">
+                    <input type="text" th:value="${patient.lastName}" name="lastName">
+                    <input type="text" th:value="${patient.height}" name="height">
+                    <input type="text" th:value="${patient.weight}" name="weight">
+                    <input type="text" th:value="${patient.cpr}" name="cpr">
+                    <button type="submit">Edit patient</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <div id="box-patient-delete" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -369,6 +390,29 @@
             }
         }
     </script>
+
+    <script>
+
+        var editPatientBox = document.getElementById("box-patient-edit");
+        var editPatientBtn = document.getElementById("editPatientButton");
+        var editPatientSpan = document.getElementsByClassName("close-patient-edit")[0];
+
+        editPatientBtn.onclick = function() {
+            editPatientBox.style.display = "block";
+        }
+
+        editPatientSpan.onclick = function() {
+            editPatientBox.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                editPatientBox.style.display = "none";
+            }
+        }
+    </script>
+
+
 
 </body>
 </html>

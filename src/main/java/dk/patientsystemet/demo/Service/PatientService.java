@@ -36,6 +36,11 @@ public class PatientService {
         }
     }
 
+    public String editPatient(Patient patient) throws SQLException {
+        db.editPatient(patient);
+        return "succes";
+    }
+
     public String deletePatient(int id) throws SQLException {
         db.deletePatient(id);
         return "succes";

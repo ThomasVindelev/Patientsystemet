@@ -50,9 +50,11 @@ public class PatientController {
         return "createPatient";
     }
 
-    @GetMapping("/editPatient/{id}")
-    public String editPatient(@PathVariable("id") int id) {
-        return null;
+    @PostMapping("/editPatient")
+    public String editPatient(@ModelAttribute Patient patient, HttpSession session) throws SQLException {
+        System.out.println(patient.getId());
+        service.editPatient(patient);
+        return "redirect:/findPatient/" + patient.getId();
     }
 
     @GetMapping("/deletePatient/{id}")

@@ -29,6 +29,18 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    public void editPatient(Patient patient) throws SQLException {
+        String sql = "UPDATE patient SET firstname = ?, lastname = ?, height = ?, weight = ?, cpr = ? WHERE id = " + patient.getId();
+        preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, patient.getFirstName());
+        preparedStatement.setString(2, patient.getLastName());
+        preparedStatement.setInt(3, patient.getHeight());
+        preparedStatement.setInt(4, patient.getWeight());
+        preparedStatement.setInt(5, patient.getCpr());
+        preparedStatement.execute();
+        preparedStatement.close();
+    }
+
     public void deletePatient(int id) throws SQLException {
         String sql = "DELETE FROM patient WHERE id = ?";
         preparedStatement = dbConnect.getConnection().prepareStatement(sql);
