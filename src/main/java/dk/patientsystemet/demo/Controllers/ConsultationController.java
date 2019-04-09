@@ -34,12 +34,14 @@ public class ConsultationController {
     @GetMapping("/watchConsultation/{id}")
     public String watchConsultation(@PathVariable("id") int id, Model model) throws SQLException {
         model.addAttribute("consultation", service.findConsultationById(id));
+        model.addAttribute("title", "Watch Consultation");
         return "watchConsultation";
     }
 
     @GetMapping("/editConsultation/{id}")
     public String GetEditConsultation(@PathVariable("id") int id, Model model) throws SQLException {
         model.addAttribute("consultation", service.findConsultationById(id));
+        model.addAttribute("title", "Edit Consultation");
         return "editConsultation";
     }
 
@@ -52,6 +54,7 @@ public class ConsultationController {
     @GetMapping("/consultations/{id}")
     public String consultations(@PathVariable("id") int id, Model model) throws SQLException {
         model.addAttribute("consultations", service.findDoctorsConsultationsById(id));
+        model.addAttribute("title", "Consultation");
         return "consultations";
     }
 
