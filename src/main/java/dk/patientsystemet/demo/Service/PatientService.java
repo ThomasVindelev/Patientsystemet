@@ -3,7 +3,6 @@ package dk.patientsystemet.demo.Service;
 import dk.patientsystemet.demo.Model.Diagnosis;
 import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
-import dk.patientsystemet.demo.Model.User;
 import dk.patientsystemet.demo.Repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,20 +18,23 @@ public class PatientService {
     @Autowired
     PatientRepository db;
 
-    public String createPatient(Patient patient) throws SQLException {
-        if (patient.getFirstName().length() <= 1 || patient.getLastName().length() <= 1) {
-            return "First or last name length is too short.";
-        } else if (patient.getHeight() < 0) {
-            return "Not a valid height";
-        } else if (patient.getWeight() < 0) {
-            return "Not a valid weight";
-        } else if (patient.getCpr() < 0 || patient.getCpr() > 9999) {
-            return "CPR number not valid";
-        }
+    @Autowired
+    Validate val;
 
-        else {
+    public String createPatient(Patient patient) throws SQLException {
+        if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
+            return "First name length is too short.";
+        } else if(val.biggerOrEqualToNumber(patient.getLastName(), 1)) {
+            return "Last name length is too short.";
+        } else if(val.betweenInt(patient.getHeight(), 0, 999)) {
+            return "Not a valid height";
+        } else if(val.betweenInt(patient.getWeight(), 0, 999)){
+            return "Not a valid weight";
+        } else if(val.betweenInt(patient.getCpr(), 999, 10000)) {
+            return "CPR number not valid";
+        } else {
             db.createPatient(patient);
-            return "Success";
+            return "Patient have successfully been created!";
         }
     }
 

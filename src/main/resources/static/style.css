@@ -118,13 +118,19 @@
 
 .blue { color: #42a5f5; }
 
-.greem { color: #66bb6a; }
+.green { color: #66bb6a; }
 
 .red-bg { background: #FF707D; }
+
+.green-bg { background: #66bb6a; }
 
 a { text-decoration: none; color: #383838; }
 
 body { background: #fff; height: 100%; }
+
+.error-msg { width: 100%; text-align: center; margin-bottom: 10px; }
+
+.error-msg p { color: white; padding: 10px; line-height: 20px; }
 
 .content { width: 100%; min-height: 100%; background: #eeeeee; padding: 20px 20px 20px 300px; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; }
 

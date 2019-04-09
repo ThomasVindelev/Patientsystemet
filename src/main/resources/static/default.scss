@@ -13,11 +13,14 @@
 .blue {
   color: $ton-blue;
 }
-.greem {
+.green {
   color: $ton-green;
 }
 .red-bg {
   background: $ton-red;
+}
+.green-bg {
+  background: $ton-green;
 }
 a {
   text-decoration: none;
@@ -28,7 +31,16 @@ body {
   background: $ton-xxl;
   height: 100%;
 }
-
+.error-msg {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  p {
+    color: white;
+    padding: 10px;
+    line-height: 20px;
+  }
+}
 .content {
   width: 100%;
   min-height: 100%;
