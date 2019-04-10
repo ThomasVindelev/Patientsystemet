@@ -62,7 +62,7 @@ h2 {
 }
 .popup-form select {
     width: 100%;
-    height: 100px;
+    padding: 8px 15px;
     margin-bottom: 10px;
     border: 2px solid #eeeeee;
     border-radius: 10px;

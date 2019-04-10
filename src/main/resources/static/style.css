@@ -84,7 +84,11 @@
 
 .box-holder form button { background-color: #42a5f5; border-radius: 10px; border: 0 solid black; height: 35px; width: 100%; }
 
-.box-holder form button:hover { opacity: 0.8; -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
+.box-holder form button:hover { opacity: 0.8; }
+
+.box-holder form .select-1 { width: 60%; border-radius: 10px; padding: 10px 20px; border: 1px solid #eeeeee; }
+
+.box-holder form .button-1 { width: 35%; }
 
 .main-menu { width: 280px; height: 100%; background: #474747; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); float: left; position: fixed; z-index: 1000; left: 0; color: #f9f9f9; }
 
@@ -117,6 +121,12 @@
 .main-menu .logged-in-as form button { width: 100%; }
 
 .text-center { text-align: center; }
+
+.medicine-list { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; padding: 5px; }
+
+.medicine-list li { width: 75%; }
+
+.medicine-list:nth-child(odd) { background: #f9f9f9; }
 
 .patient-list { max-width: 600px; width: 100%; background-color: #fff; border-radius: 2px; }
 

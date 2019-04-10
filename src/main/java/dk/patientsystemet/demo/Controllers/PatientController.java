@@ -88,7 +88,7 @@ public class PatientController {
         model.addAttribute("diagnosisList", service.getDiagnosis());
         model.addAttribute("notes", service.findPatientNote(id));
         model.addAttribute("prescription", prescriptionService.findPrescriptionByPatient(id));
-        model.addAttribute("medicine", prescriptionService.getAllMedicine());
+        model.addAttribute("allMedicine", prescriptionService.getAllMedicine());
         session.setAttribute("patient_id", id);
         model.addAttribute("title", "Patient Page");
         return "findPatient";

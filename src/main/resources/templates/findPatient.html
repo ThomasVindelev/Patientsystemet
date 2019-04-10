@@ -126,13 +126,13 @@
                     <td th:text="${prescription.date}"></td>
                     <td th:text="${prescription.description}"></td>
                     <td class="text-center">
-                        <a th:href="@{/prescription/{id} (id=${prescription.id})}">
+                        <a th:href="@{'/prescription/' + ${prescription.id}}">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">
+                        <a th:href="@{'/editPrescription/' + ${prescription.id}}">
                             <i class="blue fas fa-edit"></i>
                         </a>
-                        <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">
+                        <a th:href="@{'/deletePrescription/' + ${prescription.id}}">
                             <i class="red fas fa-times"></i>
                         </a>
                     </td>
@@ -189,16 +189,16 @@
             <h2>New Prescription</h2>
         </div>
         <div class="box-content">
-            <form th:action="@{/createPrescription}" th:object="${Prescription}" method="POST" class="popup-form">
+            <form th:action="@{/createPrescription}" th:object="${prescription}" method="POST" class="popup-form">
                 <label for="">Description: </label>
                 <input type="text" placeholder="Description" name="description">
                 <input type="hidden" name="doctorId" th:value="${session.id}">
                 <input type="hidden" name="patientId" th:value="${session.patient_id}">
                 <label for="">Medicine: </label>
-                <select name="medicineId" multiple>
-                    <div th:each="medicine : ${medicine}">
-                        <option th:value="${medicine.id}"><span  th:text="${medicine.name}"></span></option>
-                    </div>
+                <select id="meds" name="medicineId">
+                    <option th:each="medicine : ${allMedicine}"
+                            th:value="${medicine.id}"
+                            th:text="${medicine.name}">
                 </select>
                 <button type="submit">Create</button>
             </form>

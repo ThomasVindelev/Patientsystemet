@@ -115,9 +115,31 @@ public class PrescriptionRepository {
     public void editPrescription() {
 
     }
-    public void deletePrescription() {
-
+    public void deletePrescription(int preInt) {
+        try {
+            deleteMedicineOne(preInt);
+            String sql = "DELETE FROM prescription WHERE id=?";
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setInt(1, preInt);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
+
+    public void deleteMedicineOne(int preId) {
+        try {
+            String sql = "DELETE FROM junction_prescription_and_medicine WHERE fk_prescription=?";
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setInt(1, preId);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public ResultSet getAllMedicine() {
         try {
             String sql = "SELECT * FROM medicine";
@@ -140,6 +162,20 @@ public class PrescriptionRepository {
             System.out.println(e);
         }
     }
+
+    public void deleteMedicine(int medId, int preInt) {
+        try {
+            String sql = "DELETE FROM patientsystem.junction_prescription_and_medicine WHERE fk_medicine=? AND fk_prescription=?";
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setInt(1, medId);
+            preparedStatement.setInt(2, preInt);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public ResultSet findPrescriptionByLastUser(int id) {
         try {
             String sql = "SELECT id FROM prescription WHERE fk_users = ? ORDER BY date DESC LIMIT 1";

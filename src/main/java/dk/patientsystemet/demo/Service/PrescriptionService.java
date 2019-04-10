@@ -122,4 +122,17 @@ public class PrescriptionService {
             return "Success";
         }
     }
+    public String addMedicine(int medId, int preId) {
+        db.createMedicine(medId, preId);
+        return "Success";
+    }
+
+    public String deleteMedicine(int medId, int preId) {
+        db.deleteMedicine(medId, preId);
+        return "Success";
+    }
+    public String deletePrescription(int preId) {
+        db.deletePrescription(preId);
+        return "Success";
+    }
 }

@@ -1,5 +1,7 @@
 package dk.patientsystemet.demo.Model;
 
+import java.util.List;
+
 public class Prescription {
 
     private int id;
@@ -11,11 +13,12 @@ public class Prescription {
     private String description;
     private int patientId;
     private int doctorId;
+    private List<Medicine> meds;
 
     public Prescription() {
     }
 
-    public Prescription(int id, int cprNumber, String patientName, String note, String medicinName, String date, String description, int patientId, int doctorId) {
+    public Prescription(int id, int cprNumber, String patientName, String note, String medicinName, String date, String description, int patientId, int doctorId, List<Medicine> meds) {
         this.id = id;
         this.cprNumber = cprNumber;
         this.patientName = patientName;
@@ -25,6 +28,7 @@ public class Prescription {
         this.description = description;
         this.patientId = patientId;
         this.doctorId = doctorId;
+        this.meds = meds;
     }
 
     public int getId() {
@@ -97,5 +101,13 @@ public class Prescription {
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
+    }
+
+    public List<Medicine> getMeds() {
+        return meds;
+    }
+
+    public void setMeds(List<Medicine> meds) {
+        this.meds = meds;
     }
 }

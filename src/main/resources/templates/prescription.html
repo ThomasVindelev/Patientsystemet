@@ -3,7 +3,7 @@
 <div th:replace="fragments/header :: header"></div>
 
 <section class="content">
-    <div class="box-30p">
+    <div class="box-holder box-shadow">
         <div class="box-header">
             <h2>Prescription</h2>
         </div>
@@ -29,9 +29,26 @@
                     <tr>
                         <td>Medicine: </td>
                         <td>
-                            <ul th:each="medicine : ${medicine}">
-                                <li th:text="${medicine.name}"></li>
-                            </ul>
+                            <ol>
+                                <div class="medicine-list" th:each="medicine : ${medicine}">
+                                    <li th:text="${medicine.name}"></li>
+                                    <a th:href="@{'/deleteMedicine/' + ${medicine.id} + '/' + ${prescription.id}}"><span class="fas fa-times red"></span></a>
+                                </div>
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Add Medicine:</td>
+                        <td>
+                            <form th:action="@{/addMedicine/{id} (id=${prescription.id})}" th:object="${prescription}" method="POST" class="popup-form">
+                                <select name="medicineId" class="select-1">
+                                    <option th:each="medicine : ${allMedicine}"
+                                            th:value="${medicine.id}"
+                                            th:text="${medicine.name}"></option>
+                                </select>
+                                <button type="submit" class="button-1">Add</button>
+                            </form>
+
                         </td>
                     </tr>
                     <tr>
@@ -39,10 +56,10 @@
                         <td></td>
                     </tr>
                 </table>
-                <a th:href="@{/prescriptionEdit/{id} (id=${prescription.id})}">
+                <a th:href="@{'/editPrescription/' + ${prescription.id}}">
                     <button class="special-button">Edit</button>
                 </a>
-                <a th:href="@{/prescriptionDelete/{id} (id=${prescription.id})}">
+                <a th:href="@{'/deletePrescription/' + ${prescription.id}}">
                     <button class="red-bg special-button">Delete</button>
                 </a>
             </div>
