@@ -18,6 +18,9 @@ public class PrescriptionService {
     @Autowired
     PrescriptionRepository db;
 
+    @Autowired
+    Validate val;
+
     public List<Prescription> findPrescriptionByPatient(int id) {
         ResultSet rs = db.findPrescriptionByPatient(id);
         List<Prescription> prescriptionsList = new ArrayList<>();
@@ -105,15 +108,18 @@ public class PrescriptionService {
         return null;
     }
 
-    public void createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
-
-        db.createPrescription(prescription);
-        ResultSet rs = db.findPrescriptionByLastUser(userID);
-        int preId = 0;
-        while (rs.next()) {
-            preId = rs.getInt("id");
+    public String createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
+        if(val.betweenString(prescription.getDescription(), 3, 999)) {
+            return "Error: Description have to be between 3 and 999 characters.";
+        } else {
+            db.createPrescription(prescription);
+            ResultSet rs = db.findPrescriptionByLastUser(userID);
+            int preId = 0;
+            while (rs.next()) {
+                preId = rs.getInt("id");
+            }
+            db.createMedicine(medId, preId);
+            return "Success";
         }
-        db.createMedicine(medId, preId);
-        //return "success";
     }
 }

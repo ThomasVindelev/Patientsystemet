@@ -3,19 +3,31 @@
 <div th:replace="fragments/header :: header"></div>
 
 <section class="content">
-    <div class="main-box">
-        <h3>Edit consultation</h3>
-        <hr>
-        <form th:each="details : ${consultation}" th:action="@{/editConsultation/{id}(id=${details.id})}" th:object="${Consultation}" method="post">
-            <label>Description:</label>
-            <input type="hidden" name="id" th:value="${details.id}">
-            <input type="text" name="description" th:value="${details.description}">
-            <label>Conclusion:</label>
-            <input type="text" name="conclusion" th:value="${details.conclusion}">
-            <label>Date: </label>
-            <input type="date" name="date" th:value="${details.date}">
-            <button type="submit">Edit Consultation</button>
-        </form>
+    <div class="box-holder box-shadow">
+        <div class="box-header">
+            <h3>Edit consultation</h3>
+        </div>
+        <div class="box-content">
+            <div th:if="${error == 'Success'}" class="error-msg green-bg">
+                <p th:text="${error}"></p>
+            </div>
+            <div th:if="${error != 'Success'}" class="error-msg red-bg">
+                <div th:if="${error != null}">
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+            <form th:each="details : ${consultation}" th:action="@{/editConsultation/{id}(id=${details.id})}" th:object="${Consultation}" method="post">
+                <label>Description:</label>
+                <input type="hidden" name="id" th:value="${details.id}">
+                <input type="text" name="description" th:value="${details.description}">
+                <label>Conclusion:</label>
+                <input type="text" name="conclusion" th:value="${details.conclusion}">
+                <label>Date: </label>
+                <input type="date" name="date" th:value="${details.date}">
+                <button type="submit">Edit Consultation</button>
+            </form>
+        </div>
+
     </div>
 </section>
 </body>

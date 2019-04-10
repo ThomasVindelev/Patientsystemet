@@ -64,15 +64,15 @@
 
 .patient-box-notes .two-third { width: 66%; float: right; }
 
-.createPatient { background-color: #fff; border-radius: 2px; max-width: 600px; width: 100%; }
+.box-holder { background-color: #fff; border-radius: 2px; max-width: 600px; width: 100%; }
 
-.createPatient form label { width: 100%; line-height: 40px; margin-bottom: 5px; }
+.box-holder form label { width: 100%; line-height: 40px; margin-bottom: 5px; }
 
-.createPatient form input { width: 100%; height: 35px; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #eeeeee; }
+.box-holder form input { width: 100%; height: 35px; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #eeeeee; }
 
-.createPatient form button { background-color: #42a5f5; border-radius: 10px; border: 0 solid black; height: 35px; width: 100%; }
+.box-holder form button { background-color: #42a5f5; border-radius: 10px; border: 0 solid black; height: 35px; width: 100%; }
 
-.createPatient form button:hover { opacity: 0.8; -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
+.box-holder form button:hover { opacity: 0.8; -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
 
 .main-menu { width: 280px; height: 100%; background: #474747; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); float: left; position: fixed; z-index: 1000; left: 0; color: #f9f9f9; }
 
@@ -128,7 +128,7 @@ a { text-decoration: none; color: #383838; }
 
 body { background: #fff; height: 100%; }
 
-.error-msg { width: 100%; text-align: center; margin-bottom: 10px; }
+.error-msg { width: 100%; text-align: center; margin-bottom: 10px; border-radius: 2px; }
 
 .error-msg p { color: white; padding: 10px; line-height: 20px; }
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
@@ -62,15 +63,14 @@ public class PatientController {
     }
 
     @PostMapping("/editPatient")
-    public String editPatient(@ModelAttribute Patient patient, HttpSession session) throws SQLException {
-        System.out.println(patient.getId());
-        service.editPatient(patient);
+    public String editPatient(@ModelAttribute Patient patient, Model model, RedirectAttributes redirAttr) throws SQLException {
+        redirAttr.addFlashAttribute("error", service.editPatient(patient));
         return "redirect:/findPatient/" + patient.getId();
     }
 
     @GetMapping("/deletePatient/{id}")
-    public String deletePatient(@PathVariable("id") int id) throws SQLException {
-        service.deletePatient(id);
+    public String deletePatient(@PathVariable("id") int id, Model model, RedirectAttributes redirAttr) throws SQLException {
+        redirAttr.addFlashAttribute("error", service.deletePatient(id));
         return "redirect:/main";
     }
 
@@ -95,8 +95,8 @@ public class PatientController {
     }
 
     @PostMapping("/createNote/{id}")
-    public String createNote(@PathVariable("id") int id, @ModelAttribute Patient patient, Model model) throws SQLException {
-        model.addAttribute("message", service.createNote(patient, id));
+    public String createNote(@PathVariable("id") int id, @ModelAttribute Patient patient, Model model, RedirectAttributes redirAttr) throws SQLException {
+        redirAttr.addFlashAttribute("error", service.createNote(patient, id));
         return "redirect:/findPatient/{id}";
     }
 

@@ -26,9 +26,9 @@ public class PatientService {
             return "First name length is too short.";
         } else if(val.biggerOrEqualToNumber(patient.getLastName(), 1)) {
             return "Last name length is too short.";
-        } else if(val.betweenInt(patient.getHeight(), 0, 999)) {
+        } else if(val.betweenInt(patient.getHeight(), 1, 1000)) {
             return "Not a valid height";
-        } else if(val.betweenInt(patient.getWeight(), 0, 999)){
+        } else if(val.betweenInt(patient.getWeight(), 1, 1000)){
             return "Not a valid weight";
         } else if(val.betweenInt(patient.getCpr(), 999, 10000)) {
             return "CPR number not valid";
@@ -39,13 +39,28 @@ public class PatientService {
     }
 
     public String editPatient(Patient patient) throws SQLException {
-        db.editPatient(patient);
-        return "succes";
+        if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
+            return "First name length is too short.";
+        } else if(val.biggerOrEqualToNumber(patient.getLastName(), 1)) {
+            return "Last name length is too short.";
+        } else if(val.betweenInt(patient.getHeight(), 1, 1000)) {
+            return "Not a valid height";
+        } else if(val.betweenInt(patient.getWeight(), 1, 1000)){
+            return "Not a valid weight";
+        } else if(val.betweenInt(patient.getCpr(), 999, 10000)) {
+            return "CPR number not valid";
+        } else {
+            db.editPatient(patient);
+            return "Success";
+        }
     }
 
     public String deletePatient(int id) throws SQLException {
-        db.deletePatient(id);
-        return "succes";
+        if(true) {
+            db.deletePatient(id);
+            return "Success";
+        }
+        return null;
     }
 
     public List<Patient> fetchAll() throws SQLException {
@@ -117,13 +132,17 @@ public class PatientService {
     }
 
     public String createNote(Patient patient, int id) throws SQLException {
-        db.createNote(patient, id);
-        return "Success!";
+        if(val.betweenString(patient.getNote(), 3, 360)) {
+            return "Error: Note have to be between 3 and 360 characters.";
+        } else {
+            db.createNote(patient, id);
+            return "Success";
+        }
     }
 
     public String deleteNote(int id) throws SQLException {
         db.deleteNote(id);
-        return "Success!";
+        return "Success";
     }
 
     public List<Diagnosis> getDiagnosisByPatient(int id) throws SQLException {

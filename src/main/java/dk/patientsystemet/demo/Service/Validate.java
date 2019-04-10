@@ -5,8 +5,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class Validate {
 
-    public boolean biggerOrEqualToNumber(String string, int number) {
-        if (string.length() <= number) {
+    public boolean biggerOrEqualToNumber(String string, int min) {
+        if (string.length() <= min) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean betweenString(String value, int min, int max) {
+        if (value.length() <= min || value.length() >= max) {
             return true;
         } else {
             return false;
@@ -14,7 +22,7 @@ public class Validate {
     }
 
     public boolean betweenInt(int value, int min, int max) {
-        if (value< min && value > max) {
+        if (value <= min || value >= max) {
             return true;
         } else {
             return false;

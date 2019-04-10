@@ -3,7 +3,7 @@
     <div th:replace="fragments/header :: header"></div>
 
     <section class="content">
-        <div class="createPatient box-shadow">
+        <div class="box-holder box-shadow">
             <div class="box-header">
                 <h2>Create Patient</h2>
             </div>
@@ -13,25 +13,22 @@
                         <p th:text="${error}"></p>
                     </div>
                     <div th:if="${error} != 'Patient have successfully been created!'" class="error-msg red-bg">
-                        <p th:if="${error} !=''" th:text="${error}"></p>
+                        <p th:if="${error} != null" th:text="${error}"></p>
                     </div>
-                    <label>First name</label><br>
-                    <input type="text" placeholder="First name" name="firstName"><br>
-                    <label>Last name</label><br>
-                    <input type="text" placeholder="Last name" name="lastName"><br>
-                    <label>Birth date</label><br>
-                    <input type="date" placeholder="Birth date" name="birthDate"><br>
-                    <label>Height</label><br>
-                    <input type="hidden" name="height" value="0">
-                    <input type="number" placeholder="Height" name="height"><br>
-                    <label>Weight</label><br>
-                    <input type="hidden" name="weight" value="0">
-                    <input type="number" placeholder="Weight" name="weight"><br>
-                    <label>CPR</label><br>
-                    <input type="hidden" name="cpr" value="0">
-                    <input type="number" placeholder="CPR" name="cpr"><br>
+                    <label>First name*</label><br>
+                    <input type="text" placeholder="First name" name="firstName" required><br>
+                    <label>Last name*</label><br>
+                    <input type="text" placeholder="Last name" name="lastName" required><br>
+                    <label>Birth date*</label><br>
+                    <input type="date" placeholder="Birth date" name="birthDate" required><br>
+                    <label>Height*</label><br>
+                    <input type="number" placeholder="Height" name="height" min="1" max="999" required><br>
+                    <label>Weight*</label><br>
+                    <input type="number" placeholder="Weight" name="weight" min="1" max="999" required><br>
+                    <label>CPR*</label><br>
+                    <input type="number" placeholder="CPR" name="cpr" min="1000" max="9999" required><br>
                     <label>Note</label><br>
-                    <input type="text" placeholder="Note" name="note">
+                    <input type="text" placeholder="Note" name="note" >
                     <br>
                     <button type="submit">Submit</button>
 

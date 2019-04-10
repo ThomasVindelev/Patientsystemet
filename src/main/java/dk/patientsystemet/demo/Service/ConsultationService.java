@@ -16,6 +16,9 @@ public class ConsultationService {
     @Autowired
     ConsultationRepository db;
 
+    @Autowired
+    Validate val;
+
     public List<Consultation> getConsultations(int id) throws SQLException {
         ResultSet rs = db.findConsultations(id);
         List<Consultation> consultationList = new ArrayList<>();
@@ -46,14 +49,30 @@ public class ConsultationService {
 
     public String deleteConsultation(int id) throws SQLException {
         db.deleteConsultation(id);
-        return "success";
+        return "Success";
     }
 
     public String createConsultation(Consultation consultation) throws SQLException {
-        db.createConsultation(consultation);
-        return "success";
-    }
+        if(val.biggerOrEqualToNumber(consultation.getDescription(), 1)) {
+            return "Fill out description";
+        } else if(val.biggerOrEqualToNumber(consultation.getConclusion(), 1)) {
+            return "Fill out conclusion";
+        } else {
+            db.createConsultation(consultation);
+            return "Success";
+        }
 
+    }
+    public String editConsultation(Consultation consultation) throws SQLException {
+        if(val.biggerOrEqualToNumber(consultation.getDescription(), 1)) {
+            return "Fill out description";
+        } else if(val.biggerOrEqualToNumber(consultation.getConclusion(), 1)) {
+            return "Fill out conclusion";
+        } else {
+            db.editConsultation(consultation);
+            return "Success";
+        }
+    }
     public List<Consultation> upcomingConsultations(int userId) throws SQLException {
         ResultSet rs = db.upcomingConsultations(userId);
         List<Consultation> ucList = new ArrayList<>();
@@ -81,11 +100,6 @@ public class ConsultationService {
         }
 
         return null;
-    }
-
-    public String editConsultation(Consultation consultation) throws SQLException {
-        db.editConsultation(consultation);
-        return "succes";
     }
 
 }
