@@ -1,9 +1,4 @@
 @import "colors";
-
-.text-center {
-  text-align: center;
-}
-
 .box-30p {
   width: 32%;
   min-height: 360px;
@@ -93,7 +88,6 @@
       background: $ton-l;
     }
     th, td{
-      text-align: left;
       padding: 8px 5px;
     }
   }
@@ -241,4 +235,8 @@
       }
     }
   }
+}
+
+.text-center {
+  text-align: center;
 }

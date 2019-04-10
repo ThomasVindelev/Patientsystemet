@@ -4,6 +4,8 @@
 
 .login .login-form { background-color: #474747; border-radius: 2px; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
 
+.login .login-form .margin0 { margin: 0; }
+
 .login .login-form .login-box-header { padding: 30px 20px 20px 20px; background: #383838; }
 
 .login .login-form .login-box-header h1 { margin-bottom: 3px; font-weight: 100; color: #f9f9f9; }
@@ -23,8 +25,6 @@
 .login .login-form .login-box-content form input { border: 1px solid white; padding: 8px 15px; border-radius: 0 10px 10px 0; margin: 5px 0 10px; width: 85%; }
 
 .login .login-form .login-box-content form button { border: 0px; padding: 10px 20px; border-radius: 10px; margin: 5px 35% 0 35%; width: 30%; background: #42a5f5; color: white; }
-
-.text-center { text-align: center; }
 
 .box-30p { width: 32%; min-height: 360px; border-radius: 2px; background-color: #fff; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
 
@@ -60,7 +60,7 @@
 
 .box-content table th { background: #eeeeee; }
 
-.box-content table th, .box-content table td { text-align: left; padding: 8px 5px; }
+.box-content table th, .box-content table td { padding: 8px 5px; }
 
 .patient-box-information { width: 49%; background-color: #fff; margin-bottom: 20px; border-radius: 2px; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
 
@@ -116,13 +116,15 @@
 
 .main-menu .logged-in-as form button { width: 100%; }
 
+.text-center { text-align: center; }
+
+.patient-list { max-width: 600px; width: 100%; background-color: #fff; border-radius: 2px; }
+
 .patient-list a { text-decoration: none; }
 
 .patient-list table tr:hover { background-color: #fff; }
 
-.patient-list table tr:nth-child(even) { background-color: #eeeeee; }
-
-.patient-list table tr th, .patient-list table tr td { padding: 6px; }
+.patient-list table tr:nth-child(even) { background-color: #f9f9f9; }
 
 * { padding: 0; margin: 0; -webkit-box-sizing: border-box; box-sizing: border-box; font-family: Arial; }
 
@@ -137,6 +139,8 @@
 .green-bg { background: #66bb6a; }
 
 a { text-decoration: none; color: #383838; }
+
+th { text-align: left; }
 
 body { background: #fff; height: 100%; }
 

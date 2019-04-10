@@ -1,6 +1,10 @@
 @import "colors";
 
 .patient-list {
+  max-width: 600px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 2px;
   a {
     text-decoration: none;
   }
@@ -10,10 +14,7 @@
         background-color: $ton-xxl;
       }
       &:nth-child(even) {
-        background-color: $ton-l;
-      }
-      th, td {
-        padding: 6px;
+        background-color: $ton-xl;
       }
     }
   }
