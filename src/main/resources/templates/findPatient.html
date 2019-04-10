@@ -368,11 +368,11 @@
                 <label for="">Last name: </label>
                 <input type="text" th:value="${patient.lastName}" name="lastName">
                 <label for="">Height:</label>
-                <input type="text" th:value="${patient.height}" name="height">
+                <input type="text" th:value="${patient.height}" name="height" minlength="1" required>
                 <label for="">Weight:</label>
-                <input type="text" th:value="${patient.weight}" name="weight">
+                <input type="text" th:value="${patient.weight}" name="weight" minlength="1" required>
                 <label for="">CPR:</label>
-                <input type="text" th:value="${patient.cpr}" name="cpr">
+                <input type="text" th:value="${patient.cpr}" name="cpr" minlength="1" required>
                 <button type="submit">Edit patient</button>
             </form>
         </div>

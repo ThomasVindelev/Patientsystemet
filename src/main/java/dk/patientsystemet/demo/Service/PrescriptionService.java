@@ -110,7 +110,7 @@ public class PrescriptionService {
 
     public String createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
         if(val.betweenString(prescription.getDescription(), 3, 999)) {
-            return "Error: Description have to be between 3 and 999 characters.";
+            return "Error: Description has to be between 3 and 999 characters.";
         } else {
             db.createPrescription(prescription);
             ResultSet rs = db.findPrescriptionByLastUser(userID);

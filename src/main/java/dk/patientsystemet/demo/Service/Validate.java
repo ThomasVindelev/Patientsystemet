@@ -14,7 +14,7 @@ public class Validate {
     }
 
     public boolean betweenString(String value, int min, int max) {
-        if (value.length() <= min || value.length() >= max) {
+        if (value.length() < min || value.length() >= max) {
             return true;
         } else {
             return false;
@@ -22,7 +22,7 @@ public class Validate {
     }
 
     public boolean betweenInt(int value, int min, int max) {
-        if (value <= min || value >= max) {
+        if (value < min || value >= max) {
             return true;
         } else {
             return false;

@@ -23,32 +23,32 @@ public class PatientService {
 
     public String createPatient(Patient patient) throws SQLException {
         if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
-            return "First name length is too short.";
+            return "Error: First name has to be at least 2 characters";
         } else if(val.biggerOrEqualToNumber(patient.getLastName(), 1)) {
-            return "Last name length is too short.";
-        } else if(val.betweenInt(patient.getHeight(), 1, 1000)) {
-            return "Not a valid height";
-        } else if(val.betweenInt(patient.getWeight(), 1, 1000)){
-            return "Not a valid weight";
+            return "Error: Last name has to be at least 2 characters";
+        } else if(val.betweenInt(patient.getHeight(), 1, 300)) {
+            return "Error: Not a valid height";
+        } else if(val.betweenInt(patient.getWeight(), 1, 300)){
+            return "Error: Not a valid weight";
         } else if(val.betweenInt(patient.getCpr(), 999, 10000)) {
-            return "CPR number not valid";
+            return "Error: CPR number not valid";
         } else {
             db.createPatient(patient);
-            return "Patient have successfully been created!";
+            return "Patient has successfully been created!";
         }
     }
 
     public String editPatient(Patient patient) throws SQLException {
         if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
-            return "First name length is too short.";
+            return "Error: First name has to be at least 2 characters";
         } else if(val.biggerOrEqualToNumber(patient.getLastName(), 1)) {
-            return "Last name length is too short.";
-        } else if(val.betweenInt(patient.getHeight(), 1, 1000)) {
-            return "Not a valid height";
-        } else if(val.betweenInt(patient.getWeight(), 1, 1000)){
-            return "Not a valid weight";
+            return "Error: Last name has to be at least 2 characters";
+        } else if(val.betweenInt(patient.getHeight(), 1, 300)) {
+            return "Error: Not a valid height";
+        } else if(val.betweenInt(patient.getWeight(), 1, 300)){
+            return "Error: Not a valid weight";
         } else if(val.betweenInt(patient.getCpr(), 999, 10000)) {
-            return "CPR number not valid";
+            return "Error: CPR number not valid";
         } else {
             db.editPatient(patient);
             return "Success";
@@ -133,7 +133,7 @@ public class PatientService {
 
     public String createNote(Patient patient, int id) throws SQLException {
         if(val.betweenString(patient.getNote(), 3, 360)) {
-            return "Error: Note have to be between 3 and 360 characters.";
+            return "Error: Note has to be between 3 and 360 characters.";
         } else {
             db.createNote(patient, id);
             return "Success";
