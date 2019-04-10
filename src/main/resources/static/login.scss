@@ -10,33 +10,59 @@
   .login-form {
     background-color: $ton-d;
     border-radius: 2px;
-    padding: 40px 25px;
     box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
-    hr {
-      border: 0.5px solid $ton-xl;
-      margin-bottom: 13px;
-    }
-    h1 {
-      margin-bottom: 10px;
-      text-align: center;
-      color: $ton-xl;
-    }
-    form {
-      input {
-        border: 1px solid white;
-        padding: 8px 15px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        width: 100%;
+
+    .login-box-header {
+      padding: 30px 20px 20px 20px;
+      background: $ton-xd;
+      h1 {
+        margin-bottom: 3px;
+        font-weight: 100;
+        color: $ton-xl;
       }
-      button {
-        border: 0px;
-        padding: 10px 20px;
-        border-radius: 10px;
-        margin: 5px 35% 0 35%;
-        width: 30%;
-        background: $theme-color;
-        color: white;
+      h3 {
+        color: $ton-l;
+        font-weight: 100;
+        font-size: 17px;
+      }
+    }
+
+    .login-box-content {
+      padding: 20px;
+      .login-icon {
+        width: 15%;
+        height: 33px;
+        margin: 5px 0 10px;
+        text-align: center;
+        border-radius: 10px 0 0 10px;
+        background-color: $ton-xd;
+        i {
+          line-height: 33px;
+          color: $ton-xl;
+        }
+      }
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        label {
+          color: $ton-xl;
+        }
+        input {
+          border: 1px solid white;
+          padding: 8px 15px;
+          border-radius: 0 10px 10px 0;
+          margin: 5px 0 10px;
+          width: 85%;
+        }
+        button {
+          border: 0px;
+          padding: 10px 20px;
+          border-radius: 10px;
+          margin: 5px 35% 0 35%;
+          width: 30%;
+          background: $theme-color;
+          color: white;
+        }
       }
     }
   }

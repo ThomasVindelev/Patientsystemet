@@ -2,15 +2,27 @@
 
 .login { width: 350px; margin: 0 auto 0 auto; }
 
-.login .login-form { background-color: #474747; border-radius: 2px; padding: 40px 25px; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
+.login .login-form { background-color: #474747; border-radius: 2px; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.07), 1px 2px 5px 0 rgba(0, 0, 0, 0.06); }
 
-.login .login-form hr { border: 0.5px solid #f9f9f9; margin-bottom: 13px; }
+.login .login-form .login-box-header { padding: 30px 20px 20px 20px; background: #383838; }
 
-.login .login-form h1 { margin-bottom: 10px; text-align: center; color: #f9f9f9; }
+.login .login-form .login-box-header h1 { margin-bottom: 3px; font-weight: 100; color: #f9f9f9; }
 
-.login .login-form form input { border: 1px solid white; padding: 8px 15px; border-radius: 10px; margin-bottom: 10px; width: 100%; }
+.login .login-form .login-box-header h3 { color: #eeeeee; font-weight: 100; font-size: 17px; }
 
-.login .login-form form button { border: 0px; padding: 10px 20px; border-radius: 10px; margin: 5px 35% 0 35%; width: 30%; background: #42a5f5; color: white; }
+.login .login-form .login-box-content { padding: 20px; }
+
+.login .login-form .login-box-content .login-icon { width: 15%; height: 33px; margin: 5px 0 10px; text-align: center; border-radius: 10px 0 0 10px; background-color: #383838; }
+
+.login .login-form .login-box-content .login-icon i { line-height: 33px; color: #f9f9f9; }
+
+.login .login-form .login-box-content form { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+
+.login .login-form .login-box-content form label { color: #f9f9f9; }
+
+.login .login-form .login-box-content form input { border: 1px solid white; padding: 8px 15px; border-radius: 0 10px 10px 0; margin: 5px 0 10px; width: 85%; }
+
+.login .login-form .login-box-content form button { border: 0px; padding: 10px 20px; border-radius: 10px; margin: 5px 35% 0 35%; width: 30%; background: #42a5f5; color: white; }
 
 .text-center { text-align: center; }
 
