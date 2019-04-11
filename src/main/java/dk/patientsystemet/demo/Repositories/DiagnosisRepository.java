@@ -19,8 +19,12 @@ public class DiagnosisRepository {
     }
 
     public ResultSet getDiagnosisByPatient(int id) throws SQLException {
-        String sql = "SELECT * FROM diagnosis LEFT JOIN diagnosis_names ON diagnosis.fk_diagnosis_names = diagnosis_names.id " +
-                "LEFT JOIN patient ON diagnosis.fk_patient = patient.id LEFT JOIN users ON diagnosis.fk_users = users.id WHERE fk_patient = " + id;
+        String sql = "SELECT * FROM diagnosis " +
+                "LEFT JOIN diagnosis_names ON diagnosis.fk_diagnosis_names = diagnosis_names.id " +
+                "LEFT JOIN patient ON diagnosis.fk_patient = patient.id " +
+                "LEFT JOIN users ON diagnosis.fk_users = users.id " +
+                "LEFT JOIN junction_diagnosis_and_medicine ON diagnosis_names.id = junction_diagnosis_and_medicine.fk_diagnosis " +
+                "LEFT JOIN medicine ON junction_diagnosis_and_medicine.fk_medicine = medicine.id WHERE fk_patient = " + id;
         preparedStatement = dbConnect.prepareStatement(sql);
         return preparedStatement.executeQuery();
     }

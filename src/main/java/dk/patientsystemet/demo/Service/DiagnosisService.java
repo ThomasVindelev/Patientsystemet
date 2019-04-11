@@ -27,6 +27,7 @@ public class DiagnosisService {
             diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
             diagnosis.setPatientName(rs.getString("patient.firstname"));
             diagnosis.setDoctorName(rs.getString("users.name"));
+            diagnosis.setMedicineName(rs.getString("medicine.name"));
             diagnosisList.add(diagnosis);
         }
         return diagnosisList;
