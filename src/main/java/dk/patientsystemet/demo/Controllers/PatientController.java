@@ -5,6 +5,7 @@ import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
 import dk.patientsystemet.demo.Model.User;
 import dk.patientsystemet.demo.Service.ConsultationService;
+import dk.patientsystemet.demo.Service.DiagnosisService;
 import dk.patientsystemet.demo.Service.PatientService;
 import dk.patientsystemet.demo.Service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,16 @@ import java.sql.SQLException;
 public class PatientController {
 
     @Autowired
-    PatientService service;
+    PatientService patientService;
 
     @Autowired
     ConsultationService consultationService;
 
     @Autowired
     PrescriptionService prescriptionService;
+
+    @Autowired
+    DiagnosisService diagnosisService;
 
     @GetMapping("/createPatient")
     public String createPatient(Model model) {
@@ -40,7 +44,7 @@ public class PatientController {
     @GetMapping("/allPatients")
     public String allPatients(Model model) throws SQLException {
         model.addAttribute("title", "All patients");
-        model.addAttribute("patients", service.fetchAll());
+        model.addAttribute("patients", patientService.fetchAll());
         return "patientList";
     }
     @PostMapping("/allPatientSearch")
@@ -51,42 +55,42 @@ public class PatientController {
 
     @GetMapping("/patientListSearch/{word}")
     public String allPatientSearch(@PathVariable("word") String word, @ModelAttribute Patient patient, Model model) throws SQLException {
-        model.addAttribute("patients", service.searchPatientList(word));
+        model.addAttribute("patients", patientService.searchPatientList(word));
         return "patientListSearch";
     }
 
     @PostMapping("/createPatient")
     public String createPatientForm(@ModelAttribute Patient patient, Model model) throws SQLException {
         model.addAttribute("title", "Create patient");
-        model.addAttribute("error", service.createPatient(patient));
+        model.addAttribute("error", patientService.createPatient(patient));
         return "createPatient";
     }
 
     @PostMapping("/editPatient")
     public String editPatient(@ModelAttribute Patient patient, Model model, RedirectAttributes redirAttr) throws SQLException {
-        redirAttr.addFlashAttribute("error", service.editPatient(patient));
+        redirAttr.addFlashAttribute("error", patientService.editPatient(patient));
         return "redirect:/findPatient/" + patient.getId();
     }
 
     @PostMapping("/deletePatient/{id}")
     public String deletePatient(@PathVariable("id") int id, Model model, RedirectAttributes redirAttr) throws SQLException {
-        redirAttr.addFlashAttribute("error", service.deletePatient(id));
+        redirAttr.addFlashAttribute("error", patientService.deletePatient(id));
         return "redirect:/allPatients";
     }
 
     @PostMapping("/findPatient")
     public String findPatient(@ModelAttribute Patient patient) throws SQLException {
-        int patient_id = service.searchPatient(patient);
+        int patient_id = patientService.searchPatient(patient);
         return "redirect:/findPatient/" + patient_id;
     }
 
     @GetMapping("/findPatient/{id}")
     public String getPatient(@PathVariable("id") int id, Model model, HttpSession session) throws SQLException {
-        model.addAttribute("patient", service.findPatient(id));
+        model.addAttribute("patient", patientService.findPatient(id));
         model.addAttribute("consultations", consultationService.getConsultations(id));
-        model.addAttribute("diagnosis", service.getDiagnosisByPatient(id));
-        model.addAttribute("diagnosisList", service.getDiagnosis());
-        model.addAttribute("notes", service.findPatientNote(id));
+        model.addAttribute("diagnosis", diagnosisService.getDiagnosisByPatient(id));
+        model.addAttribute("diagnosisList", diagnosisService.getDiagnosis());
+        model.addAttribute("notes", patientService.findPatientNote(id));
         model.addAttribute("prescription", prescriptionService.findPrescriptionByPatient(id));
         model.addAttribute("allMedicine", prescriptionService.getAllMedicine());
         session.setAttribute("patient_id", id);
@@ -96,26 +100,8 @@ public class PatientController {
 
     @PostMapping("/createNote/{id}")
     public String createNote(@PathVariable("id") int id, @ModelAttribute Patient patient, Model model, RedirectAttributes redirAttr) throws SQLException {
-        redirAttr.addFlashAttribute("error", service.createNote(patient, id));
+        redirAttr.addFlashAttribute("error", patientService.createNote(patient, id));
         return "redirect:/findPatient/{id}";
-    }
-
-    @PostMapping("/addDiagnosis")
-    public String addDiagnosis(@ModelAttribute Diagnosis diagnosis, HttpSession session) throws SQLException {
-        service.newDiagnosis(diagnosis, diagnosis.getPatientId(), diagnosis.getDoctorId());
-        return "redirect:/findPatient/" + session.getAttribute("patient_id");
-    }
-
-    @PostMapping("/addUnknownDiagnosis")
-    public String addUnknownDiagnosis(@ModelAttribute Diagnosis diagnosis, String diagnosisName, HttpSession session) throws SQLException {
-        service.newUnknownDiagnosis(diagnosisName);
-        return "redirect:/findPatient/" + session.getAttribute("patient_id");
-    }
-
-    @GetMapping("/deleteDiagnosis/{id}")
-    public String deleteDiagnosis(@PathVariable("id") int id, HttpSession session) throws SQLException {
-        service.deleteDiagnosis(id);
-        return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
 }
