@@ -110,7 +110,7 @@ public class PrescriptionService {
 
     public String createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
         if(val.betweenString(prescription.getDescription(), 3, 999)) {
-            return "Error: Description has to be between 3 and 999 characters.";
+            return "Error: Description has to be atleast 3 characters";
         } else {
             db.createPrescription(prescription);
             ResultSet rs = db.findPrescriptionByLastUser(userID);
@@ -134,5 +134,13 @@ public class PrescriptionService {
     public String deletePrescription(int preId) {
         db.deletePrescription(preId);
         return "Success";
+    }
+    public String editPrescription(Prescription prescription) {
+        if (val.biggerOrEqualToNumber(prescription.getDescription(), 2)) {
+            return "Error: Description has to be atleast 3 characters";
+        } else {
+            db.editPrescription(prescription);
+            return "Success";
+        }
     }
 }

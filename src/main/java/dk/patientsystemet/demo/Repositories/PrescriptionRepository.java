@@ -112,8 +112,17 @@ public class PrescriptionRepository {
 
     }
 
-    public void editPrescription() {
-
+    public void editPrescription(Prescription prescription) {
+        try {
+            String sql = "UPDATE prescription SET description = ? WHERE id = ?";
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setString(1, prescription.getDescription());
+            preparedStatement.setInt(2, prescription.getId());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
     public void deletePrescription(int preInt) {
         try {
@@ -142,7 +151,7 @@ public class PrescriptionRepository {
 
     public ResultSet getAllMedicine() {
         try {
-            String sql = "SELECT * FROM medicine";
+            String sql = "SELECT * FROM medicine ORDER BY medicine.name ASC";
             preparedStatement = dbConnect.prepareStatement(sql);
             return preparedStatement.executeQuery();
         } catch (SQLException e) {
@@ -165,7 +174,7 @@ public class PrescriptionRepository {
 
     public void deleteMedicine(int medId, int preInt) {
         try {
-            String sql = "DELETE FROM patientsystem.junction_prescription_and_medicine WHERE fk_medicine=? AND fk_prescription=?";
+            String sql = "DELETE FROM patientsystem.junction_prescription_and_medicine WHERE fk_medicine=? AND fk_prescription=? LIMIT 1";
             preparedStatement = dbConnect.prepareStatement(sql);
             preparedStatement.setInt(1, medId);
             preparedStatement.setInt(2, preInt);

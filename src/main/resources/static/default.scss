@@ -30,7 +30,7 @@ th {
   text-align: left;
 }
 body {
-  background: $ton-xxl;
+  background: $ton-l;
   height: 100%;
 }
 .error-msg {
@@ -46,8 +46,6 @@ body {
 }
 .content {
   width: 100%;
-  min-height: 100%;
-  background: $ton-l;
   padding: 20px 20px 20px 300px;
   display: flex;
   flex-wrap: wrap;

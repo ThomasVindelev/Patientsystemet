@@ -38,17 +38,31 @@ public class PrescriptionController {
     @PostMapping("/addMedicine/{id}")
     public String addMedicine(@PathVariable("id") int id, Medicine medicine, RedirectAttributes redirAttr) {
         redirAttr.addFlashAttribute("error", prescriptionService.addMedicine(medicine.getMedicineId(), id));
-        return "redirect:/prescription/" + id;
+        return "redirect:/editPrescription/" + id;
     }
     @GetMapping("/deleteMedicine/{medId}/{preId}")
     public String deleteMedicine(@PathVariable("medId") int medId, @PathVariable("preId") int preId, Medicine medicine, RedirectAttributes redirAttr) {
         redirAttr.addFlashAttribute("error", prescriptionService.deleteMedicine(medId, preId));
-        return "redirect:/prescription/" + preId;
+        return "redirect:/editPrescription/" + preId;
     }
 
     @GetMapping("/deletePrescription/{id}")
     public String deletePrescription(@PathVariable("id") int preId, RedirectAttributes redirAttr, HttpSession session) {
         redirAttr.addFlashAttribute("error", prescriptionService.deletePrescription(preId));
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
+    }
+
+    @GetMapping("/editPrescription/{id}")
+    public String editPrescription(@PathVariable("id") int id, Model model) {
+        model.addAttribute("prescription", prescriptionService.findPrescriptionById(id));
+        model.addAttribute("medicine", prescriptionService.findMedicineByPrescription(id));
+        model.addAttribute("allMedicine", prescriptionService.getAllMedicine());
+        return "editPrescription";
+    }
+
+    @PostMapping("/editPrescription/{id}")
+    public String editPrescriptionById(@PathVariable("id") int id, Model model, RedirectAttributes redirAttr, Prescription prescription) {
+        redirAttr.addFlashAttribute("error", prescriptionService.editPrescription(prescription));
+        return "redirect:/editPrescription/" + id;
     }
 }

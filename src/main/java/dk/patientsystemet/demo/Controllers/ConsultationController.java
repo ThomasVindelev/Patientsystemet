@@ -52,8 +52,8 @@ public class ConsultationController {
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
-    @GetMapping("/consultations/{id}")
-    public String consultations(@PathVariable("id") int id, Model model) throws SQLException {
+    @GetMapping("/consultation/{id}")
+    public String consultation(@PathVariable("id") int id, Model model) throws SQLException {
         model.addAttribute("consultations", service.findDoctorsConsultationsById(id));
         model.addAttribute("title", "Consultation");
         return "consultations";

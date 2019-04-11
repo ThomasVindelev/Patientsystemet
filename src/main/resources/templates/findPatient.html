@@ -4,14 +4,7 @@
 <link rel="stylesheet" th:href="@{/popup.css}" type="text/css">
 <section class="content">
 
-    <div th:if="${error == 'Success'}" class="error-msg green-bg">
-        <p th:text="${error}"></p>
-    </div>
-    <div th:if="${error != 'Success'}" class="error-msg red-bg">
-        <div th:if="${error != null}">
-            <p th:text="${error}"></p>
-        </div>
-    </div>
+    <div th:replace="fragments/error-success-msg :: header"></div>
 
     <!-- ----- PATIENT INFORMATION ----- -->
 

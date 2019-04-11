@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+<div th:replace="fragments/header :: header"></div>
+
+<section class="content">
+
+    <div th:replace="fragments/error-success-msg :: header"></div>
+
+    <div class="box-holder box-shadow">
+        <div class="box-header">
+            <h3>Edit Prescription</h3>
+        </div>
+        <div class="box-content">
+            <form th:each="prescription : ${prescription}" th:action="@{/editPrescription/{id}(id=${prescription.id})}" th:object="${Prescription}" method="post">
+                <label>Description:</label>
+                <input type="hidden" name="id" th:value="${prescription.id}">
+                <input type="text" name="description" th:value="${prescription.description}">
+                <button type="submit">Edit Prescription</button>
+            </form>
+            <div th:each="prescription : ${prescription}" class="medicineEdit">
+                <h3>Edit Medicine</h3>
+                <ol>
+                    <div class="medicine-list" th:each="medicine : ${medicine}">
+                        <li th:text="${medicine.name}"></li>
+                        <a th:href="@{'/deleteMedicine/' + ${medicine.id} + '/' + ${prescription.id}}"><span class="fas fa-times red"></span></a>
+                    </div>
+                </ol>
+                <form th:action="@{/addMedicine/{id} (id=${prescription.id})}" th:object="${prescription}" method="POST" class="popup-form">
+                    <select name="medicineId" class="select-1">
+                        <option th:each="medicine : ${allMedicine}"
+                                th:value="${medicine.id}"
+                                th:text="${medicine.name}"></option>
+                    </select>
+                    <button type="submit" class="button-1">Add</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+</body>
+</html>
