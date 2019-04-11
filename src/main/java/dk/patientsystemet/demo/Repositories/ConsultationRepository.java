@@ -21,10 +21,9 @@ public class ConsultationRepository {
     }
 
     public void createConsultation(Consultation consultation) throws SQLException {
-        String sql = "INSERT INTO consultation (description, conclusion, date, fk_patient, fk_users) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO consultation (description, date, fk_patient, fk_users) VALUES (?, ?, ?, ?)";
         preparedStatement = dbConnect.prepareStatement(sql);
         preparedStatement.setString(1, consultation.getDescription());
-        preparedStatement.setString(2, consultation.getConclusion());
         preparedStatement.setString(3, consultation.getDate());
         preparedStatement.setInt(4, consultation.getPatientId());
         preparedStatement.setInt(5, consultation.getUserId());
