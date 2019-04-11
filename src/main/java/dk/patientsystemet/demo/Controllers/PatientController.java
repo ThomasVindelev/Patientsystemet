@@ -68,10 +68,10 @@ public class PatientController {
         return "redirect:/findPatient/" + patient.getId();
     }
 
-    @GetMapping("/deletePatient/{id}")
+    @PostMapping("/deletePatient/{id}")
     public String deletePatient(@PathVariable("id") int id, Model model, RedirectAttributes redirAttr) throws SQLException {
         redirAttr.addFlashAttribute("error", service.deletePatient(id));
-        return "redirect:/main";
+        return "redirect:/allPatients";
     }
 
     @PostMapping("/findPatient")

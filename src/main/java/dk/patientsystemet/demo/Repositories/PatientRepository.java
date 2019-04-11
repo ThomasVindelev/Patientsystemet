@@ -60,7 +60,7 @@ public class PatientRepository {
 
     public void deletePatient(int id) throws SQLException {
         String sql = "DELETE FROM patient WHERE id = ?";
-        //preparedStatement = dbConnect.getConnection().prepareStatement(sql);
+        preparedStatement = dbConnect.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
         preparedStatement.close();

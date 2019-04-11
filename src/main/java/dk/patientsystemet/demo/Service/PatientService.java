@@ -56,11 +56,9 @@ public class PatientService {
     }
 
     public String deletePatient(int id) throws SQLException {
-        if(true) {
-            db.deletePatient(id);
-            return "Success";
-        }
-        return null;
+        db.deletePatient(id);
+        return "Success";
+
     }
 
     public List<Patient> fetchAll() throws SQLException {

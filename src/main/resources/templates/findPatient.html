@@ -401,7 +401,7 @@
             <h2>Delete Patient</h2>
         </div>
         <div class="box-content">
-            <form th:action="@{/deletePatient/{id}(id=${session.patient_id})}"  class="popup-form">
+            <form th:action="@{/deletePatient/{id}(id=${session.patient_id})}"  class="popup-form" method="POST">
                 <h3>Are you sure you want to delete this patient?</h3>
                 <button type="submit">Delete patient</button>
             </form>
