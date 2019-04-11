@@ -2,6 +2,7 @@ package dk.patientsystemet.demo.Controllers;
 
 import dk.patientsystemet.demo.Model.Medicine;
 import dk.patientsystemet.demo.Model.Prescription;
+import dk.patientsystemet.demo.Service.PatientService;
 import dk.patientsystemet.demo.Service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +22,15 @@ public class PrescriptionController {
     @Autowired
     PrescriptionService prescriptionService;
 
+    @Autowired
+    PatientService patientService;
+
     @GetMapping("/prescription/{id}")
-    public String findPrescriptionById(@PathVariable("id") int id, Model model) {
+    public String findPrescriptionById(@PathVariable("id") int id, Model model, Prescription prescription) throws SQLException {
         model.addAttribute("prescription", prescriptionService.findPrescriptionById(id));
         model.addAttribute("medicine", prescriptionService.findMedicineByPrescription(id));
         model.addAttribute("allMedicine", prescriptionService.getAllMedicine());
+        model.addAttribute("patient", patientService.findPatient(1));
         return "prescription";
     }
     @PostMapping("/createPrescription")

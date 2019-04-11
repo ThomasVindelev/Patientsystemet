@@ -45,7 +45,7 @@
                         <tr>
                             <td th:text="${prescription.date}"></td>
                             <td th:text="${prescription.description}"></td>
-                            <td class="text-center"><a th:href="@{/prescription/{id}(id=${prescription.id})}"><i class="fas fa-eye"></i></a></td>
+                            <td class="text-center"><a th:href="@{/findPatient/{id}(id=${prescription.patientId})}"><i class="fas fa-eye"></i></a></td>
                         </tr>
                     </div>
                 </table>

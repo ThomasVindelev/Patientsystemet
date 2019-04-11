@@ -47,6 +47,7 @@ public class PrescriptionService {
                 pre.setId(rs.getInt("prescription.id"));
                 pre.setDescription(rs.getString("prescription.description"));
                 pre.setDate(rs.getString("prescription.date"));
+                pre.setPatientId(rs.getInt("prescription.fk_patient"));
                 prescriptionsList.add(pre);
             }
             return prescriptionsList;

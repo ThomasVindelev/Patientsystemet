@@ -29,7 +29,8 @@ public class PrescriptionRepository {
             String sql = "SELECT * FROM prescription " +
                     "INNER JOIN patient ON prescription.fk_patient = patient.id " +
                     "INNER JOIN users ON prescription.fk_users = users.id " +
-                    "WHERE prescription.fk_patient = ?";
+                    "WHERE prescription.fk_patient = ? " +
+                    "ORDER BY prescription.date DESC ";
 
             /*String sql =    "SELECT * FROM junction_prescription_and_medicine " +
                             "INNER JOIN prescription ON junction_prescription_and_medicine.fk_prescription = prescription.id " +
