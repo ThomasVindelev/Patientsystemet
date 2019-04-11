@@ -4,12 +4,21 @@
 
 <section class="content">
     <div class="main-box">
-        <h3>Watch consultation</h3>
-        <hr>
-        <p th:text="${consultation.patientName}"></p>
-        <p th:text="${consultation.description}"></p>
-        <p th:text="${consultation.conclusion}"></p>
-        <p th:text="${consultation.date}"></p>
+        <div class="box-header">
+            <h3>Watch consultation</h3>
+        </div>
+        <div class="box-content">
+            <table>
+                <tr>
+                    <th>nam</th>
+                </tr>
+            </table>
+            <p th:text="${consultation.patientName}"></p>
+            <p th:text="${consultation.description}"></p>
+            <p th:text="${consultation.conclusion}"></p>
+            <p th:text="${consultation.date}"></p>
+            <p th:text="${consultation.time}"></p>
+        </div>
     </div>
 
 

@@ -21,10 +21,11 @@ public class ConsultationRepository {
     }
 
     public void createConsultation(Consultation consultation) throws SQLException {
-        String sql = "INSERT INTO consultation (description, date, fk_patient, fk_users) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO consultation (description, date, time, fk_patient, fk_users) VALUES (?, ?, ?, ?, ?)";
         preparedStatement = dbConnect.prepareStatement(sql);
         preparedStatement.setString(1, consultation.getDescription());
-        preparedStatement.setString(3, consultation.getDate());
+        preparedStatement.setString(2, consultation.getDate());
+        preparedStatement.setString(3, consultation.getTime());
         preparedStatement.setInt(4, consultation.getPatientId());
         preparedStatement.setInt(5, consultation.getUserId());
         preparedStatement.execute();
@@ -63,12 +64,13 @@ public class ConsultationRepository {
     }
 
     public void editConsultation(Consultation consultation) throws SQLException {
-        String sql = "UPDATE consultation SET description=?,conclusion=?, date=? WHERE id=?";
+        String sql = "UPDATE consultation SET description=?,conclusion=?, date=?, time=? WHERE id=?";
         preparedStatement = dbConnect.prepareStatement(sql);
         preparedStatement.setString(1, consultation.getDescription());
         preparedStatement.setString(2, consultation.getConclusion());
         preparedStatement.setString(3, consultation.getDate());
-        preparedStatement.setInt(4, consultation.getId());
+        preparedStatement.setString(4, consultation.getTime());
+        preparedStatement.setInt(5, consultation.getId());
         preparedStatement.execute();
         preparedStatement.close();
 

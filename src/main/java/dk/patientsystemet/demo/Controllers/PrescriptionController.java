@@ -46,14 +46,14 @@ public class PrescriptionController {
         return "redirect:/editPrescription/" + id;
     }
     @GetMapping("/deleteMedicine/{medId}/{preId}")
-    public String deleteMedicine(@PathVariable("medId") int medId, @PathVariable("preId") int preId, Medicine medicine, RedirectAttributes redirAttr) {
-        redirAttr.addFlashAttribute("error", prescriptionService.deleteMedicine(medId, preId));
+    public String deleteMedicine(@PathVariable("medId") int medId, @PathVariable("preId") int preId, Medicine medicine, RedirectAttributes redirAttr, HttpSession session) {
+        redirAttr.addFlashAttribute("error", prescriptionService.deleteMedicine(medId, preId, session));
         return "redirect:/editPrescription/" + preId;
     }
 
     @GetMapping("/deletePrescription/{id}")
     public String deletePrescription(@PathVariable("id") int preId, RedirectAttributes redirAttr, HttpSession session) {
-        redirAttr.addFlashAttribute("error", prescriptionService.deletePrescription(preId));
+        redirAttr.addFlashAttribute("error", prescriptionService.deletePrescription(preId, session));
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
@@ -66,7 +66,7 @@ public class PrescriptionController {
     }
 
     @PostMapping("/editPrescription/{id}")
-    public String editPrescriptionById(@PathVariable("id") int id, Model model, RedirectAttributes redirAttr, Prescription prescription) {
+    public String editPrescriptionById(@PathVariable("id") int id, RedirectAttributes redirAttr, Prescription prescription) {
         redirAttr.addFlashAttribute("error", prescriptionService.editPrescription(prescription));
         return "redirect:/editPrescription/" + id;
     }

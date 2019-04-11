@@ -10,17 +10,21 @@ public class Consultation {
     private String description;
     private String conclusion;
     private String date;
+    private String time;
 
     public Consultation() {
     }
 
-    public Consultation(int id, String patientName, int cprNumber, String description, String conclusion, String date) {
+    public Consultation(int id, int patientId, int userId, String patientName, int cprNumber, String description, String conclusion, String date, String time) {
         this.id = id;
+        this.patientId = patientId;
+        this.userId = userId;
         this.patientName = patientName;
         this.cprNumber = cprNumber;
         this.description = description;
         this.conclusion = conclusion;
         this.date = date;
+        this.time = time;
     }
 
     public int getId() {
@@ -31,6 +35,22 @@ public class Consultation {
         this.id = id;
     }
 
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public String getPatientName() {
         return patientName;
     }
@@ -39,11 +59,11 @@ public class Consultation {
         this.patientName = patientName;
     }
 
-    public int getCpr() {
+    public int getCprNumber() {
         return cprNumber;
     }
 
-    public void setCpr(int cprNumber) {
+    public void setCprNumber(int cprNumber) {
         this.cprNumber = cprNumber;
     }
 
@@ -71,19 +91,11 @@ public class Consultation {
         this.date = date;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public String getTime() {
+        return time;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setTime(String time) {
+        this.time = time;
     }
 }

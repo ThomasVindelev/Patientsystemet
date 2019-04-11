@@ -4,10 +4,13 @@
 
 <section class="content">
     <div class="main-box">
-        <h3>All your consultations</h3>
-        <hr>
-        <div th:each="consultation : ${consultations}">
-            <p th:text="${consultation.description}"></p>
+        <div class="box-header">
+            <h3>All your consultations</h3>
+        </div>
+        <div class="box-content">
+            <div th:each="consultation : ${consultations}">
+                <p th:text="${consultation.description}"></p>
+            </div>
         </div>
     </div>
 </section>

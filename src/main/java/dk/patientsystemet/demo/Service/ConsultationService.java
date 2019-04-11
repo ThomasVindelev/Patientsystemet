@@ -5,6 +5,7 @@ import dk.patientsystemet.demo.Repositories.ConsultationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class ConsultationService {
             consultation.setId(rs.getInt("consultation.id"));
             consultation.setDescription(rs.getString("consultation.description"));
             consultation.setDate(rs.getString("consultation.date"));
+            consultation.setTime(rs.getString("consultation.time"));
             consultationList.add(consultation);
         }
         return consultationList;
@@ -42,21 +44,23 @@ public class ConsultationService {
             consultation.setId(rs.getInt("consultation.id"));
             consultation.setDescription(rs.getString("consultation.description"));
             consultation.setDate(rs.getString("consultation.date"));
+            consultation.setTime(rs.getString("consultation.time"));
             consultationList.add(consultation);
         }
         return consultationList;
     }
 
-    public String deleteConsultation(int id) throws SQLException {
-        db.deleteConsultation(id);
-        return "Success";
+    public String deleteConsultation(int id, HttpSession session) throws SQLException {
+        if (session.getAttribute("role").equals("Doctor")) {
+            db.deleteConsultation(id);
+            return "Success";
+        }
+        return "Error";
     }
 
     public String createConsultation(Consultation consultation) throws SQLException {
         if(val.biggerOrEqualToNumber(consultation.getDescription(), 1)) {
             return "Fill out description";
-        } else if(val.biggerOrEqualToNumber(consultation.getConclusion(), 1)) {
-            return "Fill out conclusion";
         } else {
             db.createConsultation(consultation);
             return "Success";
@@ -96,6 +100,7 @@ public class ConsultationService {
             consultation.setConclusion(rs.getString("consultation.conclusion"));
             consultation.setDescription(rs.getString("consultation.description"));
             consultation.setDate(rs.getString("consultation.date"));
+            consultation.setTime(rs.getString("consultation.time"));
             return consultation;
         }
 

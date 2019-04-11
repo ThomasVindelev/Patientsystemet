@@ -11,7 +11,7 @@
     <div class="patient-box-information" th:each="info : ${patient}">
         <div class="box-header">
             <h3>Patient Information</h3>
-            <button class="special-button" id="edit-patient-btn" type="button">Edit Patient Information</button>
+            <button class="special-button" id="edit-patient-btn" type="button" th:if="${session.role == 'Doctor'}">Edit Patient Information</button>
         </div>
         <div class="box-content">
             <table>
@@ -34,7 +34,7 @@
                     <td>Birth date: <span th:text="${info.birthDate}"></span></td>
                 </tr>
             </table>
-            <button class="special-button red-bg" id="delete-patient-btn">Delete Patient</button>
+            <button class="special-button red-bg" id="delete-patient-btn" th:if="${session.role == 'Doctor'}">Delete Patient</button>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
     <div class="patient-box-information">
         <div class="box-header">
             <h3>Consultations</h3>
-            <button class="special-button" id="consultation-btn">Create New Consultations</button>
+            <button class="special-button" id="consultation-btn" th:if="${session.role == 'Doctor'}">Create New Consultations</button>
         </div>
         <div class="box-content">
             <table>
@@ -53,16 +53,16 @@
                     <th class="text-center">Links</th>
                 </tr>
                 <tr th:each="consultation : ${consultations}">
-                    <td th:text="${consultation.date}"></td>
+                    <td th:text="${consultation.date} + ' ' + ${consultation.time}"></td>
                     <td th:text="${consultation.description}"></td>
                     <td class="text-center">
                         <a th:href="@{/watchConsultation/{id}(id=${consultation.id})}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a th:href="@{/editConsultation/{id}(id=${consultation.id})}">
+                        <a th:href="@{/editConsultation/{id}(id=${consultation.id})}" th:if="${session.role == 'Doctor'}">
                             <i class="blue fas fa-edit"></i>
                         </a>
-                        <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}">
+                        <a th:href="@{/deleteConsultation/{id}(id=${consultation.id})}" th:if="${session.role == 'Doctor'}">
                             <i class="red fas fa-times"></i>
                         </a>
                     </td>
@@ -73,7 +73,7 @@
 
     <!-- ----- DIAGNOSIS ----- -->
 
-    <div class="patient-box-information">
+    <div class="patient-box-information" th:if="${session.role == 'Doctor'}">
         <div class="box-header">
             <h3>Diagnosis</h3>
             <button class="special-button" id="diagnosis-btn">Create New Diagnosis</button>
@@ -138,12 +138,12 @@
 
     <!-- ---- NOTES ---- -->
 
-    <div class="patient-box-notes" th:each="infos : ${patient}">
+    <div class="patient-box-notes" th:each="infos : ${patient}" th:if="${session.role == 'Doctor'}">
         <div class="box-header">
             <h3>Patient Journal</h3>
         </div>
         <div class="box-content">
-            <div class="one-third">
+            <div class="one-third" >
                 <form th:action="@{/createNote/{id}(id=${infos.id})}" th:object="${Patient}" method="post" class="popup-form">
                     <textarea name="note" rows="10" cols="30"></textarea>
                     <button type="submit">Click</button>
@@ -237,6 +237,8 @@
                 <input type="text" name="description">
                 <label>Date: </label>
                 <input type="date" name="date">
+                <label>Time: </label>
+                <input type="time" name="time">
                 <button type="submit">Create Consultation</button>
             </form>
         </div>

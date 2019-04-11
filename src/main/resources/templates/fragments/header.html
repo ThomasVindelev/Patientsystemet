@@ -20,7 +20,7 @@
     <nav>
         <ul>
             <a href="/main"><li><i class="fas fa-home"></i>Home</li></a>
-            <a href="/createPatient"><li><i class="fas fa-user"></i>Create Patient</li></a>
+            <a href="/createPatient" th:if="${session.role == 'Doctor'}"><li><i class="fas fa-user" th:if="${session.role == 'Doctor'}"></i>Create Patient</li></a>
             <a href="/allPatients"><li><i class="fas fa-users"></i>All Patients</li></a>
             <a href="/logout"><li><i class="fas fa-sign-out-alt"></i>Log out</li></a>
         </ul>

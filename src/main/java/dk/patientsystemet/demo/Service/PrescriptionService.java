@@ -7,6 +7,7 @@ import dk.patientsystemet.demo.Repositories.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -128,13 +129,19 @@ public class PrescriptionService {
         return "Success";
     }
 
-    public String deleteMedicine(int medId, int preId) {
-        db.deleteMedicine(medId, preId);
-        return "Success";
+    public String deleteMedicine(int medId, int preId, HttpSession session) {
+        if (session.getAttribute("role").equals("Doctor")) {
+            db.deleteMedicine(medId, preId);
+            return "Success";
+        }
+        return "Error";
     }
-    public String deletePrescription(int preId) {
-        db.deletePrescription(preId);
-        return "Success";
+    public String deletePrescription(int preId, HttpSession session) {
+        if (session.getAttribute("role").equals("Doctor")) {
+            db.deletePrescription(preId);
+            return "Success";
+        }
+        return "Error";
     }
     public String editPrescription(Prescription prescription) {
         if (val.biggerOrEqualToNumber(prescription.getDescription(), 2)) {

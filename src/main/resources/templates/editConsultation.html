@@ -3,7 +3,7 @@
 <div th:replace="fragments/header :: header"></div>
 
 <section class="content">
-    <div class="box-holder box-shadow">
+    <div class="box-holder box-shadow" th:if="${session.role == 'Doctor'}">
         <div class="box-header">
             <h3>Edit consultation</h3>
         </div>
@@ -24,6 +24,8 @@
                 <input type="text" name="conclusion" th:value="${details.conclusion}">
                 <label>Date: </label>
                 <input type="date" name="date" th:value="${details.date}">
+                <label>Time: </label>
+                <input type="time" name="time" th:value="${details.time}">
                 <button type="submit">Edit Consultation</button>
             </form>
         </div>

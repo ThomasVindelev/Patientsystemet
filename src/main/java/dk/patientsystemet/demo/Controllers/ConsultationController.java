@@ -22,7 +22,7 @@ public class ConsultationController {
 
     @GetMapping("/deleteConsultation/{id}")
     public String deleteConsultation(@PathVariable("id") int id, HttpSession session, RedirectAttributes redirAttr) throws SQLException {
-        redirAttr.addFlashAttribute("error", service.deleteConsultation(id));
+        redirAttr.addFlashAttribute("error", service.deleteConsultation(id, session));
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
