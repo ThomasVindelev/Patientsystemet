@@ -20,7 +20,7 @@
                         <tr>
                             <td th:text="${consultation.patientName}"></td>
                             <td th:text="${consultation.date}"></td>
-                            <td class="text-center"><a href="@{/watchConsultation/{id}(id=${consultation.id})}"><i class="fas fa-eye"></i></a></td>
+                            <td class="text-center"><a th:href="@{/watchConsultation/{id}(id=${consultation.id})}"><i class="fas fa-eye"></i></a></td>
                         </tr>
                     </div>
 
