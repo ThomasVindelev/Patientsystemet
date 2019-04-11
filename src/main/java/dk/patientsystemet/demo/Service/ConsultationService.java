@@ -78,11 +78,11 @@ public class ConsultationService {
         }
     }
     public List<Consultation> upcomingConsultations(int userId, HttpSession session) throws SQLException {
-        ResultSet rs = null;
+        ResultSet rs;
         if (session.getAttribute("role").equals("Doctor")) {
             rs = db.upcomingConsultations(userId);
         }  else {
-           rs = db.fetchAll();
+            rs = db.fetchAll();
         }
         List<Consultation> ucList = new ArrayList<>();
         while (rs.next()) {

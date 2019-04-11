@@ -46,7 +46,7 @@ public class LoginController {
         Integer userId = (Integer) session.getAttribute("id");
         model.addAttribute("title", "Main");
         model.addAttribute("consultations", consultationService.upcomingConsultations(userId, session));
-        model.addAttribute("prescriptions", prescriptionService.recentPrescriptions(userId));
+        model.addAttribute("prescriptions", prescriptionService.recentPrescriptions(userId, session));
         return "main";
     }
 

@@ -1,6 +1,13 @@
 <html xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+<script>
+
+
+
+</script>
+
 <div th:fragment="header" th:remove="tag">
-    <div th:if="${error != null}" class="error-msg" >
+    <div th:if="${error != null}" class="error-msg" id="fadeout">
         <div th:if="${error == 'Success'}" class="green-bg">
             <p th:text="${error}"></p>
         </div>
@@ -9,3 +16,4 @@
         </div>
     </div>
 </div>
+

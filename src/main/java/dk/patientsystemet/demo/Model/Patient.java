@@ -14,11 +14,15 @@ public class Patient {
     private String note;
     private String date;
     private String searchword;
+    private int zip;
+    private String address;
+    private String city;
+    private int phone;
 
     public Patient() {
     }
 
-    public Patient(int id, int noteId, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date, String searchword) {
+    public Patient(int id, int noteId, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date, String searchword, int zip, String address, String city, int phone) {
         this.id = id;
         this.noteId = noteId;
         this.age = age;
@@ -31,6 +35,10 @@ public class Patient {
         this.note = note;
         this.date = date;
         this.searchword = searchword;
+        this.zip = zip;
+        this.address = address;
+        this.city = city;
+        this.phone = phone;
     }
 
     public int getId() {
@@ -127,5 +135,37 @@ public class Patient {
 
     public void setSearchword(String searchword) {
         this.searchword = searchword;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 }

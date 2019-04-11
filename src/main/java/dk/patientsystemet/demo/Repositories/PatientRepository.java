@@ -22,7 +22,7 @@ public class PatientRepository {
     }
 
     public void createPatient(Patient patient) throws SQLException {
-        String sql = "INSERT INTO patient (firstname, lastname, height, weight, birthdate, cpr) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO patient (firstname, lastname, height, weight, birthdate, cpr, address, zip, city, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         preparedStatement = dbConnect.prepareStatement(sql);
         preparedStatement.setString(1, patient.getFirstName());
         preparedStatement.setString(2, patient.getLastName());
@@ -30,6 +30,10 @@ public class PatientRepository {
         preparedStatement.setInt(4, patient.getWeight());
         preparedStatement.setString(5, patient.getBirthDate());
         preparedStatement.setInt(6, patient.getCpr());
+        preparedStatement.setString(7, patient.getAddress());
+        preparedStatement.setInt(8, patient.getZip());
+        preparedStatement.setString(9, patient.getCity());
+        preparedStatement.setInt(10, patient.getPhone());
         preparedStatement.execute();
         preparedStatement.close();
     }
@@ -47,13 +51,17 @@ public class PatientRepository {
     }
 
     public void editPatient(Patient patient) throws SQLException {
-        String sql = "UPDATE patient SET firstname = ?, lastname = ?, height = ?, weight = ?, cpr = ? WHERE id = " + patient.getId();
+        String sql = "UPDATE patient SET firstname = ?, lastname = ?, height = ?, weight = ?, cpr = ?, address = ?, zip = ?, city = ?, phone = ? WHERE id = " + patient.getId();
         preparedStatement = dbConnect.prepareStatement(sql);
         preparedStatement.setString(1, patient.getFirstName());
         preparedStatement.setString(2, patient.getLastName());
         preparedStatement.setInt(3, patient.getHeight());
         preparedStatement.setInt(4, patient.getWeight());
         preparedStatement.setInt(5, patient.getCpr());
+        preparedStatement.setString(6, patient.getAddress());
+        preparedStatement.setInt(7, patient.getZip());
+        preparedStatement.setString(8, patient.getCity());
+        preparedStatement.setInt(9, patient.getPhone());
         preparedStatement.execute();
         preparedStatement.close();
     }

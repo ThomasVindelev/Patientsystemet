@@ -7,6 +7,12 @@
   font-family: Arial;
 }
 
+#fadeout {
+  opacity: 1;
+  display: block;
+  transition: 1s opacity;
+}
+
 .red {
   color: $ton-red;
 }

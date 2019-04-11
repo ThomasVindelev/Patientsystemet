@@ -33,6 +33,12 @@
                 <tr>
                     <td>Birth date: <span th:text="${info.birthDate}"></span></td>
                 </tr>
+                <tr>
+                    <td>City: <span th:text="${info.city}"></span>, <span th:text="${info.zip}"></span></td>
+                </tr>
+                <tr>
+                    <td>Address: <span th:text="${info.address}"></span></td>
+                </tr>
             </table>
             <button class="special-button red-bg" id="delete-patient-btn" th:if="${session.role == 'Doctor'}">Delete Patient</button>
         </div>
@@ -368,6 +374,16 @@
                 <input type="text" th:value="${patient.weight}" name="weight" minlength="1" required>
                 <label for="">CPR:</label>
                 <input type="text" th:value="${patient.cpr}" name="cpr" minlength="1" required>
+                <label>City <span class="red">*</span></label><br>
+                <input type="text" th:value="${patient.city}"  placeholder="City" name="city"><br>
+                <label>Zip <span class="red">*</span></label><br>
+                <input type="number" th:value="${patient.zip}"  placeholder="Zip" name="zip" value="0" minlength="1" required><br>
+                <label>Address <span class="red">*</span></label><br>
+                <input type="text" th:value="${patient.address}"  placeholder="Address" name="address"><br>
+                <label>Phone Number <span class="red">*</span></label><br>
+                <input type="number" th:value="${patient.phone}"  placeholder="Phone Number" name="phone" value="0" minlength="1" required><br>
+                <label>Note</label><br>
+                <input type="text" th:value="${patient.note}"  placeholder="Note" name="note" >
                 <button type="submit">Edit patient</button>
             </form>
         </div>

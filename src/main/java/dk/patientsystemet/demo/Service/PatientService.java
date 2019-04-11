@@ -34,7 +34,7 @@ public class PatientService {
             return "Error: CPR number not valid";
         } else {
             db.createPatient(patient);
-            return "Patient has successfully been created!";
+            return "Success";
         }
     }
 
@@ -109,6 +109,10 @@ public class PatientService {
             patient.setCpr(rs.getInt("cpr"));
             patient.setNote(rs.getString("patient_note.note"));
             patient.setDate(rs.getString("date"));
+            patient.setCity(rs.getString("city"));
+            patient.setZip(rs.getInt("zip"));
+            patient.setAddress(rs.getString("address"));
+            patient.setPhone(rs.getInt("phone"));
             return patient;
         } else {
             return null;

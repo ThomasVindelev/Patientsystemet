@@ -39,8 +39,13 @@ public class PrescriptionService {
         }
         return null;
     }
-    public List<Prescription> recentPrescriptions(int id) {
-        ResultSet rs = db.recentPrescriptions(id);
+    public List<Prescription> recentPrescriptions(int id, HttpSession session) {
+        ResultSet rs;
+        if(session.getAttribute("role").equals("Doctor")) {
+            rs = db.recentPrescriptions(id);
+        } else {
+            rs = db.recentPrescriptionsLimit();
+        }
         List<Prescription> prescriptionsList = new ArrayList<>();
         try {
             while (rs.next()) {
