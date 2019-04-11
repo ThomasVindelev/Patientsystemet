@@ -77,14 +77,20 @@ public class ConsultationService {
             return "Success";
         }
     }
-    public List<Consultation> upcomingConsultations(int userId) throws SQLException {
-        ResultSet rs = db.upcomingConsultations(userId);
+    public List<Consultation> upcomingConsultations(int userId, HttpSession session) throws SQLException {
+        ResultSet rs = null;
+        if (session.getAttribute("role").equals("Doctor")) {
+            rs = db.upcomingConsultations(userId);
+        }  else {
+           rs = db.fetchAll();
+        }
         List<Consultation> ucList = new ArrayList<>();
         while (rs.next()) {
             Consultation consultation = new Consultation();
             consultation.setId(rs.getInt("consultation.id"));
             consultation.setPatientName(rs.getString("patient.firstname"));
             consultation.setDate(rs.getString("consultation.date"));
+            consultation.setTime(rs.getString("consultation.time"));
             ucList.add(consultation);
         }
         return ucList;

@@ -63,6 +63,12 @@ public class ConsultationRepository {
         return preparedStatement.executeQuery();
     }
 
+    public ResultSet fetchAll() throws SQLException {
+        String sql = "SELECT * FROM consultation INNER JOIN patient ON consultation.fk_patient = patient.id ORDER BY consultation.date ASC LIMIT 5";
+        preparedStatement = dbConnect.prepareStatement(sql);
+        return preparedStatement.executeQuery();
+    }
+
     public void editConsultation(Consultation consultation) throws SQLException {
         String sql = "UPDATE consultation SET description=?,conclusion=?, date=?, time=? WHERE id=?";
         preparedStatement = dbConnect.prepareStatement(sql);
