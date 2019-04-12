@@ -28,6 +28,7 @@ public class ConsultationService {
             consultation.setPatientId(rs.getInt("patient.id"));
             consultation.setId(rs.getInt("consultation.id"));
             consultation.setDescription(rs.getString("consultation.description"));
+            consultation.setConclusion("consultation.conclusion");
             consultation.setDate(rs.getString("consultation.date"));
             consultation.setTime(rs.getString("consultation.time"));
             consultationList.add(consultation);
