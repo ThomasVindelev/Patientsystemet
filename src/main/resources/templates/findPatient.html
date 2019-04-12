@@ -39,6 +39,9 @@
                 <tr>
                     <td>Address: <span th:text="${info.address}"></span></td>
                 </tr>
+                <tr>
+                    <td>Phone nr.: <span th:text="${info.phone}"></span></td>
+                </tr>
             </table>
             <button class="special-button red-bg" id="delete-patient-btn" th:if="${session.role == 'Doctor'}">Delete Patient</button>
         </div>
