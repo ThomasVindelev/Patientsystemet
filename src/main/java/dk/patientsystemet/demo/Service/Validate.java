@@ -7,8 +7,9 @@ import java.util.Random;
 @Service
 public class Validate {
 
-    Random random;
-    int randomNumber;
+    private Random random;
+    private int randomNumber;
+    private String cprString;
 
     public boolean biggerOrEqualToNumber(String string, int min) {
         if (string.length() <= min) {
@@ -28,6 +29,15 @@ public class Validate {
 
     public boolean betweenInt(int value, int min, int max) {
         if (value < min || value >= max) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validateCPR(int cpr) {
+        cprString = Integer.toString(cpr);
+        if (cprString.length() == 4) {
             return true;
         } else {
             return false;

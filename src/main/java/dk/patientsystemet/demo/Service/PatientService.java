@@ -30,7 +30,7 @@ public class PatientService {
             return "Error: Not a valid height";
         } else if(val.betweenInt(patient.getWeight(), 1, 300)){
             return "Error: Not a valid weight";
-        } else if(val.betweenInt(patient.getCpr(), 999, 10000)) {
+        } else if(val.validateCPR(patient.getCpr())) {
             return "Error: CPR number not valid";
         } else {
             db.createPatient(patient);
