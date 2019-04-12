@@ -118,7 +118,7 @@ public class PrescriptionService {
     public String createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
         if(val.betweenString(prescription.getDescription(), 3, 999)) {
             return "Error: Description has to be atleast 3 characters";
-        } else {
+        } else if (val.tjekRecept()) {
             db.createPrescription(prescription);
             ResultSet rs = db.findPrescriptionByLastUser(userID);
             int preId = 0;
@@ -127,6 +127,8 @@ public class PrescriptionService {
             }
             db.createMedicine(medId, preId);
             return "Success";
+        } else {
+            return "Prescription rejected by TjekRecept";
         }
     }
     public String addMedicine(int medId, int preId) {
