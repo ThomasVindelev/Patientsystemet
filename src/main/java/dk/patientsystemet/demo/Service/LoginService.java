@@ -14,6 +14,10 @@ public class LoginService {
     @Autowired
     LoginRepository loginRepository;
 
+    /**
+    Verifies user from login form
+     */
+
     public boolean verifyUser(User user) throws SQLException {
         ResultSet rs = loginRepository.userLogin(user);
         if (rs.next()) {

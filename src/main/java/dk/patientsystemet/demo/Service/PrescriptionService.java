@@ -2,7 +2,6 @@ package dk.patientsystemet.demo.Service;
 
 import dk.patientsystemet.demo.Model.Medicine;
 import dk.patientsystemet.demo.Model.Prescription;
-import dk.patientsystemet.demo.Repositories.ConsultationRepository;
 import dk.patientsystemet.demo.Repositories.PrescriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -135,20 +134,25 @@ public class PrescriptionService {
     /**
      * validates input to crate new prescription
      **/
-    public String createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
-        if(val.betweenString(prescription.getDescription(), 3, 999)) {
-            return "Error: Description has to be atleast 3 characters";
-        } else if (val.tjekRecept()) {
-            db.createPrescription(prescription);
-            ResultSet rs = db.findPrescriptionByLastUser(userID);
-            int preId = 0;
-            while (rs.next()) {
-                preId = rs.getInt("id");
+    public String createPrescription(Prescription prescription, int medId, int userID) {
+        try {
+            if(val.betweenString(prescription.getDescription(), 3, 999)) {
+                return "Error: Description has to be atleast 3 characters";
+            } else if (val.tjekRecept()) {
+                db.createPrescription(prescription);
+                ResultSet rs = db.findPrescriptionByLastUser(userID);
+                int preId = 0;
+                while (rs.next()) {
+                    preId = rs.getInt("id");
+                }
+                db.createMedicine(medId, preId);
+                return "Success";
+            } else {
+                return "Prescription rejected by TjekRecept";
             }
-            db.createMedicine(medId, preId);
-            return "Success";
-        } else {
-            return "Prescription rejected by TjekRecept";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
     public String addMedicine(int medId, int preId) {

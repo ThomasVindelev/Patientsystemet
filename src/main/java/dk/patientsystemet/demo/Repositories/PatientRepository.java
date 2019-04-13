@@ -21,6 +21,10 @@ public class PatientRepository {
                 "Ny19sR!!9TZ2");
     }
 
+    /**
+    Create patient in the database
+     */
+
     public void createPatient(Patient patient) throws SQLException {
         String sql = "INSERT INTO patient (firstname, lastname, height, weight, birthdate, cpr, address, zip, city, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         preparedStatement = dbConnect.prepareStatement(sql);
@@ -38,6 +42,10 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    /**
+    Search function in the "all patients" list
+     */
+
     public ResultSet searchPatientList(String searchword) throws SQLException {
         String sql = "SELECT * FROM patient " +
                 "WHERE firstname LIKE ? " +
@@ -49,6 +57,10 @@ public class PatientRepository {
         preparedStatement.setString(3, "%"+searchword+"%");
         return preparedStatement.executeQuery();
     }
+
+    /**
+    Edit patient by ID
+     */
 
     public void editPatient(Patient patient) throws SQLException {
         String sql = "UPDATE patient SET firstname = ?, lastname = ?, height = ?, weight = ?, cpr = ?, address = ?, zip = ?, city = ?, phone = ? WHERE id = " + patient.getId();
@@ -66,6 +78,10 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    /**
+    Deletes patient from database
+     */
+
     public void deletePatient(int id) throws SQLException {
         String sql = "DELETE FROM patient WHERE id = ?";
         preparedStatement = dbConnect.prepareStatement(sql);
@@ -74,12 +90,20 @@ public class PatientRepository {
         preparedStatement.close();
     }
 
+    /**
+    Searches for patient by CPR number and returns ID
+     */
+
     public ResultSet searchPatient(Patient patient) throws SQLException {
         String sql = "SELECT id FROM patient WHERE cpr=?";
         preparedStatement = dbConnect.prepareStatement(sql);
         preparedStatement.setString(1, patient.getCpr());
         return preparedStatement.executeQuery();
     }
+
+    /**
+    Grabs the ID returned from the function above and returns patient information
+     */
 
     public ResultSet findPatient(int id) throws SQLException {
         String sql = "SELECT * FROM patient LEFT JOIN patient_note ON patient.id = patient_note.fk_patient WHERE patient.id=?";
@@ -88,6 +112,10 @@ public class PatientRepository {
         return preparedStatement.executeQuery();
     }
 
+    /**
+    find note by patient ID
+     */
+
     public ResultSet findPatientNote(int id) throws SQLException {
         String sql = "SELECT * FROM patient_note WHERE patient_note.fk_patient=?";
         preparedStatement = dbConnect.prepareStatement(sql);
@@ -95,11 +123,19 @@ public class PatientRepository {
         return preparedStatement.executeQuery();
     }
 
+    /**
+    Returns a ResultSet of all patients
+     */
+
     public ResultSet allPatients() throws SQLException {
         String sql = "SELECT * FROM patient";
         preparedStatement = dbConnect.prepareStatement(sql);
         return preparedStatement.executeQuery();
     }
+
+    /**
+    Assigns note to patient
+     */
 
     public void createNote(Patient patient, int id) throws SQLException {
         String sql = "INSERT INTO patient_note (note, fk_patient) VALUES (?,?)";
@@ -109,6 +145,10 @@ public class PatientRepository {
         preparedStatement.execute();
         preparedStatement.close();
     }
+
+    /**
+    Delete note from patient
+     */
 
     public void deleteNote(int id) throws SQLException {
         String sql = "DELETE FROM patient_note where id=?";

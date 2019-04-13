@@ -11,6 +11,10 @@ public class Validate {
     private int randomNumber;
     private String cprString;
 
+    /**
+     Makes a series of checks on the given data
+     */
+
     public boolean biggerOrEqualToNumber(String string, int min) {
         if (string.length() <= min) {
             return true;
@@ -60,6 +64,10 @@ public class Validate {
             return true;
         }
     }
+
+    /**
+     The "external" system TjekRecept. Rejects prescriptions in 5% of all cases
+     */
 
     public boolean tjekRecept() {
         randomNumber = random.nextInt(20);
