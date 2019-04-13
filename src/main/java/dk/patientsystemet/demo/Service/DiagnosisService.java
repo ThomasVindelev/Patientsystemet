@@ -16,6 +16,10 @@ public class DiagnosisService {
     @Autowired
     DiagnosisRepository db;
 
+    /**
+     Gets all diagnoses assigned to a specific patient
+     */
+
     public List<Diagnosis> getDiagnosisByPatient(int id, int choice) throws SQLException {
         ResultSet rs = db.getDiagnosisById(id, choice);
         List<Diagnosis> diagnosisList = new ArrayList<>();
@@ -33,6 +37,10 @@ public class DiagnosisService {
         return diagnosisList;
     }
 
+    /**
+     Gets all effective medicine to a diagnosis
+     */
+
     public List<Medicine> getMedicineByDiagnosis(int id) throws SQLException {
         ResultSet rs = db.getMedicineByDiagnosis(id);
         List<Medicine> medicineList = new ArrayList<>();
@@ -45,6 +53,10 @@ public class DiagnosisService {
         return medicineList;
     }
 
+    /**
+     Returns a list of all diagnoses
+     */
+
     public List<Diagnosis> getDiagnosis() throws SQLException {
         List<Diagnosis> diagnosisList = new ArrayList<>();
         ResultSet rs = db.getDiagnosis();
@@ -56,6 +68,10 @@ public class DiagnosisService {
         }
         return  diagnosisList;
     }
+
+    /**
+     Returns a list of the five most recently assigned diagnoses
+     */
 
     public List<Diagnosis> getNewDiagnosis() throws SQLException {
         List<Diagnosis> diagnosisList = new ArrayList<>();
@@ -71,6 +87,10 @@ public class DiagnosisService {
         }
         return  diagnosisList;
     }
+
+    /**
+     Gets all relevant information about one specific diagnosis
+     */
 
     public Diagnosis viewDiagnosis(int id) {
         Diagnosis diagnosis = new Diagnosis();
@@ -91,13 +111,25 @@ public class DiagnosisService {
         return diagnosis;
     }
 
+    /**
+     Assigns new diagnosis to patient
+     */
+
     public void newDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
         db.createDiagnosis(diagnosis, patientID, userID);
     }
 
+    /**
+     Creates diagnosis not already in database
+     */
+
     public void newUnknownDiagnosis(String diagnosisName) throws SQLException {
         db.createUnknownDiagnosis(diagnosisName);
     }
+
+    /**
+     Deletes an assigned diagnosis
+     */
 
     public void deleteDiagnosis(int id) throws SQLException {
         db.deleteDiagnosis(id);

@@ -18,6 +18,10 @@ public class DiagnosisRepository {
                 "Ny19sR!!9TZ2");
     }
 
+    /**
+     Gets specific diagnosis depending on choice
+     */
+
     public ResultSet getDiagnosisById(int id, int choice) throws SQLException {
         String sql;
         if (choice == 1) {
@@ -37,7 +41,9 @@ public class DiagnosisRepository {
         return preparedStatement.executeQuery();
     }
 
-
+    /**
+     Gets medicine assigned to a diagnosis
+     */
 
     public ResultSet getMedicineByDiagnosis(int id) {
         String sql = "SELECT * FROM junction_diagnosis_and_medicine " +
@@ -52,11 +58,19 @@ public class DiagnosisRepository {
         }
     }
 
+    /**
+     Gets all diagnoses
+     */
+
     public ResultSet getDiagnosis() throws SQLException {
         String sql = "SELECT * FROM diagnosis_names";
         preparedStatement = dbConnect.prepareStatement(sql);
         return preparedStatement.executeQuery();
     }
+
+    /**
+     Gets the five most recently assigned diagnoses
+     */
 
     public ResultSet getNewDiagnosis() throws SQLException {
         String sql = "SELECT * FROM diagnosis " +
@@ -66,6 +80,10 @@ public class DiagnosisRepository {
         preparedStatement = dbConnect.prepareStatement(sql);
         return preparedStatement.executeQuery();
     }
+
+    /**
+     Assigns diagnosis to patient
+     */
 
     public void createDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
         String sql = "INSERT INTO diagnosis (note, fk_patient, fk_users, fk_diagnosis_names) VALUES (?, ?, ?, ?)";
@@ -78,6 +96,10 @@ public class DiagnosisRepository {
         preparedStatement.close();
     }
 
+    /**
+     Creates a new diagnosis not previously in the system
+     */
+
     public void createUnknownDiagnosis(String diagnosisName) throws SQLException {
         String sql = "INSERT INTO diagnosis_names (name) VALUE (?)";
         preparedStatement = dbConnect.prepareStatement(sql);
@@ -85,6 +107,10 @@ public class DiagnosisRepository {
         preparedStatement.execute();
         preparedStatement.close();
     }
+
+    /**
+     Deletes a diagnosis assigned to a patient
+     */
 
     public void deleteDiagnosis(int id) throws SQLException {
         String sql = "DELETE FROM diagnosis WHERE id = ?";
