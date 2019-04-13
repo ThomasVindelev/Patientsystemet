@@ -88,7 +88,7 @@ public class PatientController {
     public String getPatient(@PathVariable("id") int id, Model model, HttpSession session) throws SQLException {
         model.addAttribute("patient", patientService.findPatient(id));
         model.addAttribute("consultations", consultationService.getConsultations(id));
-        model.addAttribute("diagnosis", diagnosisService.getDiagnosisByPatient(id));
+        model.addAttribute("diagnosis", diagnosisService.getDiagnosisByPatient(id, 1));
         model.addAttribute("diagnosisList", diagnosisService.getDiagnosis());
         model.addAttribute("notes", patientService.findPatientNote(id));
         model.addAttribute("prescription", prescriptionService.findPrescriptionByPatient(id));

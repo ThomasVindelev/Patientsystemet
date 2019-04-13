@@ -11,17 +11,17 @@
         <th>Patient</th>
         <th>Doctor</th>
         <th>Note</th>
-        <th></th>
-        <th></th>
+        <th>Medicine</th>
+        <th>Date</th>
     </tr>
 
     <tr>
-        <td th:text="${diagnosis.}"></td>
-        <td th:text="${diagnosis.}"></td>
-        <td th:text="${diagnosis.}"></td>
-        <td th:text="${diagnosis.}"></td>
-        <td th:text="${diagnosis.}"></td>
-        <td th:text="${diagnosis.}"></td>
+        <td th:text="${diagnosis.diagnosisName}"></td>
+        <td th:text="${diagnosis.patientName}"></td>
+        <td th:text="${diagnosis.doctorName}"></td>
+        <td th:text="${diagnosis.note}"></td>
+        <td th:text="${diagnosis.medicineName}"></td>
+        <td th:text="${diagnosis.date}"></td>
     </tr>
 </table>
 </body>
