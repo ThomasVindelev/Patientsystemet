@@ -114,7 +114,7 @@
 
 .main-menu nav ul li:hover { background: #383838; }
 
-.main-menu .logged-in-as { padding: 100% 20px 0 20px; }
+.main-menu .logged-in-as { padding: 20px 20px 0 20px; }
 
 .main-menu .logged-in-as em { line-height: 30px; }
 

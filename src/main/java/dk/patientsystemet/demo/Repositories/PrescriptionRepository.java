@@ -17,11 +17,15 @@ public class PrescriptionRepository {
     private Connection dbConnect;
     private PreparedStatement preparedStatement;
 
-    public PrescriptionRepository() throws SQLException {
-        this.dbConnect = DriverManager.getConnection(
-                "jdbc:mysql://den1.mysql3.gear.host/patientsystem",
-                "patientsystem",
-                "Ny19sR!!9TZ2");
+    public PrescriptionRepository() {
+        try {
+            this.dbConnect = DriverManager.getConnection(
+                    "jdbc:mysql://den1.mysql3.gear.host/patientsystem",
+                    "patientsystem",
+                    "Ny19sR!!9TZ2");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public ResultSet findPrescriptionByPatient(int id) {
