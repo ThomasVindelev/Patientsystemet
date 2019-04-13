@@ -24,7 +24,7 @@ public class LoginRepository {
 
 
         String query = "SELECT * from users " +
-                "INNER JOIN role ON users.fk_role = role.id WHERE email=? AND password=?";
+                "INNER JOIN role ON users.fk_role = role.id WHERE email=? AND password=md5(?)";
 
         preparedStatement = con.prepareStatement(query);
         preparedStatement.setString(1, user.getEmail());

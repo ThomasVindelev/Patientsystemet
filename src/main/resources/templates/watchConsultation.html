@@ -3,21 +3,33 @@
 <div th:replace="fragments/header :: header"></div>
 
 <section class="content">
-    <div class="main-box">
+    <div class="box-holder box-shadow">
         <div class="box-header">
             <h3>Watch consultation</h3>
         </div>
         <div class="box-content">
             <table>
                 <tr>
-                    <th>nam</th>
+                    <td>Patient name: </td>
+                    <td th:text="${consultation.patientName}"></td>
+                </tr>
+                <tr>
+                    <td>Description: </td>
+                    <td th:text="${consultation.description}"></td>
+                </tr>
+                <tr>
+                    <td>Conclusion: </td>
+                    <td th:text="${consultation.conclusion}"></td>
+                </tr>
+                <tr>
+                    <td>Date: </td>
+                    <td th:text="${consultation.date}"></td>
+                </tr>
+                <tr>
+                    <td>Time: </td>
+                    <td th:text="${consultation.time}"></td>
                 </tr>
             </table>
-            <p th:text="${consultation.patientName}"></p>
-            <p th:text="${consultation.description}"></p>
-            <p th:text="${consultation.conclusion}"></p>
-            <p th:text="${consultation.date}"></p>
-            <p th:text="${consultation.time}"></p>
         </div>
     </div>
 

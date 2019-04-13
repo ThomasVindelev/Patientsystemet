@@ -1,32 +1,50 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Patient</th>
-        <th>Doctor</th>
-        <th>Note</th>
-        <th>Medicine</th>
-        <th>Date</th>
-    </tr>
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
 
-    <tr>
-        <td th:text="${diagnosis.diagnosisName}"></td>
-        <td th:text="${diagnosis.patientName}"></td>
-        <td th:text="${diagnosis.doctorName}"></td>
-        <td th:text="${diagnosis.note}"></td>
-        <td>
-           <div th:each="medicine : ${medicineList}">
-               <p th:text="${medicine.name}"></p>
-           </div>
-        </td>
-        <td th:text="${diagnosis.date}"></td>
-    </tr>
-</table>
-</body>
-</html>
+<div th:replace="fragments/header :: header"></div>
+
+
+<section class="content">
+    <div class="box-holder box-shadow">
+        <div class="box-header">
+            <h2>Diagnosis</h2>
+        </div>
+        <div class="box-content">
+            <table>
+                <tr>
+                    <td>Diagnosis name: </td>
+                    <td th:text="${diagnosis.diagnosisName}"></td>
+                </tr>
+                <tr>
+                    <td>Patient name: </td>
+                    <td th:text="${diagnosis.patientName}"></td>
+                </tr>
+
+                <tr>
+                    <td>Doctor: </td>
+                    <td th:text="${diagnosis.doctorName}"></td>
+                </tr>
+
+                <tr>
+                    <td>Note: </td>
+                    <td th:text="${diagnosis.note}"></td>
+                </tr>
+
+                <tr>
+                    <td>Medicine(s): </td>
+                    <td>
+                        <ol>
+                            <div th:each="medicine : ${medicineList}">
+                                <li th:text="${medicine.name}"></li>
+                            </div>
+                        </ol>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Date: </td>
+                    <td th:text="${diagnosis.patientName}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
