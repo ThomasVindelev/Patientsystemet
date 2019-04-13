@@ -28,6 +28,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * finds one prescription based on patient.id which is given in param.
+     **/
     public ResultSet findPrescriptionByPatient(int id) {
         try {
             String sql = "SELECT * FROM prescription " +
@@ -45,6 +48,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * finds 5 most recent Prescriptions created by logged in user.
+     **/
     public ResultSet recentPrescriptions(int id) {
         try {
             String sql = "SELECT * FROM prescription " +
@@ -63,6 +69,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * finds 5 most recent Prescriptions.
+     **/
     public ResultSet recentPrescriptionsLimit() {
         try {
             String sql = "SELECT * FROM prescription " +
@@ -79,6 +88,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * finds one prescription with the prescription.id as param.
+     **/
     public ResultSet findPrescriptionById(int id) {
         try {
             String sql = "SELECT * FROM prescription " +
@@ -95,6 +107,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * finds all medicines baed on prescription id given in param
+     **/
     public ResultSet findMedicineByPrescription(int id) {
         try {
             String sql = "SELECT * FROM junction_prescription_and_medicine " +
@@ -110,6 +125,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * inserts new prescription into db
+     **/
     public void createPrescription(Prescription prescription) {
         try {
             String sql = "INSERT INTO prescription (description, fk_patient, fk_users) VALUES (?, ?, ?)";
@@ -126,6 +144,9 @@ public class PrescriptionRepository {
 
     }
 
+    /**
+     * edited already existing prescription where is equal to prescription id.
+     **/
     public void editPrescription(Prescription prescription) {
         try {
             String sql = "UPDATE prescription SET description = ? WHERE id = ?";
@@ -138,6 +159,10 @@ public class PrescriptionRepository {
             System.out.println(e);
         }
     }
+
+    /**
+     * deletes a prescription where id as param
+     **/
     public void deletePrescription(int preInt) {
         try {
             deleteMedicineOne(preInt);
@@ -151,6 +176,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * deletes all medicines where id = prescription.id
+     **/
     public void deleteMedicineOne(int preId) {
         try {
             String sql = "DELETE FROM junction_prescription_and_medicine WHERE fk_prescription=?";
@@ -163,6 +191,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * receives all medicine
+     **/
     public ResultSet getAllMedicine() {
         try {
             String sql = "SELECT * FROM medicine ORDER BY medicine.name ASC";
@@ -173,6 +204,10 @@ public class PrescriptionRepository {
             return null;
         }
     }
+
+    /**
+     * adds new medicine to junc table with 2 params. medicine.id and prescription.id
+     **/
     public void createMedicine(int medId, int preInt) {
         try {
             String sql = "INSERT INTO patientsystem.junction_prescription_and_medicine (fk_medicine, fk_prescription) VALUES (?, ?)";
@@ -186,6 +221,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * deletes 1 medicine from junc table where medicine = ? and prescription = ? given in param
+     **/
     public void deleteMedicine(int medId, int preInt) {
         try {
             String sql = "DELETE FROM patientsystem.junction_prescription_and_medicine WHERE fk_medicine=? AND fk_prescription=? LIMIT 1";
@@ -199,6 +237,9 @@ public class PrescriptionRepository {
         }
     }
 
+    /**
+     * finds the last created prescription created by user logged in.
+     **/
     public ResultSet findPrescriptionByLastUser(int id) {
         try {
             String sql = "SELECT id FROM prescription WHERE fk_users = ? ORDER BY date DESC LIMIT 1";
