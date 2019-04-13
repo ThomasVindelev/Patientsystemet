@@ -20,72 +20,92 @@ public class DiagnosisService {
      Gets all diagnoses assigned to a specific patient
      */
 
-    public List<Diagnosis> getDiagnosisByPatient(int id, int choice) throws SQLException {
+    public List<Diagnosis> getDiagnosisByPatient(int id, int choice) {
         ResultSet rs = db.getDiagnosisById(id, choice);
         List<Diagnosis> diagnosisList = new ArrayList<>();
-        while (rs.next()) {
-            Diagnosis diagnosis = new Diagnosis();
-            diagnosis.setId(rs.getInt("id"));
-            diagnosis.setNote(rs.getString("note"));
-            diagnosis.setDate(rs.getString("date"));
-            diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
-            diagnosis.setPatientName(rs.getString("patient.firstname"));
-            diagnosis.setDoctorName(rs.getString("users.name"));
-            diagnosis.setNameID(rs.getInt("diagnosis_names.id"));
-            diagnosisList.add(diagnosis);
+        try {
+            while (rs.next()) {
+                Diagnosis diagnosis = new Diagnosis();
+                diagnosis.setId(rs.getInt("id"));
+                diagnosis.setNote(rs.getString("note"));
+                diagnosis.setDate(rs.getString("date"));
+                diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
+                diagnosis.setPatientName(rs.getString("patient.firstname"));
+                diagnosis.setDoctorName(rs.getString("users.name"));
+                diagnosis.setNameID(rs.getInt("diagnosis_names.id"));
+                diagnosisList.add(diagnosis);
+            }
+            return diagnosisList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return diagnosisList;
+        return null;
     }
 
     /**
      Gets all effective medicine to a diagnosis
      */
 
-    public List<Medicine> getMedicineByDiagnosis(int id) throws SQLException {
+    public List<Medicine> getMedicineByDiagnosis(int id) {
         ResultSet rs = db.getMedicineByDiagnosis(id);
         List<Medicine> medicineList = new ArrayList<>();
-        while (rs.next()) {
-            Medicine medicine = new Medicine();
-            medicine.setId(rs.getInt("medicine.id"));
-            medicine.setName(rs.getString("medicine.name"));
-            medicineList.add(medicine);
+        try {
+            while (rs.next()) {
+                Medicine medicine = new Medicine();
+                medicine.setId(rs.getInt("medicine.id"));
+                medicine.setName(rs.getString("medicine.name"));
+                medicineList.add(medicine);
+            }
+            return medicineList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return medicineList;
+        return null;
     }
 
     /**
      Returns a list of all diagnoses
      */
 
-    public List<Diagnosis> getDiagnosis() throws SQLException {
+    public List<Diagnosis> getDiagnosis() {
         List<Diagnosis> diagnosisList = new ArrayList<>();
         ResultSet rs = db.getDiagnosis();
-        while (rs.next()) {
-            Diagnosis diagnosis = new Diagnosis();
-            diagnosis.setId(rs.getInt("id"));
-            diagnosis.setDiagnosisName(rs.getString("name"));
-            diagnosisList.add(diagnosis);
+        try {
+            while (rs.next()) {
+                Diagnosis diagnosis = new Diagnosis();
+                diagnosis.setId(rs.getInt("id"));
+                diagnosis.setDiagnosisName(rs.getString("name"));
+                diagnosisList.add(diagnosis);
+            }
+            return  diagnosisList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return  diagnosisList;
+        return null;
     }
 
     /**
      Returns a list of the five most recently assigned diagnoses
      */
 
-    public List<Diagnosis> getNewDiagnosis() throws SQLException {
+    public List<Diagnosis> getNewDiagnosis() {
         List<Diagnosis> diagnosisList = new ArrayList<>();
         ResultSet rs = db.getNewDiagnosis();
-        while (rs.next()) {
-            Diagnosis diagnosis = new Diagnosis();
-            diagnosis.setId(rs.getInt("id"));
-            diagnosis.setDiagnosisName(rs.getString("name"));
-            diagnosis.setPatientName(rs.getString("firstname"));
-            diagnosis.setDoctorName(rs.getString("users.name"));
-            diagnosis.setNameID(rs.getInt("diagnosis_names.id"));
-            diagnosisList.add(diagnosis);
+        try {
+            while (rs.next()) {
+                Diagnosis diagnosis = new Diagnosis();
+                diagnosis.setId(rs.getInt("id"));
+                diagnosis.setDiagnosisName(rs.getString("name"));
+                diagnosis.setPatientName(rs.getString("firstname"));
+                diagnosis.setDoctorName(rs.getString("users.name"));
+                diagnosis.setNameID(rs.getInt("diagnosis_names.id"));
+                diagnosisList.add(diagnosis);
+            }
+            return  diagnosisList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return  diagnosisList;
+        return null;
     }
 
     /**
@@ -115,7 +135,7 @@ public class DiagnosisService {
      Assigns new diagnosis to patient
      */
 
-    public void newDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {
+    public void newDiagnosis(Diagnosis diagnosis, int patientID, int userID) {
         db.createDiagnosis(diagnosis, patientID, userID);
     }
 
@@ -123,7 +143,7 @@ public class DiagnosisService {
      Creates diagnosis not already in database
      */
 
-    public void newUnknownDiagnosis(String diagnosisName) throws SQLException {
+    public void newUnknownDiagnosis(String diagnosisName) {
         db.createUnknownDiagnosis(diagnosisName);
     }
 
@@ -131,7 +151,7 @@ public class DiagnosisService {
      Deletes an assigned diagnosis
      */
 
-    public void deleteDiagnosis(int id) throws SQLException {
+    public void deleteDiagnosis(int id) {
         db.deleteDiagnosis(id);
     }
 

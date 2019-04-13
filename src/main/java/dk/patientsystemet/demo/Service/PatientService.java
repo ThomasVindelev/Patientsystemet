@@ -21,6 +21,10 @@ public class PatientService {
     @Autowired
     Validate val;
 
+    /**
+    Checks input from patient creation page
+     */
+
     public String createPatient(Patient patient) throws SQLException {
         if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
             return "Error: First name has to be at least 2 characters";
@@ -45,6 +49,10 @@ public class PatientService {
             return "Success";
         }
     }
+
+    /**
+    Checks input from patient edit page
+     */
 
     public String editPatient(Patient patient) throws SQLException {
         if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
@@ -71,11 +79,19 @@ public class PatientService {
         }
     }
 
+    /**
+    Delete patient
+     */
+
     public String deletePatient(int id) throws SQLException {
         db.deletePatient(id);
         return "Success";
 
     }
+
+    /**
+    Returns a list of all patients
+     */
 
     public List<Patient> fetchAll() throws SQLException {
         ResultSet rs = db.allPatients();
@@ -90,6 +106,10 @@ public class PatientService {
         return patientList;
     }
 
+    /**
+    Return patients that matches the search word in a list
+     */
+
     public List<Patient> searchPatientList(String searchword) throws SQLException {
         ResultSet rs = db.searchPatientList(searchword);
         List<Patient> patientList = new ArrayList<>();
@@ -103,6 +123,10 @@ public class PatientService {
         return patientList;
     }
 
+    /**
+    Returns a patient id as int
+     */
+
     public int searchPatient(Patient patient) throws SQLException {
         ResultSet rs = db.searchPatient(patient);
         if (rs.next()) {
@@ -111,6 +135,10 @@ public class PatientService {
             return 0;
         }
     }
+
+    /**
+    Returns a Patient object to the patient page
+     */
 
     public Patient findPatient(int id) throws SQLException {
         ResultSet rs = db.findPatient(id);
@@ -135,6 +163,10 @@ public class PatientService {
         }
     }
 
+    /**
+    Returns a list of notes by patient id
+     */
+
     public List<Note> findPatientNote(int id) throws SQLException {
         ResultSet rs = db.findPatientNote(id);
         List<Note> noteList = new ArrayList<>();
@@ -149,6 +181,10 @@ public class PatientService {
         return noteList;
     }
 
+    /**
+    Checks for input in note creation fields
+     */
+
     public String createNote(Patient patient, int id) throws SQLException {
         if(val.betweenString(patient.getNote(), 3, 360)) {
             return "Error: Note has to be between 3 and 360 characters.";
@@ -157,6 +193,10 @@ public class PatientService {
             return "Success";
         }
     }
+
+    /**
+    Delete note
+     */
 
     public String deleteNote(int id) throws SQLException {
         db.deleteNote(id);
