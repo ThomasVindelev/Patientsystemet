@@ -7,7 +7,7 @@ import java.util.Random;
 @Service
 public class Validate {
 
-    private Random random;
+    private Random random = new Random();
     private int randomNumber;
     private String cprString;
 
@@ -64,9 +64,9 @@ public class Validate {
     public boolean tjekRecept() {
         randomNumber = random.nextInt(20);
         if (randomNumber == 1) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 
