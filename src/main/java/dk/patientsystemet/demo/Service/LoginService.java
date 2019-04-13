@@ -18,18 +18,23 @@ public class LoginService {
     Verifies user from login form
      */
 
-    public boolean verifyUser(User user) throws SQLException {
+    public boolean verifyUser(User user) {
         ResultSet rs = loginRepository.userLogin(user);
-        if (rs.next()) {
-            user.setId(rs.getInt("id"));
-            user.setEmail(rs.getString("email"));
-            user.setName(rs.getString("name"));
-            user.setPassword(rs.getString("password"));
-            user.setRoleName(rs.getString("role.name"));
-            return true;
-        } else {
-            return false;
+        try {
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setEmail(rs.getString("email"));
+                user.setName(rs.getString("name"));
+                user.setPassword(rs.getString("password"));
+                user.setRoleName(rs.getString("role.name"));
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
 }

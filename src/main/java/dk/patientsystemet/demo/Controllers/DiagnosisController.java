@@ -20,7 +20,7 @@ public class DiagnosisController {
     DiagnosisService diagnosisService;
 
     @GetMapping("/getDiagnosis/{id}")
-    public String viewDiagnosis(@PathVariable("id") int id, Model model) throws SQLException {
+    public String viewDiagnosis(@PathVariable("id") int id, Model model) {
         Diagnosis diagnosis = diagnosisService.viewDiagnosis(id);
         model.addAttribute("diagnosis", diagnosis);
         model.addAttribute("medicineList", diagnosisService.getMedicineByDiagnosis(diagnosis.getNameID()));
@@ -33,19 +33,19 @@ public class DiagnosisController {
     }
 
     @PostMapping("/addDiagnosis")
-    public String addDiagnosis(@ModelAttribute Diagnosis diagnosis, HttpSession session) throws SQLException {
+    public String addDiagnosis(@ModelAttribute Diagnosis diagnosis, HttpSession session) {
         diagnosisService.newDiagnosis(diagnosis, diagnosis.getPatientId(), diagnosis.getDoctorId());
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
     @PostMapping("/addUnknownDiagnosis")
-    public String addUnknownDiagnosis(@ModelAttribute Diagnosis diagnosis, String diagnosisName, HttpSession session) throws SQLException {
+    public String addUnknownDiagnosis(@ModelAttribute Diagnosis diagnosis, String diagnosisName, HttpSession session) {
         diagnosisService.newUnknownDiagnosis(diagnosisName);
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
     @GetMapping("/deleteDiagnosis/{id}")
-    public String deleteDiagnosis(@PathVariable("id") int id, HttpSession session) throws SQLException {
+    public String deleteDiagnosis(@PathVariable("id") int id, HttpSession session) {
         diagnosisService.deleteDiagnosis(id);
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }

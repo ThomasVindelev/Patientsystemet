@@ -7,7 +7,7 @@ import java.util.Random;
 @Service
 public class Validate {
 
-    private Random random;
+    private Random random = new Random();
     private int randomNumber;
     private String cprString;
 

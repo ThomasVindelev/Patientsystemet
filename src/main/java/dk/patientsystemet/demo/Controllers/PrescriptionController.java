@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 
 @Controller
 public class PrescriptionController {
@@ -26,7 +25,7 @@ public class PrescriptionController {
     PatientService patientService;
 
     @GetMapping("/prescription/{id}")
-    public String findPrescriptionById(@PathVariable("id") int id, Model model, Prescription prescription) throws SQLException {
+    public String findPrescriptionById(@PathVariable("id") int id, Model model) {
         model.addAttribute("prescription", prescriptionService.findPrescriptionById(id));
         model.addAttribute("medicine", prescriptionService.findMedicineByPrescription(id));
         model.addAttribute("allMedicine", prescriptionService.getAllMedicine());
@@ -34,7 +33,7 @@ public class PrescriptionController {
         return "prescription";
     }
     @PostMapping("/createPrescription")
-    public String createPrescription(@ModelAttribute Prescription prescription, Medicine medicine, HttpSession session, RedirectAttributes redirAttr) throws SQLException {
+    public String createPrescription(@ModelAttribute Prescription prescription, Medicine medicine, HttpSession session, RedirectAttributes redirAttr) {
         redirAttr.addFlashAttribute("error", prescriptionService.createPrescription(prescription, medicine.getMedicineId(), prescription.getDoctorId()));
 
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
@@ -46,7 +45,7 @@ public class PrescriptionController {
         return "redirect:/editPrescription/" + id;
     }
     @GetMapping("/deleteMedicine/{medId}/{preId}")
-    public String deleteMedicine(@PathVariable("medId") int medId, @PathVariable("preId") int preId, Medicine medicine, RedirectAttributes redirAttr, HttpSession session) {
+    public String deleteMedicine(@PathVariable("medId") int medId, @PathVariable("preId") int preId, RedirectAttributes redirAttr, HttpSession session) {
         redirAttr.addFlashAttribute("error", prescriptionService.deleteMedicine(medId, preId, session));
         return "redirect:/editPrescription/" + preId;
     }

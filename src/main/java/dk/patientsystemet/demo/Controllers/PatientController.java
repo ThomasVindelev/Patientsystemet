@@ -1,9 +1,6 @@
 package dk.patientsystemet.demo.Controllers;
 
-import dk.patientsystemet.demo.Model.Diagnosis;
-import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
-import dk.patientsystemet.demo.Model.User;
 import dk.patientsystemet.demo.Service.ConsultationService;
 import dk.patientsystemet.demo.Service.DiagnosisService;
 import dk.patientsystemet.demo.Service.PatientService;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 
 @Controller
 public class PatientController {
@@ -42,50 +38,50 @@ public class PatientController {
     }
 
     @GetMapping("/allPatients")
-    public String allPatients(Model model) throws SQLException {
+    public String allPatients(Model model) {
         model.addAttribute("title", "All patients");
         model.addAttribute("patients", patientService.fetchAll());
         return "patientList";
     }
     @PostMapping("/allPatientSearch")
-    public String allPatientSearchPost(@ModelAttribute Patient patient, Model model) throws SQLException {
+    public String allPatientSearchPost(@ModelAttribute Patient patient) {
         String word = patient.getSearchword();
         return "redirect:/patientListSearch/" + word;
     }
 
     @GetMapping("/patientListSearch/{word}")
-    public String allPatientSearch(@PathVariable("word") String word, @ModelAttribute Patient patient, Model model) throws SQLException {
+    public String allPatientSearch(@PathVariable("word") String word, @ModelAttribute Patient patient, Model model) {
         model.addAttribute("patients", patientService.searchPatientList(word));
         return "patientListSearch";
     }
 
     @PostMapping("/createPatient")
-    public String createPatientForm(@ModelAttribute Patient patient, Model model) throws SQLException {
+    public String createPatientForm(@ModelAttribute Patient patient, Model model) {
         model.addAttribute("title", "Create patient");
         model.addAttribute("error", patientService.createPatient(patient));
         return "createPatient";
     }
 
     @PostMapping("/editPatient")
-    public String editPatient(@ModelAttribute Patient patient, Model model, RedirectAttributes redirAttr) throws SQLException {
+    public String editPatient(@ModelAttribute Patient patient, RedirectAttributes redirAttr) {
         redirAttr.addFlashAttribute("error", patientService.editPatient(patient));
         return "redirect:/findPatient/" + patient.getId();
     }
 
     @PostMapping("/deletePatient/{id}")
-    public String deletePatient(@PathVariable("id") int id, Model model, RedirectAttributes redirAttr) throws SQLException {
+    public String deletePatient(@PathVariable("id") int id, RedirectAttributes redirAttr) {
         redirAttr.addFlashAttribute("error", patientService.deletePatient(id));
         return "redirect:/allPatients";
     }
 
     @PostMapping("/findPatient")
-    public String findPatient(@ModelAttribute Patient patient) throws SQLException {
+    public String findPatient(@ModelAttribute Patient patient) {
         int patient_id = patientService.searchPatient(patient);
         return "redirect:/findPatient/" + patient_id;
     }
 
     @GetMapping("/findPatient/{id}")
-    public String getPatient(@PathVariable("id") int id, Model model, HttpSession session) throws SQLException {
+    public String getPatient(@PathVariable("id") int id, Model model, HttpSession session) {
         model.addAttribute("patient", patientService.findPatient(id));
         model.addAttribute("consultations", consultationService.getConsultations(id));
         model.addAttribute("diagnosis", diagnosisService.getDiagnosisByPatient(id, 1));
@@ -99,7 +95,7 @@ public class PatientController {
     }
 
     @PostMapping("/createNote/{id}")
-    public String createNote(@PathVariable("id") int id, @ModelAttribute Patient patient, Model model, RedirectAttributes redirAttr) throws SQLException {
+    public String createNote(@PathVariable("id") int id, @ModelAttribute Patient patient, RedirectAttributes redirAttr) {
         redirAttr.addFlashAttribute("error", patientService.createNote(patient, id));
         return "redirect:/findPatient/{id}";
     }
