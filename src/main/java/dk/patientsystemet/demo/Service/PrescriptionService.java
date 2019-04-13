@@ -22,6 +22,9 @@ public class PrescriptionService {
     @Autowired
     Validate val;
 
+    /**
+     * makes a list over prescription with a certain id.
+     **/
     public List<Prescription> findPrescriptionByPatient(int id) {
         ResultSet rs = db.findPrescriptionByPatient(id);
         List<Prescription> prescriptionsList = new ArrayList<>();
@@ -39,6 +42,10 @@ public class PrescriptionService {
         }
         return null;
     }
+
+    /**
+     * creates a list over most recent prescriptions where that doctor wrote or if it isn't a doctor it gives just most recent prescriptions
+     **/
     public List<Prescription> recentPrescriptions(int id, HttpSession session) {
         ResultSet rs;
         if(session.getAttribute("role").equals("Doctor")) {
@@ -63,6 +70,9 @@ public class PrescriptionService {
         return null;
     }
 
+    /**
+     * makes a list over prescriptions where id that is given in param
+     **/
     public List<Prescription> findPrescriptionById(int id) {
         ResultSet rs = db.findPrescriptionById(id);
         List<Prescription> prescriptionsList = new ArrayList<>();
@@ -80,6 +90,10 @@ public class PrescriptionService {
         }
         return null;
     }
+
+    /**
+     * finds all the medicine from one prescription
+     **/
     public List<Medicine> findMedicineByPrescription(int id) {
         ResultSet rs = db.findMedicineByPrescription(id);
         List<Medicine> medicineList = new ArrayList<>();
@@ -98,6 +112,9 @@ public class PrescriptionService {
 
     }
 
+    /**
+     * makes a list over all the medicine
+     **/
     public List<Medicine> getAllMedicine() {
         ResultSet rs = db.getAllMedicine();
         List<Medicine> medicineList = new ArrayList<>();
@@ -115,6 +132,9 @@ public class PrescriptionService {
         return null;
     }
 
+    /**
+     * validates input to crate new prescription
+     **/
     public String createPrescription(Prescription prescription, int medId, int userID) throws SQLException {
         if(val.betweenString(prescription.getDescription(), 3, 999)) {
             return "Error: Description has to be atleast 3 characters";
@@ -136,6 +156,9 @@ public class PrescriptionService {
         return "Success";
     }
 
+    /**
+     * checks if its a doctor
+     **/
     public String deleteMedicine(int medId, int preId, HttpSession session) {
         if (session.getAttribute("role").equals("Doctor")) {
             db.deleteMedicine(medId, preId);
@@ -143,6 +166,10 @@ public class PrescriptionService {
         }
         return "Error";
     }
+
+    /**
+     * checks if its a doctor
+     **/
     public String deletePrescription(int preId, HttpSession session) {
         if (session.getAttribute("role").equals("Doctor")) {
             db.deletePrescription(preId);
@@ -150,6 +177,10 @@ public class PrescriptionService {
         }
         return "Error";
     }
+
+    /**
+     * validates input in edit prescription
+     **/
     public String editPrescription(Prescription prescription) {
         if (val.biggerOrEqualToNumber(prescription.getDescription(), 2)) {
             return "Error: Description has to be atleast 3 characters";
