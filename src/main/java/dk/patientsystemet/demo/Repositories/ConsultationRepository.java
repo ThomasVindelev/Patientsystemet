@@ -1,8 +1,6 @@
 package dk.patientsystemet.demo.Repositories;
 
 import dk.patientsystemet.demo.Model.Consultation;
-import dk.patientsystemet.demo.Model.Patient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -20,74 +18,127 @@ public class ConsultationRepository {
                 "Ny19sR!!9TZ2");
     }
 
-    public void createConsultation(Consultation consultation) throws SQLException {
+    /**
+     Create consultation with consultation object
+     */
+
+    public void createConsultation(Consultation consultation) {
         String sql = "INSERT INTO consultation (description, date, time, fk_patient, fk_users) VALUES (?, ?, ?, ?, ?)";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setString(1, consultation.getDescription());
-        preparedStatement.setString(2, consultation.getDate());
-        preparedStatement.setString(3, consultation.getTime());
-        preparedStatement.setInt(4, consultation.getPatientId());
-        preparedStatement.setInt(5, consultation.getUserId());
-        preparedStatement.execute();
-        preparedStatement.close();
+        try {
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setString(1, consultation.getDescription());
+            preparedStatement.setString(2, consultation.getDate());
+            preparedStatement.setString(3, consultation.getTime());
+            preparedStatement.setInt(4, consultation.getPatientId());
+            preparedStatement.setInt(5, consultation.getUserId());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public ResultSet findConsultations(int id) throws SQLException {
+    /**
+     Find consultations by patient id
+     */
+
+    public ResultSet findConsultations(int id) {
         String sql = "SELECT * FROM consultation LEFT JOIN patient ON consultation.fk_patient = patient.id " +
                 "LEFT JOIN users ON consultation.fk_users = users.id WHERE consultation.fk_patient=? ORDER BY consultation.date ASC";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
+        try {
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public ResultSet findDoctorsConsultationById(int id) throws SQLException {
-        String sql = "SELECT * FROM consultation LEFT JOIN patient ON consultation.fk_patient = patient.id " +
-                "LEFT JOIN users ON consultation.fk_users = users.id WHERE consultation.fk_users=? ORDER BY consultation.date ASC";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
-    }
 
-    public ResultSet findConsultationById(int id) throws SQLException {
+    /**
+     Find specific consultation by id
+     */
+
+    public ResultSet findConsultationById(int id) {
         String sql = "SELECT * FROM consultation LEFT JOIN patient ON consultation.fk_patient = patient.id WHERE consultation.id = ?";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
+        try {
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public ResultSet upcomingConsultations(int userId) throws SQLException {
+    /**
+     Find consultations for specific user (Doctor) by session ID
+     */
+
+    public ResultSet upcomingConsultations(int userId) {
         String sql = "SELECT * FROM consultation INNER JOIN patient ON consultation.fk_patient = patient.id WHERE fk_users=? ORDER BY consultation.date ASC LIMIT 5";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setInt(1, userId);
-        return preparedStatement.executeQuery();
+        try {
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setInt(1, userId);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public ResultSet fetchAll() throws SQLException {
+    /**
+     Fetch all consultations
+     */
+
+    public ResultSet fetchAll() {
         String sql = "SELECT * FROM consultation INNER JOIN patient ON consultation.fk_patient = patient.id ORDER BY consultation.date ASC LIMIT 5";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        return preparedStatement.executeQuery();
+        try {
+            preparedStatement = dbConnect.prepareStatement(sql);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public void editConsultation(Consultation consultation) throws SQLException {
+    /**
+     Edit consultation with Consultation object
+     */
+
+    public void editConsultation(Consultation consultation) {
         String sql = "UPDATE consultation SET description=?,conclusion=?, date=?, time=? WHERE id=?";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setString(1, consultation.getDescription());
-        preparedStatement.setString(2, consultation.getConclusion());
-        preparedStatement.setString(3, consultation.getDate());
-        preparedStatement.setString(4, consultation.getTime());
-        preparedStatement.setInt(5, consultation.getId());
-        preparedStatement.execute();
-        preparedStatement.close();
+        try {
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setString(1, consultation.getDescription());
+            preparedStatement.setString(2, consultation.getConclusion());
+            preparedStatement.setString(3, consultation.getDate());
+            preparedStatement.setString(4, consultation.getTime());
+            preparedStatement.setInt(5, consultation.getId());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public void deleteConsultation(int id) throws SQLException {
+    /**
+     Delete consultation by consultation ID
+     */
+
+    public void deleteConsultation(int id) {
         String sql = "DELETE FROM consultation WHERE id=?";
-        preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setInt(1, id);
-        preparedStatement.execute();
-        preparedStatement.close();
+        try {
+            preparedStatement = dbConnect.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

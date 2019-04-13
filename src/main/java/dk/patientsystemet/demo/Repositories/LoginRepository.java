@@ -19,9 +19,11 @@ public class LoginRepository {
                 "Ny19sR!!9TZ2");
     }
 
+    /**
+     verifies user
+     */
 
     public ResultSet userLogin(User user) throws SQLException {
-
 
         String query = "SELECT * from users " +
                 "INNER JOIN role ON users.fk_role = role.id WHERE email=? AND password=md5(?)";

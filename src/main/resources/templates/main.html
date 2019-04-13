@@ -25,9 +25,6 @@
                     </div>
 
                 </table>
-                <form th:action="@{/consultation/{id}(id=${session.id})}" method="get">
-                    <button type="submit">More</button>
-                </form>
             </div>
         </div>
         <div class="box-30p">
@@ -51,7 +48,7 @@
                 </table>
             </div>
         </div>
-        <div class="box-30p">
+        <div class="box-30p" th:if="${session.role == 'Doctor'}">
             <div class="box-header">
                 <h3>Newest diagnosis</h3>
             </div>
