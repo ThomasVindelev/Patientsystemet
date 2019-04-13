@@ -25,18 +25,31 @@ public class DiagnosisRepository {
                     "LEFT JOIN diagnosis_names ON diagnosis.fk_diagnosis_names = diagnosis_names.id " +
                     "LEFT JOIN patient ON diagnosis.fk_patient = patient.id " +
                     "LEFT JOIN users ON diagnosis.fk_users = users.id " +
-                    "LEFT JOIN junction_diagnosis_and_medicine ON diagnosis_names.id = junction_diagnosis_and_medicine.fk_diagnosis " +
-                    "LEFT JOIN medicine ON junction_diagnosis_and_medicine.fk_medicine = medicine.id WHERE fk_patient = " + id;
+                    "WHERE fk_patient = " + id;
         } else {
             sql = "SELECT * FROM diagnosis " +
                     "LEFT JOIN diagnosis_names ON diagnosis.fk_diagnosis_names = diagnosis_names.id " +
                     "LEFT JOIN patient ON diagnosis.fk_patient = patient.id " +
                     "LEFT JOIN users ON diagnosis.fk_users = users.id " +
-                    "LEFT JOIN junction_diagnosis_and_medicine ON diagnosis_names.id = junction_diagnosis_and_medicine.fk_diagnosis " +
-                    "LEFT JOIN medicine ON junction_diagnosis_and_medicine.fk_medicine = medicine.id WHERE diagnosis.id = " + id;
+                    "WHERE diagnosis.id = " + id;
         }
         preparedStatement = dbConnect.prepareStatement(sql);
         return preparedStatement.executeQuery();
+    }
+
+
+
+    public ResultSet getMedicineByDiagnosis(int id) {
+        String sql = "SELECT * FROM junction_diagnosis_and_medicine " +
+                "LEFT JOIN diagnosis_names ON junction_diagnosis_and_medicine.fk_diagnosis = diagnosis_names.id " +
+                "LEFT JOIN medicine ON junction_diagnosis_and_medicine.fk_medicine = medicine.id WHERE junction_diagnosis_and_medicine.fk_diagnosis = " + id;
+        try {
+           preparedStatement = dbConnect.prepareStatement(sql);
+           return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public ResultSet getDiagnosis() throws SQLException {

@@ -11,13 +11,14 @@ public class Diagnosis {
     private String medicineName;
     private int patientId;
     private int doctorId;
+    private int nameID;
     private String note;
     private String date;
 
     public Diagnosis() {
     }
 
-    public Diagnosis(int id, String diagnosisName, String patientName, String doctorName, String medicineName, int patientId, int doctorId, String note, String date) {
+    public Diagnosis(int id, String diagnosisName, String patientName, String doctorName, String medicineName, int patientId, int doctorId, int nameID, String note, String date) {
         this.id = id;
         this.diagnosisName = diagnosisName;
         this.patientName = patientName;
@@ -25,6 +26,7 @@ public class Diagnosis {
         this.medicineName = medicineName;
         this.patientId = patientId;
         this.doctorId = doctorId;
+        this.nameID = nameID;
         this.note = note;
         this.date = date;
     }
@@ -83,6 +85,14 @@ public class Diagnosis {
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
+    }
+
+    public int getNameID() {
+        return nameID;
+    }
+
+    public void setNameID(int nameID) {
+        this.nameID = nameID;
     }
 
     public String getNote() {

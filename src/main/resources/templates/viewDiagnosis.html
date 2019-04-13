@@ -20,7 +20,11 @@
         <td th:text="${diagnosis.patientName}"></td>
         <td th:text="${diagnosis.doctorName}"></td>
         <td th:text="${diagnosis.note}"></td>
-        <td th:text="${diagnosis.medicineName}"></td>
+        <td>
+           <div th:each="medicine : ${medicineList}">
+               <p th:text="${medicine.name}"></p>
+           </div>
+        </td>
         <td th:text="${diagnosis.date}"></td>
     </tr>
 </table>

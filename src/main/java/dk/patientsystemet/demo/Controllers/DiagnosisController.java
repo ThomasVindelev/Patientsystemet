@@ -20,8 +20,10 @@ public class DiagnosisController {
     DiagnosisService diagnosisService;
 
     @GetMapping("/getDiagnosis/{id}")
-    public String viewDiagnosis(@PathVariable("id") int id, @ModelAttribute Diagnosis diagnosis, Model model) {
-        model.addAttribute("diagnosis", diagnosisService.viewDiagnosis(id));
+    public String viewDiagnosis(@PathVariable("id") int id, Model model) throws SQLException {
+        Diagnosis diagnosis = diagnosisService.viewDiagnosis(id);
+        model.addAttribute("diagnosis", diagnosis);
+        model.addAttribute("medicineList", diagnosisService.getMedicineByDiagnosis(diagnosis.getNameID()));
         return "viewDiagnosis";
     }
 

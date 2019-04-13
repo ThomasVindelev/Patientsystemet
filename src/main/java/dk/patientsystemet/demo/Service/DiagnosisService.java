@@ -1,6 +1,7 @@
 package dk.patientsystemet.demo.Service;
 
 import dk.patientsystemet.demo.Model.Diagnosis;
+import dk.patientsystemet.demo.Model.Medicine;
 import dk.patientsystemet.demo.Repositories.DiagnosisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,22 @@ public class DiagnosisService {
             diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
             diagnosis.setPatientName(rs.getString("patient.firstname"));
             diagnosis.setDoctorName(rs.getString("users.name"));
-            diagnosis.setMedicineName(rs.getString("medicine.name"));
+            diagnosis.setNameID(rs.getInt("diagnosis_names.id"));
             diagnosisList.add(diagnosis);
         }
         return diagnosisList;
+    }
+
+    public List<Medicine> getMedicineByDiagnosis(int id) throws SQLException {
+        ResultSet rs = db.getMedicineByDiagnosis(id);
+        List<Medicine> medicineList = new ArrayList<>();
+        while (rs.next()) {
+            Medicine medicine = new Medicine();
+            medicine.setId(rs.getInt("medicine.id"));
+            medicine.setName(rs.getString("medicine.name"));
+            medicineList.add(medicine);
+        }
+        return medicineList;
     }
 
     public List<Diagnosis> getDiagnosis() throws SQLException {
@@ -53,6 +66,7 @@ public class DiagnosisService {
             diagnosis.setDiagnosisName(rs.getString("name"));
             diagnosis.setPatientName(rs.getString("firstname"));
             diagnosis.setDoctorName(rs.getString("users.name"));
+            diagnosis.setNameID(rs.getInt("diagnosis_names.id"));
             diagnosisList.add(diagnosis);
         }
         return  diagnosisList;
@@ -69,7 +83,7 @@ public class DiagnosisService {
                 diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
                 diagnosis.setPatientName(rs.getString("patient.firstname"));
                 diagnosis.setDoctorName(rs.getString("users.name"));
-                diagnosis.setMedicineName(rs.getString("medicine.name"));
+                diagnosis.setNameID(rs.getInt("diagnosis.fk_diagnosis_names"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

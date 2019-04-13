@@ -91,16 +91,17 @@
         <div class="box-content">
             <table>
                 <tr>
+                    <th>Date</th>
                     <th>Diagnosis</th>
-                    <th>Doctor</th>
-                    <th>Medicine</th>
                     <th class="text-center">Links</th>
                 </tr>
                 <tr th:each="diagnosis : ${diagnosis}">
+                    <td th:text="${diagnosis.date}"></td>
                     <td th:text="${diagnosis.diagnosisName}"></td>
-                    <td th:text="${diagnosis.doctorName}"></td>
-                    <td th:text="${diagnosis.medicineName}"></td>
                     <td class="text-center">
+                        <a th:href="@{/getDiagnosis/{id}(id=${diagnosis.id})}">
+                            <i class="fas fa-eye"></i>
+                        </a>
                         <a th:href="@{/deleteDiagnosis/{id}(id=${diagnosis.id})}">
                             <i class="red fas fa-times"></i>
                         </a>
