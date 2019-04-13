@@ -57,6 +57,22 @@
             </div>
             <div class="box-content">
 
+                <table>
+                    <tr>
+                        <th>Diagnosis</th>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Links</th>
+                    </tr>
+                    <div th:each="diagnosis : ${diagnosis}">
+                        <tr>
+                            <td th:text="${diagnosis.diagnosisName}"></td>
+                            <td th:text="${diagnosis.patientName}"></td>
+                            <td th:text="${diagnosis.doctorName}"></td>
+                            <td class="text-center"><a th:href="@{/getDiagnosis/{id}(id=${diagnosis.id})}"><i class="fas fa-eye"></i></a></td>
+                        </tr>
+                    </div>
+                </table>
             </div>
         </div>
     </section>

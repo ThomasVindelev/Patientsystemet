@@ -4,7 +4,6 @@ import dk.patientsystemet.demo.Model.Diagnosis;
 import dk.patientsystemet.demo.Repositories.DiagnosisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,8 +15,8 @@ public class DiagnosisService {
     @Autowired
     DiagnosisRepository db;
 
-    public List<Diagnosis> getDiagnosisByPatient(int id) throws SQLException {
-        ResultSet rs = db.getDiagnosisByPatient(id);
+    public List<Diagnosis> getDiagnosisByPatient(int id, int choice) throws SQLException {
+        ResultSet rs = db.getDiagnosisById(id, choice);
         List<Diagnosis> diagnosisList = new ArrayList<>();
         while (rs.next()) {
             Diagnosis diagnosis = new Diagnosis();
@@ -43,6 +42,39 @@ public class DiagnosisService {
             diagnosisList.add(diagnosis);
         }
         return  diagnosisList;
+    }
+
+    public List<Diagnosis> getNewDiagnosis() throws SQLException {
+        List<Diagnosis> diagnosisList = new ArrayList<>();
+        ResultSet rs = db.getNewDiagnosis();
+        while (rs.next()) {
+            Diagnosis diagnosis = new Diagnosis();
+            diagnosis.setId(rs.getInt("id"));
+            diagnosis.setDiagnosisName(rs.getString("name"));
+            diagnosis.setPatientName(rs.getString("firstname"));
+            diagnosis.setDoctorName(rs.getString("users.name"));
+            diagnosisList.add(diagnosis);
+        }
+        return  diagnosisList;
+    }
+
+    public Diagnosis viewDiagnosis(int id) {
+        Diagnosis diagnosis = new Diagnosis();
+        try {
+            ResultSet rs = db.getDiagnosisById(id, 2);
+            while (rs.next()) {
+                diagnosis.setId(rs.getInt("id"));
+                diagnosis.setNote(rs.getString("note"));
+                diagnosis.setDate(rs.getString("date"));
+                diagnosis.setDiagnosisName(rs.getString("diagnosis_names.name"));
+                diagnosis.setPatientName(rs.getString("patient.firstname"));
+                diagnosis.setDoctorName(rs.getString("users.name"));
+                diagnosis.setMedicineName(rs.getString("medicine.name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return diagnosis;
     }
 
     public void newDiagnosis(Diagnosis diagnosis, int patientID, int userID) throws SQLException {

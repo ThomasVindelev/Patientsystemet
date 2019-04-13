@@ -4,6 +4,7 @@ import dk.patientsystemet.demo.Model.Diagnosis;
 import dk.patientsystemet.demo.Service.DiagnosisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,17 @@ public class DiagnosisController {
 
     @Autowired
     DiagnosisService diagnosisService;
+
+    @GetMapping("/getDiagnosis/{id}")
+    public String viewDiagnosis(@PathVariable("id") int id, @ModelAttribute Diagnosis diagnosis, Model model) {
+        model.addAttribute("diagnosis", diagnosisService.viewDiagnosis(id));
+        return "viewDiagnosis";
+    }
+
+    @PostMapping("/getDiagnosis/{id}")
+    public String editDiagnosis() {
+        return "";
+    }
 
     @PostMapping("/addDiagnosis")
     public String addDiagnosis(@ModelAttribute Diagnosis diagnosis, HttpSession session) throws SQLException {
