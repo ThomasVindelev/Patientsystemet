@@ -32,6 +32,14 @@ public class PatientService {
             return "Error: Not a valid weight";
         } else if(val.validateCPR(patient.getCpr())) {
             return "Error: CPR number not valid";
+        } else if(val.betweenString(patient.getCity(), 1, 500)) {
+            return "Error: Fill out City";
+        } else if(val.zipNumber(patient.getZip())) {
+            return "Error: Zip has to be 4 numbers";
+        } else if(val.betweenString(patient.getAddress(), 1, 500)) {
+            return "Error: Fill out Address";
+        } else if(val.phoneNumber(patient.getPhone())) {
+            return "Error: Phone Number has to be 8 numbers";
         } else {
             db.createPatient(patient);
             return "Success";
@@ -47,8 +55,16 @@ public class PatientService {
             return "Error: Not a valid height";
         } else if(val.betweenInt(patient.getWeight(), 1, 300)){
             return "Error: Not a valid weight";
-        } else if(val.betweenInt(patient.getCpr(), 999, 10000)) {
+        } else if(val.validateCPR(patient.getCpr())) {
             return "Error: CPR number not valid";
+        } else if(val.betweenString(patient.getCity(), 1, 500)) {
+            return "Error: Fill out City";
+        } else if(val.zipNumber(patient.getZip())) {
+            return "Error: Zip has to be 4 numbers";
+        } else if(val.betweenString(patient.getAddress(), 1, 500)) {
+            return "Error: Fill out Address";
+        } else if(val.phoneNumber(patient.getPhone())) {
+            return "Error: Phone Number has to be 8 numbers";
         } else {
             db.editPatient(patient);
             return "Success";
@@ -106,7 +122,7 @@ public class PatientService {
             patient.setBirthDate(rs.getString("birthdate"));
             patient.setHeight(rs.getInt("height"));
             patient.setWeight(rs.getInt("weight"));
-            patient.setCpr(rs.getInt("cpr"));
+            patient.setCpr(rs.getString("cpr"));
             patient.setNote(rs.getString("patient_note.note"));
             patient.setDate(rs.getString("date"));
             patient.setCity(rs.getString("city"));

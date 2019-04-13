@@ -35,12 +35,29 @@ public class Validate {
         }
     }
 
-    public boolean validateCPR(int cpr) {
+    public boolean validateCPR(String cpr) {
+        if (cpr.length() == 4) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean zipNumber(int cpr) {
         cprString = Integer.toString(cpr);
         if (cprString.length() == 4) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean phoneNumber(int cpr) {
+        cprString = Integer.toString(cpr);
+        if (cprString.length() == 8) {
+            return false;
+        } else {
+            return true;
         }
     }
 

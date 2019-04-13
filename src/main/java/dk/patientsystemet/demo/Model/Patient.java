@@ -5,7 +5,7 @@ public class Patient {
     private int id;
     private int noteId;
     private int age;
-    private int cpr;
+    private String cpr;
     private int height;
     private int weight;
     private String firstName;
@@ -22,7 +22,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int id, int noteId, int age, int cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date, String searchword, int zip, String address, String city, int phone) {
+    public Patient(int id, int noteId, int age, String cpr, int height, int weight, String firstName, String lastName, String birthDate, String note, String date, String searchword, int zip, String address, String city, int phone) {
         this.id = id;
         this.noteId = noteId;
         this.age = age;
@@ -65,11 +65,11 @@ public class Patient {
         this.age = age;
     }
 
-    public int getCpr() {
+    public String getCpr() {
         return cpr;
     }
 
-    public void setCpr(int cpr) {
+    public void setCpr(String cpr) {
         this.cpr = cpr;
     }
 

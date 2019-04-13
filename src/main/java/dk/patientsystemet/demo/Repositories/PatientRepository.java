@@ -29,7 +29,7 @@ public class PatientRepository {
         preparedStatement.setInt(3, patient.getHeight());
         preparedStatement.setInt(4, patient.getWeight());
         preparedStatement.setString(5, patient.getBirthDate());
-        preparedStatement.setInt(6, patient.getCpr());
+        preparedStatement.setString(6, patient.getCpr());
         preparedStatement.setString(7, patient.getAddress());
         preparedStatement.setInt(8, patient.getZip());
         preparedStatement.setString(9, patient.getCity());
@@ -57,7 +57,7 @@ public class PatientRepository {
         preparedStatement.setString(2, patient.getLastName());
         preparedStatement.setInt(3, patient.getHeight());
         preparedStatement.setInt(4, patient.getWeight());
-        preparedStatement.setInt(5, patient.getCpr());
+        preparedStatement.setString(5, patient.getCpr());
         preparedStatement.setString(6, patient.getAddress());
         preparedStatement.setInt(7, patient.getZip());
         preparedStatement.setString(8, patient.getCity());
@@ -77,7 +77,7 @@ public class PatientRepository {
     public ResultSet searchPatient(Patient patient) throws SQLException {
         String sql = "SELECT id FROM patient WHERE cpr=?";
         preparedStatement = dbConnect.prepareStatement(sql);
-        preparedStatement.setInt(1, patient.getCpr());
+        preparedStatement.setString(1, patient.getCpr());
         return preparedStatement.executeQuery();
     }
 
