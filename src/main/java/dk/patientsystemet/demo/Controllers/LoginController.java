@@ -32,7 +32,7 @@ public class LoginController {
     DiagnosisService diagnosisService;
 
     @PostMapping("/login")
-    public String login(@ModelAttribute User user, HttpSession session, Model model) throws SQLException {
+    public String login(@ModelAttribute User user, HttpSession session, Model model) {
         if (service.verifyUser(user)) {
             session.setAttribute("email", user.getEmail());
             session.setAttribute("name", user.getName());
@@ -46,7 +46,7 @@ public class LoginController {
     }
 
     @GetMapping("/main")
-    public String getMainPage(Model model, HttpSession session) throws SQLException {
+    public String getMainPage(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("id");
         model.addAttribute("title", "Main");
         model.addAttribute("consultations", consultationService.upcomingConsultations(userId, session));

@@ -1,6 +1,5 @@
 package dk.patientsystemet.demo.Service;
 
-import dk.patientsystemet.demo.Model.Diagnosis;
 import dk.patientsystemet.demo.Model.Note;
 import dk.patientsystemet.demo.Model.Patient;
 import dk.patientsystemet.demo.Repositories.PatientRepository;
@@ -25,7 +24,7 @@ public class PatientService {
     Checks input from patient creation page
      */
 
-    public String createPatient(Patient patient) throws SQLException {
+    public String createPatient(Patient patient) {
         if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
             return "Error: First name has to be at least 2 characters";
         } else if(val.biggerOrEqualToNumber(patient.getLastName(), 1)) {
@@ -54,7 +53,7 @@ public class PatientService {
     Checks input from patient edit page
      */
 
-    public String editPatient(Patient patient) throws SQLException {
+    public String editPatient(Patient patient) {
         if(val.biggerOrEqualToNumber(patient.getFirstName(), 1)) {
             return "Error: First name has to be at least 2 characters";
         } else if(val.biggerOrEqualToNumber(patient.getLastName(), 1)) {
@@ -83,7 +82,7 @@ public class PatientService {
     Delete patient
      */
 
-    public String deletePatient(int id) throws SQLException {
+    public String deletePatient(int id) {
         db.deletePatient(id);
         return "Success";
 
@@ -93,99 +92,124 @@ public class PatientService {
     Returns a list of all patients
      */
 
-    public List<Patient> fetchAll() throws SQLException {
+    public List<Patient> fetchAll() {
         ResultSet rs = db.allPatients();
         List<Patient> patientList = new ArrayList<>();
-        while (rs.next()) {
-            Patient patient = new Patient();
-            patient.setId(rs.getInt("id"));
-            patient.setFirstName(rs.getString("firstname"));
-            patient.setLastName(rs.getString("lastname"));
-            patientList.add(patient);
+        try {
+            while (rs.next()) {
+                Patient patient = new Patient();
+                patient.setId(rs.getInt("id"));
+                patient.setFirstName(rs.getString("firstname"));
+                patient.setLastName(rs.getString("lastname"));
+                patientList.add(patient);
+            }
+            return patientList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return patientList;
+        return null;
     }
 
     /**
     Return patients that matches the search word in a list
      */
 
-    public List<Patient> searchPatientList(String searchword) throws SQLException {
+    public List<Patient> searchPatientList(String searchword) {
         ResultSet rs = db.searchPatientList(searchword);
         List<Patient> patientList = new ArrayList<>();
-        while (rs.next()) {
-            Patient patient = new Patient();
-            patient.setId(rs.getInt("id"));
-            patient.setFirstName(rs.getString("firstname"));
-            patient.setLastName(rs.getString("lastname"));
-            patientList.add(patient);
+        try {
+            while (rs.next()) {
+                Patient patient = new Patient();
+                patient.setId(rs.getInt("id"));
+                patient.setFirstName(rs.getString("firstname"));
+                patient.setLastName(rs.getString("lastname"));
+                patientList.add(patient);
+            }
+            return patientList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return patientList;
+        return null;
     }
 
     /**
     Returns a patient id as int
      */
 
-    public int searchPatient(Patient patient) throws SQLException {
+    public int searchPatient(Patient patient) {
         ResultSet rs = db.searchPatient(patient);
-        if (rs.next()) {
-            return rs.getInt("patient.id");
-        } else {
-            return 0;
+        try {
+            if (rs.next()) {
+                return rs.getInt("patient.id");
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return 0;
     }
 
     /**
     Returns a Patient object to the patient page
      */
 
-    public Patient findPatient(int id) throws SQLException {
+    public Patient findPatient(int id) {
         ResultSet rs = db.findPatient(id);
-        if (rs.next()) {
-            Patient patient = new Patient();
-            patient.setId(rs.getInt("patient.id"));
-            patient.setFirstName(rs.getString("firstname"));
-            patient.setLastName(rs.getString("lastname"));
-            patient.setBirthDate(rs.getString("birthdate"));
-            patient.setHeight(rs.getInt("height"));
-            patient.setWeight(rs.getInt("weight"));
-            patient.setCpr(rs.getString("cpr"));
-            patient.setNote(rs.getString("patient_note.note"));
-            patient.setDate(rs.getString("date"));
-            patient.setCity(rs.getString("city"));
-            patient.setZip(rs.getInt("zip"));
-            patient.setAddress(rs.getString("address"));
-            patient.setPhone(rs.getInt("phone"));
-            return patient;
-        } else {
-            return null;
+        try {
+            if (rs.next()) {
+                Patient patient = new Patient();
+                patient.setId(rs.getInt("patient.id"));
+                patient.setFirstName(rs.getString("firstname"));
+                patient.setLastName(rs.getString("lastname"));
+                patient.setBirthDate(rs.getString("birthdate"));
+                patient.setHeight(rs.getInt("height"));
+                patient.setWeight(rs.getInt("weight"));
+                patient.setCpr(rs.getString("cpr"));
+                patient.setNote(rs.getString("patient_note.note"));
+                patient.setDate(rs.getString("date"));
+                patient.setCity(rs.getString("city"));
+                patient.setZip(rs.getInt("zip"));
+                patient.setAddress(rs.getString("address"));
+                patient.setPhone(rs.getInt("phone"));
+                return patient;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+       return null;
     }
 
     /**
     Returns a list of notes by patient id
      */
 
-    public List<Note> findPatientNote(int id) throws SQLException {
+    public List<Note> findPatientNote(int id) {
         ResultSet rs = db.findPatientNote(id);
         List<Note> noteList = new ArrayList<>();
-        while (rs.next()) {
-            Note note = new Note();
-            note.setPatientId(rs.getInt("fk_patient"));
-            note.setId(rs.getInt("id"));
-            note.setNote(rs.getString("note"));
-            note.setTimestamp(rs.getString("date"));
-            noteList.add(note);
+        try {
+            while (rs.next()) {
+                Note note = new Note();
+                note.setPatientId(rs.getInt("fk_patient"));
+                note.setId(rs.getInt("id"));
+                note.setNote(rs.getString("note"));
+                note.setTimestamp(rs.getString("date"));
+                noteList.add(note);
+            }
+            return noteList;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return noteList;
+        return null;
     }
 
     /**
     Checks for input in note creation fields
      */
 
-    public String createNote(Patient patient, int id) throws SQLException {
+    public String createNote(Patient patient, int id) {
         if(val.betweenString(patient.getNote(), 3, 360)) {
             return "Error: Note has to be between 3 and 360 characters.";
         } else {
@@ -198,7 +222,7 @@ public class PatientService {
     Delete note
      */
 
-    public String deleteNote(int id) throws SQLException {
+    public String deleteNote(int id) {
         db.deleteNote(id);
         return "Success";
     }
