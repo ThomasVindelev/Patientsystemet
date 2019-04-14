@@ -71,3 +71,18 @@
     }
   }
 }
+.login-info {
+  padding: 10px 20px;
+  background: $ton-d;
+  margin-top: 20px;
+  div {
+    margin: 10px 0;
+    color: $ton-xl;
+    h4 {
+      margin-bottom: 5px;
+    }
+    p {
+      line-height: 25px;
+    }
+  }
+}
