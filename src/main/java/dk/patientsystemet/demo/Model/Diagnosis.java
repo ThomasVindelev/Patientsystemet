@@ -111,3 +111,4 @@ public class Diagnosis {
         this.date = date;
     }
 }
+

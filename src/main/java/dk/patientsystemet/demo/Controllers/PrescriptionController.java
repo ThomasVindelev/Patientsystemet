@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 @Controller
 public class PrescriptionController {
@@ -34,8 +35,11 @@ public class PrescriptionController {
     }
     @PostMapping("/createPrescription")
     public String createPrescription(@ModelAttribute Prescription prescription, Medicine medicine, HttpSession session, RedirectAttributes redirAttr) {
-        redirAttr.addFlashAttribute("error", prescriptionService.createPrescription(prescription, medicine.getMedicineId(), prescription.getDoctorId()));
-
+        try {
+            redirAttr.addFlashAttribute("error", prescriptionService.createPrescription(prescription, medicine.getMedicineId(), prescription.getDoctorId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return "redirect:/findPatient/" + session.getAttribute("patient_id");
     }
 
@@ -70,3 +74,4 @@ public class PrescriptionController {
         return "redirect:/editPrescription/" + id;
     }
 }
+

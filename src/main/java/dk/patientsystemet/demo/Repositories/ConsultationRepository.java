@@ -141,6 +141,4 @@ public class ConsultationRepository {
         }
     }
 
-
-
 }
